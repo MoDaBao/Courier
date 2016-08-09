@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OrderDefaultView">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="152"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epo-RI-tkp">
+                    <rect key="frame" x="10" y="15" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="6ax-ii-Y4W"/>
+                        <constraint firstAttribute="height" constant="20" id="G74-nr-VoA"/>
+                    </constraints>
+                    <state key="normal" image="exclamation mark"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑腿使用默认起送价(2公里内8元)超出起送距离均按起送价收费" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXk-0d-yJf">
+                    <rect key="frame" x="35" y="5" width="375" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="GrA-xA-kqC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间:xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbW-6n-fes">
+                    <rect key="frame" x="10" y="50" width="126" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFY-R8-Izi">
+                    <rect key="frame" x="10" y="72" width="28" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-VN-oWc">
+                    <rect key="frame" x="156" y="50" width="28" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="epo-RI-tkp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="5MR-ur-FpW"/>
+                <constraint firstItem="epo-RI-tkp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="I3o-dS-cFS"/>
+                <constraint firstItem="FFY-R8-Izi" firstAttribute="top" secondItem="vbW-6n-fes" secondAttribute="bottom" constant="5" id="Ls1-Gi-5Rv"/>
+                <constraint firstItem="J5I-VN-oWc" firstAttribute="leading" secondItem="vbW-6n-fes" secondAttribute="trailing" constant="20" id="NUQ-mF-kaE"/>
+                <constraint firstItem="vbW-6n-fes" firstAttribute="leading" secondItem="epo-RI-tkp" secondAttribute="leading" id="SeV-ty-Gm5"/>
+                <constraint firstItem="cXk-0d-yJf" firstAttribute="leading" secondItem="epo-RI-tkp" secondAttribute="trailing" constant="5" id="ccp-Aa-ibp"/>
+                <constraint firstItem="cXk-0d-yJf" firstAttribute="centerY" secondItem="epo-RI-tkp" secondAttribute="centerY" id="czW-A3-hhO"/>
+                <constraint firstItem="vbW-6n-fes" firstAttribute="top" secondItem="cXk-0d-yJf" secondAttribute="bottom" constant="5" id="dcI-Ni-JGj"/>
+                <constraint firstItem="J5I-VN-oWc" firstAttribute="centerY" secondItem="vbW-6n-fes" secondAttribute="centerY" id="gbd-Ra-yRb"/>
+                <constraint firstAttribute="trailing" secondItem="cXk-0d-yJf" secondAttribute="trailing" constant="10" id="lXO-7q-Agy"/>
+                <constraint firstItem="FFY-R8-Izi" firstAttribute="leading" secondItem="vbW-6n-fes" secondAttribute="leading" id="lsG-2I-hj9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="note" destination="FFY-R8-Izi" id="6CD-W5-Mq0"/>
+                <outlet property="status" destination="J5I-VN-oWc" id="JVx-jv-Q9U"/>
+                <outlet property="time" destination="vbW-6n-fes" id="74z-1a-Isu"/>
+            </connections>
+            <point key="canvasLocation" x="328" y="64"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="exclamation mark" width="30" height="30"/>
+    </resources>
+</document>

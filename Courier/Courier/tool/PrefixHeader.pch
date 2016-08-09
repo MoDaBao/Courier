@@ -1,0 +1,57 @@
+//
+//  PrefixHeader.pch
+//  peisongduan
+//
+//  Created by 莫大宝 on 16/6/15.
+//  Copyright © 2016年 dabao. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "ConstantHeader.h"
+#import "UIView+ChangeFrame.h"
+#import "UILabel+LabelHeightAndWidth.h"
+
+#import <AFNetworking/AFNetworking.h>
+
+#import "NSString+EncodeAndDecode.h"
+#import "NSDictionary+DicChangeJson.h"
+
+#import "CourierInfoManager.h"
+#import "EncryptionAndDecryption.h"
+
+
+#import <RongIMKit/RongIMKit.h>
+
+#import "JPUSHService.h"
+
+#import <MJRefresh/MJRefresh.h>
+
+#import <MAMapKit/MAMapKit.h>
+
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
+#import <AMapNaviKit/AMapNaviKit.h>
+
+#import <AMapLocationKit/AMapLocationKit.h>
+
+#import <AMapSearchKit/AMapSearchKit.h>
+
+//如果要使用MD5算法进行加密，需要引入此框架
+#import <CommonCrypto/CommonCrypto.h>
+
+#import "MyMD5.h"
+//#import "AppDelegate.h"
+
+//#import <SDWebImage/sd>
+#import "UIImageView+WebCache.h"
+
+   
+
+
+
+#endif /* PrefixHeader_pch */
