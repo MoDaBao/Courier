@@ -224,6 +224,7 @@
                     NSLog(@"成功");
                     //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
                     [[CourierInfoManager shareInstance] removeAllCourierInfo];
+                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // 模态弹出登录页面
                         [[CourierInfoManager shareInstance] removeAllCourierInfo];

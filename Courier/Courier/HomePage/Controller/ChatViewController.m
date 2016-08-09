@@ -75,6 +75,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.navigationController.navigationBar.hidden = NO;
+    self.tabBarController.tabBar.hidden = YES;
 //    self.navigationItem.title = self.model.userphone;
     
     [self.pluginBoardView removeItemAtIndex:2];
@@ -84,7 +86,7 @@
     [RCIM sharedRCIM].receiveMessageDelegate = self;
     
     
-    
+    self.conversationMessageCollectionView.y = 64;
     
 //    [self.conversationMessageCollectionView registerNib:[UINib nibWithNibName:@"TestMessageCell" bundle:nil] forCellWithReuseIdentifier:@"reuse"];
     [self registerClass:[SimpleMessageCell class] forCellWithReuseIdentifier:@"SimpleMessageCell"];

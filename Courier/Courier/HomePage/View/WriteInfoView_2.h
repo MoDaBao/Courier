@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseModel.h"
+
+@protocol WriteInfoView_2Delegate <NSObject>
+
+- (void)clearLatitudeAndLongitude;
+
+@end
+
+
 @interface WriteInfoView_2 : UIView
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (weak, nonatomic) IBOutlet UILabel *startLabel;
@@ -29,7 +37,9 @@
 
 @property (nonatomic, assign) BOOL isChoose;
 
+@property (nonatomic, assign) id<WriteInfoView_2Delegate> delegate;
 
+- (void)click;
 
 - (void)setDataWithModel:(BaseModel *)model;
 @end

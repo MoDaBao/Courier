@@ -74,17 +74,18 @@
 - (void)changeDefaultStatus {
     if (self.isChoose) {
         [self.defaultStatusBtn setBackgroundImage:[UIImage imageNamed:@"choosered"] forState:UIControlStateNormal];
-        //        [self.defaultStatusButton setBackgroundImage:[UIImage imageNamed:@"choosered"] forState:UIControlStateNormal];
         self.startTF.text = @"";
         self.endTF.text = @"";
-        self.startBtn.enabled = NO;
-        self.endBtn.enabled = NO;
+        if ([self.delegate respondsToSelector:@selector(clearLatitudeAndLongitude)]) {
+            [self.delegate clearLatitudeAndLongitude];
+        }
+//        self.startBtn.enabled = NO;
+//        self.endBtn.enabled = NO;
         
     } else {
         [self.defaultStatusBtn setBackgroundImage:[UIImage imageNamed:@"choosegary"] forState:UIControlStateNormal];
-        //        [self.defaultStatusButton setBackgroundImage:[UIImage imageNamed:@"choosegary"] forState:UIControlStateNormal];
-        self.startBtn.enabled = YES;
-        self.endBtn.enabled = YES;
+//        self.startBtn.enabled = YES;
+//        self.endBtn.enabled = YES;
     }
 }
 

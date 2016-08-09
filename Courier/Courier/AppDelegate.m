@@ -56,19 +56,6 @@
         [application registerForRemoteNotificationTypes:myTypes];
     }
     
-//    [application registerForRemoteNotificationTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound];
-    
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver:self
-//     selector:@selector(didReceiveMessageNotification2:)
-//     name:RCKitDispatchMessageNotification
-//     object:nil];
-    
-    
-    
-//    NSLog(@"%@",[NSString stringWithFormat:@"user_%@",USER_ID]);
-    
-//    [JPUSHService setAlias:[NSString stringWithFormat:@"user_%@",USER_ID] callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     
     //Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {

@@ -184,7 +184,7 @@
             // 存储跑腿基本信息
             [[CourierInfoManager shareInstance]  setCourierInfoWithDic:dataDic];
             // 使用别名标识设备
-            [JPUSHService setAlias:[[CourierInfoManager shareInstance] getCourierPid] callbackSelector:nil object:nil];
+            [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
             // 初始化融云和计时器
             [self initRongAndSendAddress];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -252,60 +252,15 @@
 
 // 一个账号不能同时登录两台设备
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
-    NSLog(@"xxxx");
-    /*
-    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              
-                              initWithTitle:@"提示"
-                              
-                              message:@"您"
-                              
-                              @"的帐号在别的设备上登录，您被迫下线！"
-                              
-                              delegate:self
-                              
-                              cancelButtonTitle:@"知道了"
-                              
-                              otherButtonTitles:nil, nil];
-        alert.tag = 7777;
-        [alert show];
-    }
-     */
+    NSLog(@"您的账号已在另一台设备上上线");
+    
+//    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
+//        [self.delegate showAlert];
+//    }
+    
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    if (![[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@" "]) {// 退出登录时当在线状态为在线时改成下班状态
-        NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
-            if (![responseObject[@"status"] integerValue]) {
-                NSLog(@"成功");
-                //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
-                [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // 模态弹出登录页面
-                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                    LoginViewController *loginVC = [[LoginViewController alloc] init];
-                    // 此处应该要撤销计时器
-                    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-                    [delegate.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
-//                    [self presentViewController:loginVC animated:YES completion:nil];
-                });
-            } else {
-                NSLog(@"失败");
-            }
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
-    }
-}
+
 
 // 获取聊天用户信息
 - (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion {

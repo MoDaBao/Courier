@@ -12,7 +12,7 @@
 #import "MessageBarButton.h"
 #import "ChatViewController.h"
 
-@interface WriteInfoViewController ()<SearchMapViewControllerDelegate>
+@interface WriteInfoViewController ()<SearchMapViewControllerDelegate, WriteInfoView_2Delegate, WriteInfoBuyViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -49,7 +49,7 @@
                 self.writeBuyView.totalDistance.text = [NSString stringWithFormat:@"%@m",dic[@"distance"]];
                 self.writeBuyView.totalCost.text = [NSString stringWithFormat:@"%@￥",dic[@"price"]];
             } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
                 [alert show];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -59,9 +59,6 @@
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -97,8 +94,11 @@
     scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
 
+    
+    // 加载填写视图
     if (self.baseModel.type.integerValue == 3) {// 买的时候加载购买的填单view
         self.writeBuyView = [[[NSBundle mainBundle] loadNibNamed:@"WriteInfoBuyView" owner:nil options:nil] lastObject];
+        self.writeBuyView.delegate = self;
         //    self.writeBuyView setda÷÷
         self.writeBuyView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.00];
         self.writeBuyView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight);
@@ -118,6 +118,7 @@
         [self.writeBuyView.endBtn addTarget:self action:@selector(endBtnClick) forControlEvents:UIControlEventTouchUpInside];// 点击进入地图选择收货地点
     } else {// 送 拿
         self.writeView = [[[NSBundle mainBundle] loadNibNamed:@"WriteInfoView_2" owner:nil options:nil] lastObject];
+        self.writeView.delegate = self;
         [self.writeView setDataWithModel:self.baseModel];
         self.writeView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.00];
         self.writeView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight);
@@ -143,6 +144,22 @@
     
     
     
+}
+
+
+#pragma mark -----填单视图的代理方法-----
+- (void)clearLatitudeAndLongitude {
+    _start_latitude = nil;
+    _start_longitude = nil;
+    _end_latitude = nil;
+    _end_longitude = nil;
+}
+
+- (void)clearBuyLatitudeAndLongitude {
+    _start_latitude = nil;
+    _start_longitude = nil;
+    _end_latitude = nil;
+    _end_longitude = nil;
 }
 
 // 如果是地址已经填好的帮我买订单要调用这个方法赋值
@@ -177,9 +194,24 @@
 - (void)sendBtnClick {
     
     // 判断有无输入地址
-//    if (self.writeView) {
-//        <#statements#>
-//    }
+    if (self.writeView) {
+        if (!self.writeView.isChoose) {
+            if (!self.writeView.startTF.text.length || !self.writeView.endTF.text.length) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先输入地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
+        }
+        
+    } else if (self.writeBuyView) {
+        if (!self.writeBuyView.isChoose) {
+            if (!self.writeBuyView.startTF.text.length || !self.writeBuyView.endTF.text.length) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先输入地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
+        }
+    }
     
     // 判断有无输入手机号
     if ([self.writeView.receivingTF.text isEqualToString:@""] || [self.writeView.pusherPhoneTF.text isEqualToString:@""] || [self.writeBuyView.receivingTF.text isEqualToString:@""]) {
@@ -192,7 +224,7 @@
     
     
     // 网络请求参数
-//    NSString *is_bonus = _baseModel.bonus_id ? @"1" : @"0";// 是否有红包 0是无  1是有
+    //    NSString *is_bonus = _baseModel.bonus_id ? @"1" : @"0";// 是否有红包 0是无  1是有
     NSString *parameter = nil;
     NSString *note = _baseModel.note ? _baseModel.note : @"";
     if (self.writeView.isChoose) {// 判断有无选择默认起送价
@@ -220,44 +252,44 @@
         
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        @"pcreateOrder_pay", @"api",
-        @"1", @"version",
-        [NSString stringWithFormat:@"%d",_baseModel.type.intValue], @"type",
-        [NSString stringWithFormat:@"%@",self.baseModel.userid], @"userid",
-        self.writeBuyView.startTF.text, @"start",
-        _start_longitude, @"start_longitude",
-        _start_latitude, @"start_latitude",
-        self.writeBuyView.receivingTF.text, @"phone",
-        self.writeBuyView.endTF.text, @"end",
-        _end_longitude, @"end_longitude",
-        _end_latitude, @"end_latitude",
-        _baseModel.psend_time, @"psend_time",
-        _baseModel.order_sn, @"order_sn",
-        note, @"note",
-        self.writeBuyView.buyPrice.text, @"buyprice",
-        [[CourierInfoManager shareInstance] getCourierPid], @"pid",
-        nil];
+                                    @"pcreateOrder_pay", @"api",
+                                    @"1", @"version",
+                                    [NSString stringWithFormat:@"%d",_baseModel.type.intValue], @"type",
+                                    [NSString stringWithFormat:@"%@",self.baseModel.userid], @"userid",
+                                    self.writeBuyView.startTF.text, @"start",
+                                    _start_longitude, @"start_longitude",
+                                    _start_latitude, @"start_latitude",
+                                    self.writeBuyView.receivingTF.text, @"phone",
+                                    self.writeBuyView.endTF.text, @"end",
+                                    _end_longitude, @"end_longitude",
+                                    _end_latitude, @"end_latitude",
+                                    _baseModel.psend_time, @"psend_time",
+                                    _baseModel.order_sn, @"order_sn",
+                                    note, @"note",
+                                    self.writeBuyView.buyPrice.text, @"buyprice",
+                                    [[CourierInfoManager shareInstance] getCourierPid], @"pid",
+                                    nil];
         parameter = [EncryptionAndDecryption encryptionWithDic:dic];
     } else {
         // 送 拿
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        @"pcreateOrder", @"api",
-        @"1", @"version",
-        [NSString stringWithFormat:@"%d",_baseModel.type.intValue], @"type",
-        [NSString stringWithFormat:@"%@",self.baseModel.userid], @"userid",
-        self.writeView.startTF.text, @"start",
-        _start_longitude, @"start_longitude",
-        _start_latitude, @"start_latitude",
-        self.writeView.receivingTF.text, @"phone",
-        self.writeView.endTF.text, @"end",
-        _end_longitude, @"end_longitude",
-        _end_latitude, @"end_latitude",
-        _baseModel.psend_time, @"psend_time",
-        _baseModel.order_sn, @"order_sn",
-        note, @"note",
-        self.writeView.pusherPhoneTF.text, @"start_phone",
-        [[CourierInfoManager shareInstance] getCourierPid], @"pid",
-        nil];
+                                    @"pcreateOrder", @"api",
+                                    @"1", @"version",
+                                    [NSString stringWithFormat:@"%d",_baseModel.type.intValue], @"type",
+                                    [NSString stringWithFormat:@"%@",self.baseModel.userid], @"userid",
+                                    self.writeView.startTF.text, @"start",
+                                    _start_longitude, @"start_longitude",
+                                    _start_latitude, @"start_latitude",
+                                    self.writeView.receivingTF.text, @"phone",
+                                    self.writeView.endTF.text, @"end",
+                                    _end_longitude, @"end_longitude",
+                                    _end_latitude, @"end_latitude",
+                                    _baseModel.psend_time, @"psend_time",
+                                    _baseModel.order_sn, @"order_sn",
+                                    note, @"note",
+                                    self.writeView.pusherPhoneTF.text, @"start_phone",
+                                    [[CourierInfoManager shareInstance] getCourierPid], @"pid",
+                                    nil];
         parameter = [EncryptionAndDecryption encryptionWithDic:dic];
     }
     
@@ -274,12 +306,12 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"]  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
                 /*
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [alertC dismissViewControllerAnimated:YES completion:nil];
-                }];
-                [alertC addAction:confirm];
-                [self.navigationController presentViewController:alertC animated:YES completion:nil];
+                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+                 UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                 [alertC dismissViewControllerAnimated:YES completion:nil];
+                 }];
+                 [alertC addAction:confirm];
+                 [self.navigationController presentViewController:alertC animated:YES completion:nil];
                  */
             } else {
                 self.refresh();
@@ -290,6 +322,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);
     }];
+    
 
     
 }
@@ -328,6 +361,15 @@
         self.end_longitude = longitude;
     }
     tf.text = address;
+    
+    if (self.writeView) {
+        self.writeView.isChoose = YES;
+        [self.writeView click];
+    } else if (self.writeBuyView) {
+        self.writeBuyView.isChoose = YES;
+        [self.writeBuyView click];
+    }
+    
 }
 
 - (void)cancelOrder {

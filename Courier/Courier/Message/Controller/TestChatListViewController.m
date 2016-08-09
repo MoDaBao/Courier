@@ -13,8 +13,10 @@
 #import "ChatViewController.h"
 #import "BaseModel.h"
 #import "ChatListModel.h"
+#import "MainTabBarController.h"
+#import "AppDelegate.h"
 
-@interface TestChatListViewController ()
+@interface TestChatListViewController ()<UIAlertViewDelegate>
 
 /**
  *  后台请求数据数据源
@@ -24,6 +26,8 @@
  *  消息列表数据源
  */
 @property (nonatomic, strong) NSMutableArray *chatListArray;
+
+@property (nonatomic, strong) BaseModel *baseModel;
 
 
 @end
@@ -271,7 +275,89 @@
 
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
+    RCMessage *message = (RCMessage *)notification.object;
+    
     NSLog(@"%@",notification);
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    MainTabBarController *tabVC = (MainTabBarController *)delegate.window.rootViewController;
+    
+    NSString *userid = [message.senderUserId substringFromIndex:1];
+    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",userid,@"userid",message.targetId,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
+    NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //        NSLog(@"%@",responseObject);
+        NSNumber *result = responseObject[@"status"];
+        if (!result.integerValue) {
+            NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+            NSLog(@"%@",data);
+            BaseModel *model = [[BaseModel alloc] init];
+            [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
+            self.baseModel = model;
+            NSLog(@"%@",_baseModel);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (tabVC.selectedIndex == 1) {
+                    if ([tabVC.chatListVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
+                        ChatViewController *chatVC = tabVC.chatListVC.navigationController.viewControllers.lastObject;
+                        if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            alert.tag = 1234;
+                            [alert show];
+                            
+                        }
+                    } else {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        alert.tag = 1234;
+                        [alert show];
+                    }
+                    
+                    
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    alert.tag = 1234;
+                    [alert show];
+                }
+            });
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error is %@",error);
+    }];
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    MainTabBarController *tabVC = (MainTabBarController *)delegate.window.rootViewController;
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:_baseModel];
+    //设置会话的类型，如单聊、讨论[组、群聊、聊天室、客服、公众服务会话等
+    chatVC.conversationType = ConversationType_GROUP;
+    //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
+    chatVC.targetId = _baseModel.order_sn;
+    
+    //设置聊天会话界面要显示的标题
+    chatVC.title = self.baseModel.userphone;
+    if (alertView.tag == 1234) {
+        
+        
+        //显示聊天会话界面
+        //        [self.navigationController pushViewController:chatVC animated:YES];
+        
+        
+        if (tabVC.selectedIndex == 0) {
+            [tabVC.homeVc.navigationController pushViewController:chatVC animated:YES];
+        } else if (tabVC.selectedIndex == 1) {
+            [tabVC.chatListVC.navigationController pushViewController:chatVC animated:YES];
+        } else {
+            [tabVC.personVC.navigationController pushViewController:chatVC animated:YES];
+        }
+    } else if (alertView.tag == 1235) {
+        ChatViewController *chat = (ChatViewController *)tabVC.chatListVC.navigationController.viewControllers.lastObject;
+        [chat.navigationController pushViewController:chatVC animated:YES];
+    }
 }
 
 // 高度

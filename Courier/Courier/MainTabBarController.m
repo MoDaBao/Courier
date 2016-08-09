@@ -93,7 +93,7 @@
         NSLog(@"RCtoken错误");
     }];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
-    [RCIM sharedRCIM].receiveMessageDelegate = self;
+//    [RCIM sharedRCIM].receiveMessageDelegate = self;
     [RCIM sharedRCIM].connectionStatusDelegate = self;
     
     // 设置计时器每隔三十秒向服务器上传一次跑腿的位置
@@ -134,46 +134,46 @@
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
 //    _targetId = message.targetId;
-    NSString *userid = [message.senderUserId substringFromIndex:1];
-    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",userid,@"userid",message.targetId,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
-    NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-        NSNumber *result = responseObject[@"status"];
-        if (!result.integerValue) {
-            NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"%@",data);
-            BaseModel *model = [[BaseModel alloc] init];
-            [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
-            self.baseModel = model;
-            NSLog(@"%@",_baseModel);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.selectedIndex == 1) {
-                    if ([self.chatListVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
-                        ChatViewController *chatVC = self.chatListVC.navigationController.viewControllers.lastObject;
-                        if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                            alert.tag = 1234;
-                            [alert show];
-                            
-                        }
-                    }
-                    
-                    
-                } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    alert.tag = 1234;
-                    [alert show];
-                }
-            });
-            
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+//    NSString *userid = [message.senderUserId substringFromIndex:1];
+//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",userid,@"userid",message.targetId,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
+//    NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+////        NSLog(@"%@",responseObject);
+//        NSNumber *result = responseObject[@"status"];
+//        if (!result.integerValue) {
+//            NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+//            NSLog(@"%@",data);
+//            BaseModel *model = [[BaseModel alloc] init];
+//            [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
+//            self.baseModel = model;
+//            NSLog(@"%@",_baseModel);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (self.selectedIndex == 1) {
+//                    if ([self.chatListVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
+//                        ChatViewController *chatVC = self.chatListVC.navigationController.viewControllers.lastObject;
+//                        if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+//                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                            alert.tag = 1234;
+//                            [alert show];
+//                            
+//                        }
+//                    }
+//                    
+//                    
+//                } else {
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    alert.tag = 1234;
+//                    [alert show];
+//                }
+//            });
+//            
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"error is %@",error);
+//    }];
    
 }
 
@@ -232,6 +232,7 @@
                     NSLog(@"成功");
                     //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
                     [[CourierInfoManager shareInstance] removeAllCourierInfo];
+                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // 模态弹出登录页面
                         [[CourierInfoManager shareInstance] removeAllCourierInfo];
@@ -251,26 +252,26 @@
         }
     } else if (alertView.tag == 1234) {
         
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:_baseModel];
-        //设置会话的类型，如单聊、讨论[组、群聊、聊天室、客服、公众服务会话等
-        chatVC.conversationType = ConversationType_GROUP;
-        //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
-        chatVC.targetId = _baseModel.order_sn;
-        
-        //设置聊天会话界面要显示的标题
-        chatVC.title = self.baseModel.userphone;
-        
-        
-        //显示聊天会话界面
-//        [self.navigationController pushViewController:chatVC animated:YES];
-        
-        if (self.selectedIndex == 0) {
-            [self.homeVc.navigationController pushViewController:chatVC animated:YES];
-        } else if (self.selectedIndex == 1) {
-            [self.chatListVC.navigationController pushViewController:chatVC animated:YES];
-        } else {
-            [self.personVC.navigationController pushViewController:chatVC animated:YES];
-        }
+//        ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:_baseModel];
+//        //设置会话的类型，如单聊、讨论[组、群聊、聊天室、客服、公众服务会话等
+//        chatVC.conversationType = ConversationType_GROUP;
+//        //设置会话的目标会话ID。（单聊、客服、公众服务会话为对方的ID，讨论组、群聊、聊天室为会话的ID）
+//        chatVC.targetId = _baseModel.order_sn;
+//        
+//        //设置聊天会话界面要显示的标题
+//        chatVC.title = self.baseModel.userphone;
+//        
+//        
+//        //显示聊天会话界面
+////        [self.navigationController pushViewController:chatVC animated:YES];
+//        
+//        if (self.selectedIndex == 0) {
+//            [self.homeVc.navigationController pushViewController:chatVC animated:YES];
+//        } else if (self.selectedIndex == 1) {
+//            [self.chatListVC.navigationController pushViewController:chatVC animated:YES];
+//        } else {
+//            [self.personVC.navigationController pushViewController:chatVC animated:YES];
+//        }
         
     }
 }

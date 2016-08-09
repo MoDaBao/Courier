@@ -11,6 +11,7 @@
 @protocol LoginViewControllerDelegate <NSObject>
 
 - (void)loginsetAddress:(NSString *)address;
+- (void)showAlert;// 弹出账号在另一台设备上登录的弹窗
 
 @end
 

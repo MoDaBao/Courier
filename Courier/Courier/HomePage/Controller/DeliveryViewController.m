@@ -93,7 +93,6 @@
             NSLog(@"失败");
         } else {
             NSLog(@"成功");
-            [self.dataArray removeAllObjects];
             NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
             NSLog(@"dataDic = %@",dataDic);
             

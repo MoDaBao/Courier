@@ -93,6 +93,9 @@
     
 }
 
+
+#pragma mark -----loginVC的代理方法
+
 // loginVC的代理方法
 - (void)loginsetAddress:(NSString *)address {
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
@@ -103,6 +106,63 @@
         self.courierAddress.width = width;
     }
 }
+
+// loginVC的代理方法
+- (void)showAlert {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          
+                          initWithTitle:@"提示"
+                          
+                          message:@"您"
+                          
+                          @"的帐号在别的设备上登录，您被迫下线！"
+                          
+                          delegate:self
+                          
+                          cancelButtonTitle:@"知道了"
+                          
+                          otherButtonTitles:nil, nil];
+    alert.tag = 7777;
+    [alert show];
+}
+
+
+#pragma mark -----UIAlertView代理方法-----
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
+    if (![[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@" "]) {// 退出登录时当在线状态为在线时改成下班状态
+        NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
+            if (![responseObject[@"status"] integerValue]) {
+                NSLog(@"成功");
+                //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
+                [[CourierInfoManager shareInstance] removeAllCourierInfo];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 模态弹出登录页面
+                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
+                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+                    LoginViewController *loginVC = [[LoginViewController alloc] init];
+                    // 此处应该要撤销计时器
+                    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                    [delegate.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
+                    //                    [self presentViewController:loginVC animated:YES completion:nil];
+                });
+            } else {
+                NSLog(@"失败");
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    }
+}
+
+#pragma mark -----tabVC的代理方法-----
 
 // tabVC的代理方法
 - (void)setAddress:(NSString *)address {
@@ -183,6 +243,8 @@
     
 }
 
+
+#pragma mark -----网络请求-----
 // 需填单请求
 - (void)requestNeedWriteData {
     NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"100" ,@"type":@"2"}];

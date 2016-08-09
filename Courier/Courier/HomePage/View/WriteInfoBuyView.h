@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WriteInfoBuyViewDelegate <NSObject>
+
+- (void)clearBuyLatitudeAndLongitude;
+
+@end
+
 @interface WriteInfoBuyView : UIView<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
@@ -30,6 +36,8 @@
 
 @property (nonatomic, assign) BOOL isChoose;
 
+@property (nonatomic, assign) id<WriteInfoBuyViewDelegate> delegate;
 
+- (void)click;
 
 @end
