@@ -59,17 +59,19 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/RongCloud.bundle"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/en.lproj"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/zh-Hans.lproj"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/Emoji.plist"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RongCloud.bundle"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/en.lproj"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/zh-Hans.lproj"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/Emoji.plist"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RCConfig.plist"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/RongCloud.bundle"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/en.lproj"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/zh-Hans.lproj"
-  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_4_8_stable/Emoji.plist"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RongCloud.bundle"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/en.lproj"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/zh-Hans.lproj"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/Emoji.plist"
+  install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RCConfig.plist"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

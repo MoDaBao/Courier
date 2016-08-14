@@ -32,9 +32,10 @@ typedef void (^LookRouteBuyBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单号
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;// 下单时间
 
-@property (weak, nonatomic) IBOutlet UILabel *lookRouteLabel;// 点击此标签进入地图查看路线
+@property (weak, nonatomic) IBOutlet UILabel *lookRouteLabel;// 默认起送价标签
 
 @property (weak, nonatomic) IBOutlet UIButton *orderReceivingBtn;// 接单按钮
+
 
 @property (nonatomic, copy) LookRouteBuyBlock lookRoute;
 

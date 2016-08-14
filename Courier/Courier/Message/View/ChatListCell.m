@@ -168,11 +168,12 @@
     
     switch ([chat.status integerValue])
     {
+     
         case 0:
-            self.deliveryStatusLabel.text = @"取消订单";
+            self.deliveryStatusLabel.text = @"未填单";
             break;
         case 1:
-            self.deliveryStatusLabel.text = @"取消订单";
+            self.deliveryStatusLabel.text = @"未填单";
             break;
         case 2:
             self.deliveryStatusLabel.text = @"已接单";

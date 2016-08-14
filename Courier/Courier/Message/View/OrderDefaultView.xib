@@ -20,28 +20,25 @@
                     <state key="normal" image="exclamation mark"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑腿使用默认起送价(2公里内8元)超出起送距离均按起送价收费" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXk-0d-yJf">
-                    <rect key="frame" x="35" y="5" width="375" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="GrA-xA-kqC"/>
-                    </constraints>
+                    <rect key="frame" x="35" y="8.5" width="375" height="33.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间:xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbW-6n-fes">
-                    <rect key="frame" x="10" y="50" width="126" height="17"/>
+                    <rect key="frame" x="10" y="47" width="126" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFY-R8-Izi">
-                    <rect key="frame" x="10" y="72" width="28" height="17"/>
+                    <rect key="frame" x="10" y="69" width="28" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-VN-oWc">
-                    <rect key="frame" x="156" y="50" width="28" height="17"/>
+                    <rect key="frame" x="156" y="47" width="28" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -63,6 +60,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="defaultStart" destination="cXk-0d-yJf" id="yFp-Y7-Mh2"/>
                 <outlet property="note" destination="FFY-R8-Izi" id="6CD-W5-Mq0"/>
                 <outlet property="status" destination="J5I-VN-oWc" id="JVx-jv-Q9U"/>
                 <outlet property="time" destination="vbW-6n-fes" id="74z-1a-Isu"/>

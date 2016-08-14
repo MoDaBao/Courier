@@ -39,6 +39,7 @@ typedef void(^RequestBlock)(void);
 
 @property (weak, nonatomic) IBOutlet UIButton *exclamationBtn;// 叹号按钮
 
+@property (weak, nonatomic) IBOutlet UILabel *defaultStart;
 
 @property (weak, nonatomic) IBOutlet UIButton *pickBtn;// 取货按钮
 

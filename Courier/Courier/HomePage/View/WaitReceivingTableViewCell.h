@@ -17,7 +17,7 @@ typedef void(^OrderReceivingBlock)(NSString *);
 @property (weak, nonatomic) IBOutlet UIView *contentV;// 内容试图
 
 
-@property (weak, nonatomic) IBOutlet UILabel *orderTypeLabel;// 订单类型
+@property (weak, nonatomic) IBOutlet UIImageView *orderTypeimage;// 订单类型
 
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLabel;// 支付状态
 
@@ -27,7 +27,12 @@ typedef void(^OrderReceivingBlock)(NSString *);
 //
 //@property (weak, nonatomic) IBOutlet UILabel *deliveryStatusLabel;// 配送状态
 
-@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单号
+//@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单号
+
+@property (weak, nonatomic) IBOutlet UILabel *expectedTime;// 预计送达
+
+
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;// 下单时间
 

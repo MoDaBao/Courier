@@ -97,7 +97,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.baseModel.start isEqualToString:@""] || [self.baseModel.end isEqualToString:@""]) {
-        return 468;
+        return 448;
     }
     return 468;
 }
@@ -113,17 +113,18 @@
             }
             // 设置数据
             [cell setDataWithModel:self.baseModel];
+            cell.lookRouteLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
             if (_orderStatus) {
                 cell.checkLabel.text = _orderStatus;
             }
             
-            cell.lookRoute = ^ {
-                PathPlaningMapViewController *pathVC = [[PathPlaningMapViewController alloc] init];
-                pathVC.baseModel = self.baseModel;
-                pathVC.isDefault = YES;
-                [self.navigationController pushViewController:pathVC animated:YES]
-                ;
-            };
+//            cell.lookRoute = ^ {
+//                PathPlaningMapViewController *pathVC = [[PathPlaningMapViewController alloc] init];
+//                pathVC.baseModel = self.baseModel;
+//                pathVC.isDefault = YES;
+//                [self.navigationController pushViewController:pathVC animated:YES]
+//                ;
+//            };
             return cell;
         } else {
             OrderDetailDefaultBuyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifer];
@@ -134,13 +135,14 @@
             // 设置数据
             [cell setDataWithModel:self.baseModel];
             cell.checkLabel.text = _orderStatus;
-            cell.lookRoute = ^ {
-                PathPlaningMapViewController *pathVC = [[PathPlaningMapViewController alloc] init];
-                pathVC.baseModel = self.baseModel;
-                pathVC.isDefault = YES;
-                [self.navigationController pushViewController:pathVC animated:YES]
-                ;
-            };
+            cell.lookRouteLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
+//            cell.lookRoute = ^ {
+//                PathPlaningMapViewController *pathVC = [[PathPlaningMapViewController alloc] init];
+//                pathVC.baseModel = self.baseModel;
+//                pathVC.isDefault = YES;
+//                [self.navigationController pushViewController:pathVC animated:YES]
+//                ;
+//            };
             return cell;
         }
     } else {

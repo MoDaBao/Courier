@@ -25,7 +25,11 @@
 #import "EncryptionAndDecryption.h"
 
 
+// 融云SDK
+//#import <RongCallKit/RongCallKit.h>
 #import <RongIMKit/RongIMKit.h>
+//#import <RongIMLib/RCUserInfo.h>
+
 
 #import "JPUSHService.h"
 
@@ -50,7 +54,7 @@
 //#import <SDWebImage/sd>
 #import "UIImageView+WebCache.h"
 
-   
+
 
 
 

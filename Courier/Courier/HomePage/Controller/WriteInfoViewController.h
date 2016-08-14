@@ -11,11 +11,14 @@
 #import "BaseModel.h"
 
 typedef void(^RefreshBlock)(void);
+typedef void(^RefreshModel)(BaseModel *);
 
 @interface WriteInfoViewController : UIViewController
 
 @property (nonatomic, strong) BaseModel *baseModel;
 
 @property (nonatomic, copy) RefreshBlock refresh;
+@property (nonatomic, copy) RefreshModel refreshModel;
+
 
 @end

@@ -86,7 +86,7 @@
         if (!result.integerValue) {
             NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
             NSLog(@"%@",dataDic);
-            NSString *msg = [NSString stringWithFormat:@"起步距离为%@，起步价为%@元，每增加%@米，跑腿费用增加%@元，如超过6000米，每增加%@米，跑腿费增加%@元",dataDic[@"longt"], dataDic[@"price"], dataDic[@"ctlong"], dataDic[@"cprice"], dataDic[@"ctlong"], dataDic[@"ctprice"]];
+            NSString *msg = [NSString stringWithFormat:@"起步距离为%@米，起步价为%@元，每增加%@米，跑腿费用增加%@元，如超过6000米，每增加%@米，跑腿费增加%@元",dataDic[@"longt"], dataDic[@"price"], dataDic[@"ctlong"], dataDic[@"cprice"], dataDic[@"ctlong"], dataDic[@"ctprice"]];
             NSLog(@"%@",msg);
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];

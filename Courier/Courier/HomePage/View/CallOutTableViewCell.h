@@ -16,10 +16,10 @@ typedef void(^OrderReceivingBlock)(NSString *);
 @property (nonatomic, assign) CGFloat horizontalMargin;// 横向间隔
 @property (nonatomic, assign) CGFloat verticalMargin;// 纵向间隔
 @property (weak, nonatomic) IBOutlet UIButton *orderReceivingBtn;// 接单按钮
-@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单编号
+//@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单编号
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;// 下单时间
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;// 号码标签
-@property (weak, nonatomic) IBOutlet UILabel *orderTypeLabel;// 订单类型
+@property (weak, nonatomic) IBOutlet UIImageView *orderTypeimage;// 订单类型
 
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLabel;// 支付状态
 

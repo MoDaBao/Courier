@@ -28,13 +28,33 @@
 }
 
 
-
+- (void)setDefaultStartText {
+    NSDictionary *dic = @{@"api":@"getDisPrice", @"version":@"1"};
+    NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSNumber *result = responseObject[@"status"];
+        if (!result.integerValue) {
+            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+            NSLog(@"%@",dataDic);
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@",dataDic[@"info"]] forKey:@"defaultStartText"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error is %@",error);
+    }];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
+    [self setDefaultStartText];
     
     /**
      * 推送处理1
@@ -378,42 +398,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
                                                                timeStyle:NSDateFormatterMediumStyle],
                                 title, content, [self logDic2:extra]];
     NSLog(@"%@", currentContent);
-//    NSDictionary *hahah = [NSJSONSerialization JSONObjectWithData:[content dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
-    /*
-    _order_sn = [hahah objectForKey:@"order_sn"];
-    if ([_order_sn length] != 0)
-    {
-        //呼叫跑腿的弹框
-        [[NSUserDefaults standardUserDefaults] setObject:@"XAXAXA" forKey:@"XAXAXA"];
-        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"CallRusn"];
-    }
-    
-    //    if ()
-    //    {
-    RCMessage *message = notification.object;
-    NSLog(@"%@",message.objectName);
-    
-    
-    //        SimpleMessage *Msg = [SimpleMessage messageWithContent:@"test"];
-    //        [[RCIM sharedRCIM] sendMessage:ConversationType_GROUP
-    //
-    //                              targetId:@""
-    //
-    //                               content:Msg
-    //
-    //                           pushContent:nil
-    //
-    //                              pushData:nil
-    //
-    //                               success:^(long messageId) {
-    //
-    //                               } error:^(RCErrorCode nErrorCode, long messageId) {
-    //
-    //                               }];
-    //    }
-     
-     */
-    
     
    
     
@@ -448,31 +432,31 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         
         if (tabVC.selectedIndex == 0) {
             [tabVC.homeVc.navigationController pushViewController:waitVC animated:YES];
-            NSMutableArray *array = [tabVC.homeVc.navigationController.viewControllers copy];
-            for (NSInteger i = 0; i < array.count; i ++) {
-                if (!(i == 0) && !(i == array.count - 1)) {
-                    [array removeObject:array[i]];
-                }
-            }
-            tabVC.homeVc.navigationController.viewControllers = array;
+//            NSMutableArray *array = [tabVC.homeVc.navigationController.viewControllers copy];
+//            for (NSInteger i = 0; i < array.count; i ++) {
+//                if (!(i == 0) && !(i == array.count - 1)) {
+//                    [array removeObject:array[i]];
+//                }
+//            }
+//            tabVC.homeVc.navigationController.viewControllers = array;
         } else if (tabVC.selectedIndex == 1) {
             [tabVC.chatListVC.navigationController pushViewController:waitVC animated:YES];
-            NSMutableArray *array = [tabVC.chatListVC.navigationController.viewControllers copy];
-            for (NSInteger i = 0; i < array.count; i ++) {
-                if (!(i == 0) && !(i == array.count - 1)) {
-                    [array removeObject:array[i]];
-                }
-            }
-            tabVC.chatListVC.navigationController.viewControllers = array;
+//            NSMutableArray *array = [tabVC.chatListVC.navigationController.viewControllers copy];
+//            for (NSInteger i = 0; i < array.count; i ++) {
+//                if (!(i == 0) && !(i == array.count - 1)) {
+//                    [array removeObject:array[i]];
+//                }
+//            }
+//            tabVC.chatListVC.navigationController.viewControllers = array;
         } else {
             [tabVC.personVC.navigationController pushViewController:waitVC animated:YES];
-            NSMutableArray *array = [tabVC.personVC.navigationController.viewControllers copy];
-            for (NSInteger i = 0; i < array.count; i ++) {
-                if (!(i == 0) && !(i == array.count - 1)) {
-                    [array removeObject:array[i]];
-                }
-            }
-            tabVC.personVC.navigationController.viewControllers = array;
+//            NSMutableArray *array = [tabVC.personVC.navigationController.viewControllers copy];
+//            for (NSInteger i = 0; i < array.count; i ++) {
+//                if (!(i == 0) && !(i == array.count - 1)) {
+//                    [array removeObject:array[i]];
+//                }
+//            }
+//            tabVC.personVC.navigationController.viewControllers = array;
         }
     }
     

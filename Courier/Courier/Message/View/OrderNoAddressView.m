@@ -33,10 +33,10 @@
     switch ([model.status integerValue])
     {
         case 0:
-            status = @"取消订单";
+            status = @"未填单";
             break;
         case 1:
-            status= @"取消订单";
+            status = @"未填单";
             break;
         case 2:
             status = @"已接单";
@@ -45,7 +45,7 @@
             status = @"正在路上";
             break;
         case 4:
-            status= @"正在配送";
+            status = @"正在配送";
             break;
         case 5:
             status = @"已送达";

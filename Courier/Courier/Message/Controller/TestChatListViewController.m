@@ -60,6 +60,12 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -183,7 +189,7 @@
 //            }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.conversationListTableView reloadData];
+                
             });
             
         }
@@ -216,7 +222,7 @@
         
         chatVC.conversationType = model.conversationType;
         chatVC.targetId = model.order_sn;
-        chatVC.title = baseModel.userphone;
+        chatVC.title = model.userphone;
         
         [self.navigationController pushViewController:chatVC animated:YES];
     }
@@ -275,56 +281,93 @@
 
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
+    
+    
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber =
+    [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    
     RCMessage *message = (RCMessage *)notification.object;
+    
     
     NSLog(@"%@",notification);
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     MainTabBarController *tabVC = (MainTabBarController *)delegate.window.rootViewController;
-    
-    NSString *userid = [message.senderUserId substringFromIndex:1];
-    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",userid,@"userid",message.targetId,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
-    NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"%@",responseObject);
-        NSNumber *result = responseObject[@"status"];
-        if (!result.integerValue) {
-            NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"%@",data);
-            BaseModel *model = [[BaseModel alloc] init];
-            [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
-            self.baseModel = model;
-            NSLog(@"%@",_baseModel);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (tabVC.selectedIndex == 1) {
-                    if ([tabVC.chatListVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
-                        ChatViewController *chatVC = tabVC.chatListVC.navigationController.viewControllers.lastObject;
-                        if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString *userid = [message.senderUserId substringFromIndex:1];
+        NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",userid,@"userid",message.targetId,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
+        NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            //        NSLog(@"%@",responseObject);
+            NSNumber *result = responseObject[@"status"];
+            if (!result.integerValue) {
+                NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"%@",data);
+                BaseModel *model = [[BaseModel alloc] init];
+                [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
+                self.baseModel = model;
+                NSLog(@"%@",_baseModel);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+                    if (tabVC.selectedIndex == 1) {
+                        if ([tabVC.chatListVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
+                            ChatViewController *chatVC = (ChatViewController *)tabVC.chatListVC.navigationController.viewControllers.lastObject;
+                            if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                alert.tag = 1234;
+                                [alert show];
+                                
+                            }
+                        } else {
                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                             alert.tag = 1234;
                             [alert show];
-                            
                         }
-                    } else {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                        alert.tag = 1234;
-                        [alert show];
+                    } else if (tabVC.selectedIndex == 0) {
+                        if ([tabVC.homeVc.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
+                            ChatViewController *chatVC = (ChatViewController *)tabVC.homeVc.navigationController.viewControllers.lastObject;
+                            if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                alert.tag = 1234;
+                                [alert show];
+                                
+                            }
+                        } else {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            alert.tag = 1234;
+                            [alert show];
+                        }
+                    } else if (tabVC.selectedIndex == 2) {
+                        if ([tabVC.personVC.navigationController.viewControllers.lastObject isKindOfClass:[ChatViewController class]]) {//  如果当前栈顶元素为聊天页面
+                            ChatViewController *chatVC = (ChatViewController *)tabVC.personVC.navigationController.viewControllers.lastObject;
+                            if (![chatVC.model.order_sn isEqualToString:_baseModel.order_sn]) {// 如果当前聊天页面的和接收到消息的订单号不一致 弹窗提示
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                alert.tag = 1234;
+                                [alert show];
+                                
+                            }
+                        } else {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            alert.tag = 1234;
+                            [alert show];
+                        }
                     }
                     
+                    [self.conversationListTableView reloadData];
                     
-                } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您有一条新消息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    alert.tag = 1234;
-                    [alert show];
-                }
-            });
-            
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+                });
+                
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    });
+    
+    
     
     
 }
@@ -340,24 +383,20 @@
     
     //设置聊天会话界面要显示的标题
     chatVC.title = self.baseModel.userphone;
-    if (alertView.tag == 1234) {
+    
         
-        
-        //显示聊天会话界面
-        //        [self.navigationController pushViewController:chatVC animated:YES];
-        
-        
-        if (tabVC.selectedIndex == 0) {
-            [tabVC.homeVc.navigationController pushViewController:chatVC animated:YES];
-        } else if (tabVC.selectedIndex == 1) {
-            [tabVC.chatListVC.navigationController pushViewController:chatVC animated:YES];
-        } else {
-            [tabVC.personVC.navigationController pushViewController:chatVC animated:YES];
-        }
-    } else if (alertView.tag == 1235) {
-        ChatViewController *chat = (ChatViewController *)tabVC.chatListVC.navigationController.viewControllers.lastObject;
-        [chat.navigationController pushViewController:chatVC animated:YES];
+    //显示聊天会话界面
+    //        [self.navigationController pushViewController:chatVC animated:YES];
+    
+    
+    if (tabVC.selectedIndex == 0) {
+        [tabVC.homeVc.navigationController pushViewController:chatVC animated:YES];
+    } else if (tabVC.selectedIndex == 1) {
+        [tabVC.chatListVC.navigationController pushViewController:chatVC animated:YES];
+    } else {
+        [tabVC.personVC.navigationController pushViewController:chatVC animated:YES];
     }
+    
 }
 
 // 高度

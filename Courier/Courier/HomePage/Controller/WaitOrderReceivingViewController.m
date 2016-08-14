@@ -12,6 +12,7 @@
 #import "WaitReceivingTableViewCell.h"
 #import "ChatViewController.h"
 #import "BaseModel.h"
+#import "TipMessageView.h"
 
 @interface WaitOrderReceivingViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
@@ -20,6 +21,8 @@
 
 @property (nonatomic, copy) NSString *msg;
 @property (nonatomic, strong) BaseModel *model;
+
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -36,6 +39,16 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.tabBarController.tabBar.hidden = YES;
+//    if (_timer) {
+//        [_timer setFireDate:[NSDate distantPast]];// 开启计时器
+//    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+//    if (_timer) {
+//        [_timer setFireDate:[NSDate distantFuture]];// 关闭计时器
+//    }
 }
 
 - (void)createView {
@@ -46,13 +59,15 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    // Enter the refresh status immediately
+    
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
+    self.tableView.mj_footer.hidden = YES;
+    
     if (!_isJPush) {
-        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
-        // Enter the refresh status immediately
         [self.tableView.mj_header beginRefreshing];
-        
-        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
-        self.tableView.mj_footer.hidden = YES;
         [self.tableView.mj_footer beginRefreshing];
     }
     
@@ -76,14 +91,23 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
-    
-    
     [self createView];
+    
+    
+//    _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
+//    [_timer setFireDate:[NSDate distantFuture]];// 关闭计时器
     
     if (_isJPush) {
         [self requestJPushData];
+//        [_timer setFireDate:[NSDate distantFuture]];
     }
     
+   
+    
+}
+
+- (void)refresh {
+    [self requestData];
 }
 
 - (void)requestJPushData {
@@ -106,6 +130,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+//            [_timer setFireDate:[NSDate distantPast]];
         });
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -155,7 +180,7 @@
 
 - (void)back {
     NSLog(@"back");
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -171,7 +196,7 @@
     if (!model.start.length) {
         return 200;
     } else {
-        return 255;
+        return 285;
     }
     
 }
@@ -190,10 +215,20 @@
         cell.orderRcceiving = ^(NSString * msg) {
             
             self.msg = msg;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
 //            _indexPath = indexPath;
             _model = model;
+            
+            CGFloat margin = 100;
+            CGFloat width = kScreenWidth - margin * 2;
+            CGFloat height = 100;
+            CGFloat tipY = (kScreenHeight - height) * .5;
+            TipMessageView *tipView = [[TipMessageView alloc] initWithFrame:CGRectMake(margin, tipY, width, height) tip:msg];
+            [self.view addSubview:tipView];
+            
+            [self.tableView.mj_header beginRefreshing];
+            
         };
         //    cell.
         
@@ -208,9 +243,20 @@
         cell.orderRcceiving = ^(NSString * msg) {
             
             self.msg = msg;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
             _model = model;
+            
+            // 提示框
+            CGFloat margin = 100;
+            CGFloat width = kScreenWidth - margin * 2;
+            CGFloat height = 100;
+            CGFloat tipY = (kScreenHeight - height) * .5;
+            TipMessageView *tipView = [[TipMessageView alloc] initWithFrame:CGRectMake(margin, tipY, width, height) tip:msg];
+            [self.view addSubview:tipView];
+            
+            [self.tableView.mj_header beginRefreshing];
+            
         };
         return cell;
     }
@@ -218,7 +264,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([_msg isEqualToString:@"接单成功"]) {
+    if ([_msg isEqualToString:@"接单成功"]) {// 接单成功
         if (_isJPush) {
             [self.dataArray removeAllObjects];
             [self.tableView reloadData];
@@ -227,8 +273,10 @@
         }
         
         // 调出聊天页面
-        [self chat];
+//        [self chat];
         
+    } else {// 接单失败
+        [self requestData];
     }
     
     

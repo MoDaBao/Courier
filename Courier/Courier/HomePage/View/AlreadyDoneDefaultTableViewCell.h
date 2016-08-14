@@ -29,6 +29,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;// 下单时间
 
+@property (weak, nonatomic) IBOutlet UILabel *defaultStart;
+
+
 - (void)setDataWithModel:(AlreadyDoneModel *)model;
 
 

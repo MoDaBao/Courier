@@ -17,9 +17,9 @@
     self.contentV.backgroundColor = [UIColor whiteColor];
     
     // 设置订单类型标签的圆角和颜色
-    self.orderTypeLabel.layer.cornerRadius = 3;
-    self.orderTypeLabel.clipsToBounds = YES;
-    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
+//    self.orderTypeLabel.layer.cornerRadius = 3;
+//    self.orderTypeLabel.clipsToBounds = YES;
+//    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
     
     // 设置支付状态标签的圆角和颜色
     self.payStatusLabel.layer.cornerRadius = 3;
@@ -49,16 +49,17 @@
 }
 
 - (void)setDataWithModel:(WaitOrdrReceivingModel *)model {
-    self.orderNumberLabel.text = model.order_sn;
+//    self.orderNumberLabel.text = model.order_sn;
     self.timeLabel.text = model.created;
-    self.phoneLabel.text = model.userphone;
+    NSString *name = model.name.length ? [NSString stringWithFormat:@"%@  ",model.name] : @"";
+    self.phoneLabel.text = [NSString stringWithFormat:@"%@%@",name, model.userphone];
     // 订单类型
     if (model.type.intValue == 1) {
-        self.orderTypeLabel.text = @"帮我拿";
+//        self.orderTypeLabel.text = @"帮我拿";
     } else if (model.type.intValue == 2) {
-        self.orderTypeLabel.text = @"帮我送";
+//        self.orderTypeLabel.text = @"帮我送";
     } else {
-        self.orderTypeLabel.text = @"帮我买";
+//        self.orderTypeLabel.text = @"帮我买";
     }
     
     // 支付状态

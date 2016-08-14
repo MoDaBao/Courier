@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *exclamationBtn;// 叹号按钮
 
 @property (weak, nonatomic) IBOutlet UILabel *checkLabel;//审核中标签
+@property (weak, nonatomic) IBOutlet UILabel *defaultStart;
 
 - (void)setDataWithModel:(BaseModel *)model;
 

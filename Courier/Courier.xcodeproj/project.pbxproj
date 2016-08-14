@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		09580764F068499B690C1505 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C9AB5C25786FB2023DB2C2 /* libPods.a */; };
-		E700C8E81D3F091500D57FE4 /* TestChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8E71D3F091500D57FE4 /* TestChatListViewController.m */; };
 		E700C8EB1D3F145D00D57FE4 /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8EA1D3F145D00D57FE4 /* TestCell.m */; };
 		E700C8EE1D3F1A7600D57FE4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8ED1D3F1A7600D57FE4 /* ChatListCell.m */; };
 		E700C8F01D3F1A8800D57FE4 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E700C8EF1D3F1A8800D57FE4 /* ChatListCell.xib */; };
@@ -16,6 +15,9 @@
 		E700C8F51D3F584000D57FE4 /* TestMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E700C8F41D3F584000D57FE4 /* TestMessageCell.xib */; };
 		E700C8F81D3F5F3900D57FE4 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8F71D3F5F3900D57FE4 /* SimpleMessage.m */; };
 		E700C8FB1D3F606900D57FE4 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8FA1D3F606900D57FE4 /* SimpleMessageCell.m */; };
+		E704C9A01D5C56B9007ECEF0 /* FeHourGlassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */; };
+		E704C9A31D5C56C5007ECEF0 /* FeHourGlass.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C9A21D5C56C5007ECEF0 /* FeHourGlass.m */; };
+		E704C9A61D5C56D0007ECEF0 /* UIColor+flat.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C9A41D5C56D0007ECEF0 /* UIColor+flat.m */; };
 		E712FEC31D518C1300AD70C3 /* CourierInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E712FEC11D518C1300AD70C3 /* CourierInfoManager.m */; };
 		E7299F4C1D4B2632008156BD /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4B1D4B2632008156BD /* OrderView.m */; };
 		E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4E1D4B2642008156BD /* OrderDefaultView.m */; };
@@ -103,6 +105,7 @@
 		E75D678B1D2626DA00D3AD1A /* PathPlaningMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D678A1D2626DA00D3AD1A /* PathPlaningMapViewController.m */; };
 		E75F1A931D2E2B4800CC2B24 /* TestMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75F1A921D2E2B4800CC2B24 /* TestMapViewController.m */; };
 		E75F1A991D2E333D00CC2B24 /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = E75F1A981D2E333D00CC2B24 /* SelectableOverlay.m */; };
+		E762B3DB1D5D993300BD968B /* TestChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E762B3DA1D5D993300BD968B /* TestChatListViewController.m */; };
 		E770B3BA1D558D070028FF20 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB71D2B430A003B7719 /* AMapFoundationKit.framework */; };
 		E770B3BB1D558D070028FF20 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB81D2B430A003B7719 /* MAMapKit.framework */; };
 		E770B3BD1D558D100028FF20 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E770B3BC1D558D100028FF20 /* AMap.bundle */; };
@@ -164,7 +167,6 @@
 		416DB69FBB9F6AB6D3ED0155 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E6C9AB5C25786FB2023DB2C2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E700C8E61D3F091500D57FE4 /* TestChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChatListViewController.h; sourceTree = "<group>"; };
-		E700C8E71D3F091500D57FE4 /* TestChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChatListViewController.m; sourceTree = "<group>"; };
 		E700C8E91D3F145D00D57FE4 /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
 		E700C8EA1D3F145D00D57FE4 /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		E700C8EC1D3F1A7600D57FE4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
@@ -177,6 +179,12 @@
 		E700C8F71D3F5F3900D57FE4 /* SimpleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E700C8F91D3F606900D57FE4 /* SimpleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
 		E700C8FA1D3F606900D57FE4 /* SimpleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessageCell.m; sourceTree = "<group>"; };
+		E704C99E1D5C56B9007ECEF0 /* FeHourGlassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHourGlassViewController.h; sourceTree = "<group>"; };
+		E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHourGlassViewController.m; sourceTree = "<group>"; };
+		E704C9A11D5C56C5007ECEF0 /* FeHourGlass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHourGlass.h; sourceTree = "<group>"; };
+		E704C9A21D5C56C5007ECEF0 /* FeHourGlass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHourGlass.m; sourceTree = "<group>"; };
+		E704C9A41D5C56D0007ECEF0 /* UIColor+flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+flat.m"; sourceTree = "<group>"; };
+		E704C9A51D5C56D0007ECEF0 /* UIColor+flat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+flat.h"; sourceTree = "<group>"; };
 		E712FEC11D518C1300AD70C3 /* CourierInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierInfoManager.m; sourceTree = "<group>"; };
 		E712FEC21D518C1300AD70C3 /* CourierInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierInfoManager.h; sourceTree = "<group>"; };
 		E7299F4A1D4B2632008156BD /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
@@ -335,6 +343,7 @@
 		E75F1A921D2E2B4800CC2B24 /* TestMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMapViewController.m; sourceTree = "<group>"; };
 		E75F1A971D2E333D00CC2B24 /* SelectableOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableOverlay.h; sourceTree = "<group>"; };
 		E75F1A981D2E333D00CC2B24 /* SelectableOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableOverlay.m; sourceTree = "<group>"; };
+		E762B3DA1D5D993300BD968B /* TestChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChatListViewController.m; sourceTree = "<group>"; };
 		E770B3BC1D558D100028FF20 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
 		E78AFEFB1D34EAE600172509 /* RouteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteCollectionViewCell.h; sourceTree = "<group>"; };
 		E78AFEFC1D34EAE600172509 /* RouteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteCollectionViewCell.m; sourceTree = "<group>"; };
@@ -603,7 +612,9 @@
 				E75D66D01D23AE1100D3AD1A /* MessageViewController.h */,
 				E75D66D11D23AE1100D3AD1A /* MessageViewController.m */,
 				E700C8E61D3F091500D57FE4 /* TestChatListViewController.h */,
-				E700C8E71D3F091500D57FE4 /* TestChatListViewController.m */,
+				E762B3DA1D5D993300BD968B /* TestChatListViewController.m */,
+				E704C99E1D5C56B9007ECEF0 /* FeHourGlassViewController.h */,
+				E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */,
 				E700C8E91D3F145D00D57FE4 /* TestCell.h */,
 				E700C8EA1D3F145D00D57FE4 /* TestCell.m */,
 			);
@@ -622,6 +633,8 @@
 		E75D66D31D23AE1100D3AD1A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E704C9A11D5C56C5007ECEF0 /* FeHourGlass.h */,
+				E704C9A21D5C56C5007ECEF0 /* FeHourGlass.m */,
 				E700C8EC1D3F1A7600D57FE4 /* ChatListCell.h */,
 				E700C8ED1D3F1A7600D57FE4 /* ChatListCell.m */,
 				E700C8EF1D3F1A8800D57FE4 /* ChatListCell.xib */,
@@ -698,6 +711,8 @@
 				E746B0081D4315B600A43298 /* NetWorkRequestManager.m */,
 				E746B01B1D4858D200A43298 /* MyMD5.h */,
 				E746B01C1D4858D200A43298 /* MyMD5.m */,
+				E704C9A41D5C56D0007ECEF0 /* UIColor+flat.m */,
+				E704C9A51D5C56D0007ECEF0 /* UIColor+flat.h */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -1119,6 +1134,8 @@
 				E75D676D1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.m in Sources */,
 				E75D675A1D23AF1900D3AD1A /* NeedWriteViewController.m in Sources */,
 				E79C2DDF1D2BACAB003B7719 /* MessageBarButton.m in Sources */,
+				E704C9A61D5C56D0007ECEF0 /* UIColor+flat.m in Sources */,
+				E704C9A01D5C56B9007ECEF0 /* FeHourGlassViewController.m in Sources */,
 				E75D67061D23AE1100D3AD1A /* UIView+ChangeFrame.m in Sources */,
 				E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */,
 				E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */,
@@ -1128,6 +1145,7 @@
 				E746B0091D4315B600A43298 /* NetWorkRequestManager.m in Sources */,
 				E700C8FB1D3F606900D57FE4 /* SimpleMessageCell.m in Sources */,
 				E75D67551D23AF1900D3AD1A /* AlreadyDoneViewController.m in Sources */,
+				E704C9A31D5C56C5007ECEF0 /* FeHourGlass.m in Sources */,
 				E75D66F91D23AE1100D3AD1A /* MessageViewController.m in Sources */,
 				E75D678B1D2626DA00D3AD1A /* PathPlaningMapViewController.m in Sources */,
 				E75D676B1D23AF1900D3AD1A /* CheckingTableViewCell.m in Sources */,
@@ -1136,7 +1154,6 @@
 				E75D67581D23AF1900D3AD1A /* DeliveryViewController.m in Sources */,
 				E75D675E1D23AF1900D3AD1A /* WriteInfoViewController.m in Sources */,
 				E75D675D1D23AF1900D3AD1A /* WaitOrderReceivingViewController.m in Sources */,
-				E700C8E81D3F091500D57FE4 /* TestChatListViewController.m in Sources */,
 				E7299F4C1D4B2632008156BD /* OrderView.m in Sources */,
 				E78AFF001D37735700172509 /* SearchView.m in Sources */,
 				E75D67051D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m in Sources */,
@@ -1144,6 +1161,7 @@
 				E700C8EE1D3F1A7600D57FE4 /* ChatListCell.m in Sources */,
 				E700C8F81D3F5F3900D57FE4 /* SimpleMessage.m in Sources */,
 				E75D677A1D23AF1900D3AD1A /* TodayInfoItemVIew.m in Sources */,
+				E762B3DB1D5D993300BD968B /* TestChatListViewController.m in Sources */,
 				E75D66BC1D23ADE900D3AD1A /* MainTabBarController.m in Sources */,
 				E75D675B1D23AF1900D3AD1A /* OrderDetailViewController.m in Sources */,
 				E75D67571D23AF1900D3AD1A /* CheckingViewController.m in Sources */,

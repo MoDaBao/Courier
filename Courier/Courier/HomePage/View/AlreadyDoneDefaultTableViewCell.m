@@ -84,7 +84,10 @@
     self.deliveryStatusLabel.text = @"已完成";// 配送状态
     self.orderNumberLabel.text = model.order_sn;// 订单号
     self.timeLabel.text = model.created;// 下单时间
+    
 }
+
+
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

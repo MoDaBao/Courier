@@ -22,6 +22,8 @@
 @property (nonatomic, assign) NSInteger start;
 @property (nonatomic, assign) NSInteger num;
 
+@property (nonatomic, copy) NSString *defaultStartText;
+
 @end
 
 @implementation AlreadyDoneViewController
@@ -132,6 +134,8 @@
     }];
 }
 
+
+
 - (void)createView {
     
     // 表视图
@@ -165,6 +169,8 @@
     
     [self createView];
     
+    _defaultStartText = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = self;// 给返回手势重新设置手势代理
     
     
@@ -196,6 +202,10 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BaseModel *model = self.dataArray[indexPath.row];
+    if ([model.start isEqualToString:@""] || [model.end isEqualToString:@""]) {
+        return 190;
+    }
     return 210;
 }
 
@@ -220,6 +230,7 @@
         }
         cell.numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1];// 设置cell的编号
         [cell setDataWithModel:model];
+        cell.defaultStart.text = _defaultStartText;
         return cell;
     }
     

@@ -190,6 +190,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    BaseModel *model = self.dataArray[indexPath.row];
+    if ([model.start isEqualToString:@""] || [model.end isEqualToString:@""]) {
+        return 190;
+    }
     return 210;
 }
 
@@ -203,6 +207,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         [cell setDataWithModel:model];
+        cell.defaultStart.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
          cell.numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1];// 设置cell的编号
         return cell;
         

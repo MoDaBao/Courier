@@ -30,9 +30,9 @@
     self.contentV.layer.borderColor = [UIColor colorWithRed:0.75 green:0.12 blue:0.16 alpha:1.00].CGColor;
     
     // 设置订单类型标签的圆角和颜色
-    self.orderTypeLabel.layer.cornerRadius = 3;
-    self.orderTypeLabel.clipsToBounds = YES;
-    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
+//    self.orderTypeLabel.layer.cornerRadius = 3;
+//    self.orderTypeLabel.clipsToBounds = YES;
+//    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
     
     // 设置支付状态标签的圆角和颜色
     self.payStatusLabel.layer.cornerRadius = 3;
@@ -66,11 +66,11 @@
     
     // 订单类型
     if (model.type.intValue == 1) {
-        self.orderTypeLabel.text = @"帮我拿";
+//        self.orderTypeLabel.text = @"帮我拿";
     } else if (model.type.intValue == 2) {
-        self.orderTypeLabel.text = @"帮我送";
+//        self.orderTypeLabel.text = @"帮我送";
     } else {
-        self.orderTypeLabel.text = @"帮我买";
+//        self.orderTypeLabel.text = @"帮我买";
     }
     
     // 支付状态
@@ -93,10 +93,15 @@
     
 //    self.distanceLabel.text = [NSString stringWithFormat:@"距%.2fkm",model.distance.floatValue / 1000.0];// 距离
 //    self.deliveryStatusLabel.text = @"配送中";// 配送状态
-    self.orderNumberLabel.text = model.order_sn;// 订单号
+//    self.orderNumberLabel.text = model.order_sn;// 订单号
     self.timeLabel.text = model.created;// 下单时间
     self.startLabel.text = model.start;// 起始地点
     self.endLabel.text = model.end;// 收货地点
+    
+    NSString *name = model.name.length ? [NSString stringWithFormat:@"%@  ",model.name] : @"";
+    self.phoneLabel.text = [NSString stringWithFormat:@"%@%@",name, model.userphone];
+    
+    self.expectedTime.text = [NSString stringWithFormat:@"预计送达时间：%@",model.psend_time];
     
     WaitReceivingTableViewCell *cell = self;
     self.click = ^(void) {

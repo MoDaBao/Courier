@@ -234,12 +234,42 @@
     [self addBlockAchive];// 给_homePageView添加Block实现
     
     
-//    // 测试
-//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//    testBtn.frame = CGRectMake(100, 100, 100, 30);
-//    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
-//    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:testBtn];
+    // 测试
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    testBtn.frame = CGRectMake(100, 100, 100, 30);
+    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
+    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testBtn];
+    
+}
+
+// 测试方法
+- (void)test {
+    
+    NSDictionary *dic = @{@"BaseAppType":@"ios",
+                          @"BaseAppVersion":@"1.2.1",
+                          @"SystemVersion":@"iPhone_9.20",
+                          @"_sign_":@"c878fa183fa808ac50a8e43738a06445",
+                          @"car_type":@"3",
+                          @"card_opposite_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+                          @"card_positive_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+                          @"driving_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+                          @"identity_card":@"612429196606296086",
+                          @"password":@"e10adc3949ba59abbe56e057f20f883e",
+                          @"phone":@"18888888888",
+                          @"username":@"哈哈哈",
+                          @"vehicle_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png"};
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    [session POST:@"http://mapi.tzouyi.com/account/addpapply" parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+    
     
 }
 
@@ -319,14 +349,6 @@
 }
 
 
-// 此方法测试使用
-- (void)test {
-    TestMapViewController *testVC = [[TestMapViewController alloc] init];
-    [self.navigationController pushViewController:testVC animated:YES];
-    
-    
-    
-}
 
 // 此方法测试使用
 - (void)NewsListWithUserId:(NSString *)userid

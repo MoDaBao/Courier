@@ -40,6 +40,41 @@
     self.tabBarController.tabBar.hidden = YES;
 }
 
+//- (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag{
+//    switch (tag)
+//    {
+////        case PLUGIN_BOARD_ITEM_LOCATION_TAG:
+////        {
+////            TestMapViewController *map = [[TestMapViewController alloc] init];
+////            map.delegate = self;
+////            [self.navigationController pushViewController:map animated:YES];
+////        }
+////            break;
+//            
+//        case PLUGIN_BOARD_ITEM_VOIP_TAG:
+//        {
+//            //语音通话
+//            [[RCCall sharedRCCall] startSingleCall:[NSString stringWithFormat:@"%@",_model.order_sn]
+//                                         mediaType:RCCallMediaAudio];
+//        }
+//            break;
+//            
+//        case PLUGIN_BOARD_ITEM_VIDEO_VOIP_TAG:
+//        {
+//            //视频通话
+//            [[RCCall sharedRCCall] startSingleCall:[NSString stringWithFormat:@"0%@",_model.userid]
+//                                         mediaType:RCCallMediaVideo];
+//        }
+//            break;
+//            
+//        default:
+//            [super pluginBoardView:pluginBoardView clickedItemWithTag:tag];
+//            break;
+//    }
+//    
+//    
+//}
+
 //  创建视图
 - (void)createView {
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -79,52 +114,68 @@
     self.tabBarController.tabBar.hidden = YES;
 //    self.navigationItem.title = self.model.userphone;
     
-    [self.pluginBoardView removeItemAtIndex:2];
+//    [self.pluginBoardView removeItemAtIndex:2];
     
     [self createView];
     
     [RCIM sharedRCIM].receiveMessageDelegate = self;
     
     
-    self.conversationMessageCollectionView.y = 64;
+    
     
 //    [self.conversationMessageCollectionView registerNib:[UINib nibWithNibName:@"TestMessageCell" bundle:nil] forCellWithReuseIdentifier:@"reuse"];
     [self registerClass:[SimpleMessageCell class] forCellWithReuseIdentifier:@"SimpleMessageCell"];
     
     
-    // 加载订单视图
-    if (!_model.start.length || !_model.end.length) {
-        if (!_model.start_latitude.length || !_model.end_latitude.length) {// 加载无地址的
-            OrderNoAddressView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderNoAddressView" owner:nil options:nil] lastObject];
-            self.conversationMessageCollectionView.y += orderView.height;
-            self.conversationMessageCollectionView.height -= orderView.height;
-//            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
-            [orderView setDataWithModel:_model];
-            [self.view addSubview:orderView];
-        } else {// 加载默认的
-            OrderDefaultView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderDefaultView" owner:nil options:nil] lastObject];
-            [orderView setDataWithModel:_model];
-            [self.view addSubview:orderView];
-            self.conversationMessageCollectionView.y += orderView.height;
-            self.conversationMessageCollectionView.height -= orderView.height;
-//            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
-        }
-    } else {
-        // 加载有地址的
-        OrderView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderView" owner:nil options:nil] lastObject];
-        [orderView setDataWithModel:_model];
-        [self.view addSubview:orderView];
-        self.conversationMessageCollectionView.y += orderView.height;
-        self.conversationMessageCollectionView.height -= orderView.height;
-//        orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
-    }
     
+    [self loadOrderViewWithModel:self.model];
 
     
     
 //    self.conversationMessageCollectionView.delegate = self;
 //    self.conversationMessageCollectionView.dataSource = self;
     
+}
+
+// 加载订单视图
+- (void)loadOrderViewWithModel:(BaseModel *)model {
+    // 加载订单视图
+    
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[OrderNoAddressView class]] || [view isKindOfClass:[OrderDefaultView class]] || [view isKindOfClass:[OrderView class]]) {
+            self.conversationMessageCollectionView.height += view.height;
+            [view removeFromSuperview];
+        }
+    }
+    
+    self.conversationMessageCollectionView.y = 64;
+    
+    if (!model.start.length || !model.end.length) {
+        if (!model.start_latitude.length || !model.end_latitude.length) {// 加载无地址的
+            OrderNoAddressView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderNoAddressView" owner:nil options:nil] lastObject];
+            self.conversationMessageCollectionView.y += orderView.height;
+            self.conversationMessageCollectionView.height -= orderView.height;
+            //            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
+            [orderView setDataWithModel:model];
+            [self.view addSubview:orderView];
+        } else {// 加载默认的
+            OrderDefaultView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderDefaultView" owner:nil options:nil] lastObject];
+            [orderView setDataWithModel:model];
+            orderView.defaultStart.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
+            [self.view addSubview:orderView];
+            self.conversationMessageCollectionView.y += orderView.height;
+            self.conversationMessageCollectionView.height -= orderView.height;
+            //            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
+        }
+    } else {
+        // 加载有地址的
+        OrderView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderView" owner:nil options:nil] lastObject];
+        [orderView setDataWithModel:model];
+        [self.view addSubview:orderView];
+        self.conversationMessageCollectionView.y += orderView.height;
+        self.conversationMessageCollectionView.height -= orderView.height;
+        //        orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
+    }
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
@@ -136,6 +187,12 @@
 }
 
 - (void)order {
+    
+//    if (_model.type.integerValue == 3) { // 帮我买
+//        
+//    }
+    
+    
     if (_model.status.integerValue == 2 || _model.status.integerValue == 3 || _model.status.integerValue == 4 || _model.status.integerValue == 5 || _model.status.integerValue == 6 || _model.status.integerValue == 10) {
         OrderDetailViewController *orderVC = [[OrderDetailViewController alloc] init];
         orderVC.baseModel = _model;
@@ -193,8 +250,10 @@
 //            msg = @"请先填单";
             WriteInfoViewController *writeVC = [[WriteInfoViewController alloc] init];
             writeVC.baseModel = _model;
-            writeVC.refresh = ^ {
-                
+            writeVC.refreshModel = ^(BaseModel *model) {
+                self.model = nil;
+                self.model = model;
+                [self loadOrderViewWithModel:model];
             };
             [self.navigationController pushViewController:writeVC animated:YES];
         }
@@ -215,7 +274,7 @@
 
 
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 //  即将显示cell的回调

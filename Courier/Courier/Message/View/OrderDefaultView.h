@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *status;
 @property (weak, nonatomic) IBOutlet UILabel *note;
 
+@property (weak, nonatomic) IBOutlet UILabel *defaultStart;
 
 - (void)setDataWithModel:(BaseModel *)model;
 

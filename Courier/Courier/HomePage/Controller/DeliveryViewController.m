@@ -12,6 +12,7 @@
 #import "DeliveryDefaultTableViewCell.h"
 #import "MessageBarButton.h"
 #import "OrderDetailViewController.h"
+#import "FeHourGlass.h"
 
 @interface DeliveryViewController ()<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, DeliveryDefaultTableViewCellDelegate, DeliveryTableViewCellDelegate>
 
@@ -22,6 +23,10 @@
 @property (nonatomic, assign) NSInteger num;
 
 @property (nonatomic, copy) NSString *status;
+
+@property (nonatomic, assign) BOOL isRefresh;
+
+@property (nonatomic, strong) FeHourGlass *hourGlass;
 
 @end
 
@@ -38,12 +43,20 @@
 // 配送中请求 下来刷新
 - (void)requestData {
     self.start = 0;
+    
+//    if (_isRefresh) {
+//        [NSThread sleepForTimeInterval:1.0f];
+//    }
+    
     NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"1"}];
     NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+//        _isRefresh = NO;
+        
         NSNumber *result = responseObject[@"status"];
 //        self.pickBtn.userInteractionEnabled = YES;
         if (result.integerValue) {
@@ -70,6 +83,11 @@
                     self.tableView.mj_footer.hidden = NO;
                 } else {
                     self.tableView.mj_footer.hidden = YES;
+                }
+                if (_hourGlass) {
+                    
+                    [_hourGlass removeFromSuperview];
+                    _hourGlass = nil;
                 }
             });
         }
@@ -197,7 +215,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     DeliveryModel *model = self.dataArray[indexPath.row];
     if ([model.start isEqualToString:@""] || [model.end isEqualToString:@""]) {
-        return 260;
+        return 240;
     }
     return 265;
 }
@@ -214,6 +232,7 @@
         }
         cell.numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row + 1];// 设置cell的编号
         [cell setDataWithModel:model];
+        cell.defaultStart.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
         return cell;
         
     } else {
@@ -262,11 +281,36 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
     if ([self.status isEqualToString:@"成功"]) {
 //        dispatch_after(2,dispatch_get_main_queue(), ^{
-//            
+//            [self refresh];
 //        });
-        [self performSelector:@selector(refresh) withObject:self afterDelay:1];
+//        [self performSelector:@selector(refresh) withObject:self afterDelay:1];
+        
+        
+        CGFloat height = 100;
+        CGFloat width = 100;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height)];
+        
+        _hourGlass = [[FeHourGlass alloc] initWithView:view];
+        _hourGlass.frame = CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height);
+        _hourGlass.layer.cornerRadius = 8;
+        //                    hourGlass.backgroundColor = [
+        [self.view addSubview:_hourGlass];
+        
+        [_hourGlass showWhileExecutingBlock:^{
+            [self myTask];
+        } completion:^{
+            [self refresh];
+        }];
+//        _isRefresh = YES;
+        
         
     }
+}
+
+- (void)myTask
+{
+    // Do something usefull in here instead of sleeping ...
+    sleep(1);
 }
 
 - (void)refresh {
