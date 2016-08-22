@@ -25,6 +25,6 @@
 @property (nonatomic, strong) TestChatListViewController *chatListVC;
 @property(nonatomic, strong) PersonViewController *personVC;
 
-@property (nonatomic, assign) id<MainTabBarControllerDelegate> delegate;
+@property (nonatomic, assign) id<MainTabBarControllerDelegate> tabdelegate;
 
 @end

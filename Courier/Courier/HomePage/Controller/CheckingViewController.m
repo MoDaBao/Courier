@@ -38,88 +38,107 @@
     self.navigationController.navigationBar.hidden = NO;
     self.tabBarController.tabBar.hidden = YES;
     
-    if (self.dataArray.count) {
-        self.tableView.mj_footer.hidden = NO;
-    } else {
-        self.tableView.mj_footer.hidden = YES;
-    }
+//    if (self.dataArray.count) {
+//        self.tableView.mj_footer.hidden = NO;
+//    } else {
+//        self.tableView.mj_footer.hidden = YES;
+//    }
     
 }
 
 // 等待审核请求
 - (void)requestData {
-    self.start = 0;
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"3"}];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            [self.dataArray removeAllObjects];
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                BaseModel *model = [[BaseModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
-            if (dataDic.count) {// 当请求回来的数据条数为0的时候 页数不往下加
-                self.start ++;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.tableView.mj_header endRefreshing];
-//                [self.tableView.mj_footer endRefreshing];
-                
-                if (self.dataArray.count) {
-                    self.tableView.mj_footer.hidden = NO;
-                } else {
-                    self.tableView.mj_footer.hidden = YES;
+    
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        self.start = 0;
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"3"}];
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSNumber *result = responseObject[@"status"];
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                [self.dataArray removeAllObjects];
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    BaseModel *model = [[BaseModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.dataArray addObject:model];
                 }
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+                if (dataDic.count) {// 当请求回来的数据条数为0的时候 页数不往下加
+                    self.start ++;
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    //                [self.tableView.mj_header endRefreshing];
+                    [self.tableView headerEndRefreshing];
+                    //                [self.tableView.mj_footer endRefreshing];
+                    
+                    //                if (self.dataArray.count) {
+                    //                    self.tableView.mj_footer.hidden = NO;
+                    //                } else {
+                    //                    self.tableView.mj_footer.hidden = YES;
+                    //                }
+                });
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.tableView headerEndRefreshing];
+    }
+    
+    
     
 }
 
 - (void)requestLoadData {
     
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":@"20" ,@"type":@"3"}];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                BaseModel *model = [[BaseModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataArray addObject:model];
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":@"20" ,@"type":@"3"}];
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSNumber *result = responseObject[@"status"];
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    BaseModel *model = [[BaseModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+                if (dataDic.count) {
+                    self.start ++;
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    //                [self.tableView.mj_header endRefreshing];
+                    //                [self.tableView.mj_footer endRefreshing];
+                    [self.tableView footerEndRefreshing];
+                    
+                });
             }
-            if (dataDic.count) {
-                self.start ++;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-//                [self.tableView.mj_header endRefreshing];
-                [self.tableView.mj_footer endRefreshing];
-                
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.tableView footerEndRefreshing];
+    }
+    
+    
     
 }
 
@@ -129,12 +148,21 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.96 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];// 上拉刷新
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];// 上拉刷新
+    CheckingViewController *checkVC = self;
+    [self.tableView addHeaderWithCallback:^{
+        [checkVC requestData];
+        
+    }];
     // Enter the refresh status immediately
-    [self.tableView.mj_header beginRefreshing];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLoadData)];// 下拉加载
-    self.tableView.mj_footer.hidden = YES;
-    [self.tableView.mj_footer beginRefreshing];
+//    [self.tableView.mj_header beginRefreshing];
+    [self.tableView headerBeginRefreshing];
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLoadData)];// 下拉加载
+    [self.tableView addFooterWithCallback:^{
+        [checkVC requestLoadData];
+    }];
+//    self.tableView.mj_footer.hidden = YES;
+//    [self.tableView.mj_footer beginRefreshing];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.tableView];
     

@@ -17,6 +17,8 @@
 #import "OrderView.h"
 #import "OrderDetailViewController.h"
 #import "WriteInfoViewController.h"
+#import "TestMapViewController.h"
+#import "MapImagePreviewVC.h"
 
 @interface ChatViewController ()<RCIMReceiveMessageDelegate, UIGestureRecognizerDelegate>
 
@@ -40,17 +42,17 @@
     self.tabBarController.tabBar.hidden = YES;
 }
 
-//- (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag{
-//    switch (tag)
-//    {
-////        case PLUGIN_BOARD_ITEM_LOCATION_TAG:
-////        {
-////            TestMapViewController *map = [[TestMapViewController alloc] init];
-////            map.delegate = self;
-////            [self.navigationController pushViewController:map animated:YES];
-////        }
-////            break;
-//            
+- (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag{
+    switch (tag)
+    {
+        case PLUGIN_BOARD_ITEM_LOCATION_TAG:
+        {
+            TestMapViewController *map = [[TestMapViewController alloc] init];
+            map.delegate = self;
+            [self.navigationController pushViewController:map animated:YES];
+        }
+            break;
+            
 //        case PLUGIN_BOARD_ITEM_VOIP_TAG:
 //        {
 //            //语音通话
@@ -66,14 +68,14 @@
 //                                         mediaType:RCCallMediaVideo];
 //        }
 //            break;
-//            
-//        default:
-//            [super pluginBoardView:pluginBoardView clickedItemWithTag:tag];
-//            break;
-//    }
-//    
-//    
-//}
+            
+        default:
+            [super pluginBoardView:pluginBoardView clickedItemWithTag:tag];
+            break;
+    }
+    
+    
+}
 
 //  创建视图
 - (void)createView {
@@ -137,8 +139,17 @@
     
 }
 
+
+// 键盘回收手势方法
+- (void)tapReturnKeyBoard:(UITapGestureRecognizer *)tap {
+    [self.view endEditing:YES];
+}
+
 // 加载订单视图
 - (void)loadOrderViewWithModel:(BaseModel *)model {
+    // 键盘回收手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapReturnKeyBoard:)];
+    
     // 加载订单视图
     
     for (UIView *view in self.view.subviews) {
@@ -158,11 +169,13 @@
             //            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
             [orderView setDataWithModel:model];
             [self.view addSubview:orderView];
+            [orderView addGestureRecognizer:tap];// 添加手势
         } else {// 加载默认的
             OrderDefaultView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderDefaultView" owner:nil options:nil] lastObject];
             [orderView setDataWithModel:model];
             orderView.defaultStart.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
             [self.view addSubview:orderView];
+            [orderView addGestureRecognizer:tap];// 添加手势
             self.conversationMessageCollectionView.y += orderView.height;
             self.conversationMessageCollectionView.height -= orderView.height;
             //            orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
@@ -172,6 +185,7 @@
         OrderView *orderView = [[[NSBundle mainBundle] loadNibNamed:@"OrderView" owner:nil options:nil] lastObject];
         [orderView setDataWithModel:model];
         [self.view addSubview:orderView];
+        [orderView addGestureRecognizer:tap];// 添加手势
         self.conversationMessageCollectionView.y += orderView.height;
         self.conversationMessageCollectionView.height -= orderView.height;
         //        orderView.backgroundColor = self.conversationMessageCollectionView.backgroundColor;
@@ -197,6 +211,7 @@
         OrderDetailViewController *orderVC = [[OrderDetailViewController alloc] init];
         orderVC.baseModel = _model;
         orderVC.isAlreadyDone = YES;
+        orderVC.isDelivery = NO;
         //    orderVC.orderStatus = self.navigationItem.title;
         switch ([_model.status integerValue])
         {
@@ -261,6 +276,19 @@
     }
     
     
+}
+
+
+- (void)presentLocationViewController:(RCLocationMessage *)locationMessageContent
+{
+    NSLog(@"%@",locationMessageContent);
+    
+    
+    MapImagePreviewVC *VC = [[MapImagePreviewVC alloc] init];
+    //    VC.messageModel = model;
+    VC.locationMessage_ = locationMessageContent;
+    VC.title  = @"位置信息";
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)dail {

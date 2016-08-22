@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="KGk-i7-Jjw" customClass="PhotoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="121.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zhengmian_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="p63-Mj-jue">
+                        <rect key="frame" x="46" y="13" width="106" height="105"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="105" id="RJb-QH-Fje"/>
+                            <constraint firstAttribute="width" constant="106" id="ZMv-kC-BlX"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1-0-2-5beijing.png" translatesAutoresizingMaskIntoConstraints="NO" id="he7-YW-ylm">
+                        <rect key="frame" x="167" y="13" width="106.5" height="105"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1-0-2-5xiangji.png" translatesAutoresizingMaskIntoConstraints="NO" id="XCF-fB-m4R">
+                        <rect key="frame" x="201" y="26" width="39" height="29.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="39" id="5Do-ra-QOa"/>
+                            <constraint firstAttribute="height" constant="29.5" id="pWh-qN-CVx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择图片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tr2-Bm-gKq">
+                        <rect key="frame" x="192" y="62" width="56" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手持身份证正面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dh-lX-5K1">
+                        <rect key="frame" x="179" y="99" width="84" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgX-OA-445">
+                        <rect key="frame" x="167" y="13" width="106.5" height="105"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="p63-Mj-jue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="38" id="047-is-dAJ"/>
+                    <constraint firstItem="jgX-OA-445" firstAttribute="top" secondItem="he7-YW-ylm" secondAttribute="top" id="2ld-8g-JKA"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="width" secondItem="p63-Mj-jue" secondAttribute="width" id="6IK-bH-Npv"/>
+                    <constraint firstItem="jgX-OA-445" firstAttribute="trailing" secondItem="he7-YW-ylm" secondAttribute="trailing" id="8gA-2x-oyc"/>
+                    <constraint firstItem="p63-Mj-jue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="9Un-9Y-a3g"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="leading" secondItem="p63-Mj-jue" secondAttribute="trailing" constant="15" id="Ato-4b-DWz"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="he7-YW-ylm" secondAttribute="bottom" constant="-4.5" id="E4b-GY-pXH"/>
+                    <constraint firstItem="XCF-fB-m4R" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="18" id="FYQ-SN-0yS"/>
+                    <constraint firstItem="jgX-OA-445" firstAttribute="bottom" secondItem="he7-YW-ylm" secondAttribute="bottom" id="I9B-Y5-ksO"/>
+                    <constraint firstItem="0Dh-lX-5K1" firstAttribute="centerX" secondItem="he7-YW-ylm" secondAttribute="centerX" id="PKv-jE-25k"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="width" secondItem="p63-Mj-jue" secondAttribute="width" id="Rf1-8S-eOM"/>
+                    <constraint firstItem="jgX-OA-445" firstAttribute="leading" secondItem="he7-YW-ylm" secondAttribute="leading" id="bOJ-WK-Kfn"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="he7-YW-ylm" secondAttribute="trailing" constant="38" id="cTR-vi-k2m"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="p63-Mj-jue" secondAttribute="bottom" constant="-4.5" id="dOi-5v-ile"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0Dh-lX-5K1" secondAttribute="bottom" id="dsF-A0-Iz9"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="eb7-lR-fWO"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="height" secondItem="p63-Mj-jue" secondAttribute="height" id="eii-a1-JwE"/>
+                    <constraint firstItem="he7-YW-ylm" firstAttribute="height" secondItem="p63-Mj-jue" secondAttribute="height" id="gP1-oR-xJx"/>
+                    <constraint firstItem="tr2-Bm-gKq" firstAttribute="centerX" secondItem="he7-YW-ylm" secondAttribute="centerX" id="iC1-kN-p72"/>
+                    <constraint firstItem="XCF-fB-m4R" firstAttribute="centerX" secondItem="he7-YW-ylm" secondAttribute="centerX" id="id2-NJ-Wq3"/>
+                    <constraint firstItem="tr2-Bm-gKq" firstAttribute="top" secondItem="XCF-fB-m4R" secondAttribute="bottom" constant="6.5" id="nwo-pn-yTM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="bgImg" destination="he7-YW-ylm" id="7GP-WR-oYL"/>
+                <outlet property="btn" destination="jgX-OA-445" id="6MO-zE-lRS"/>
+                <outlet property="img" destination="p63-Mj-jue" id="rdJ-XN-iQj"/>
+                <outlet property="textTF" destination="0Dh-lX-5K1" id="MP8-4l-eCM"/>
+                <outlet property="xiangji" destination="XCF-fB-m4R" id="aFF-m6-QCK"/>
+                <outlet property="xuanze" destination="tr2-Bm-gKq" id="hAV-hQ-cUN"/>
+            </connections>
+            <point key="canvasLocation" x="260" y="298"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="1-0-2-5beijing.png" width="210" height="184"/>
+        <image name="1-0-2-5xiangji.png" width="77" height="59"/>
+        <image name="zhengmian_1.png" width="212" height="184"/>
+    </resources>
+</document>

@@ -247,15 +247,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-2T-DP7">
-                                <rect key="frame" x="30" y="444" width="304" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Pps-jX-XkM"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="gS8-e2-Yfy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="接单"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7B-Ke-qK6">
                                 <rect key="frame" x="187" y="77" width="30" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -283,6 +274,15 @@
                                     <constraint firstAttribute="width" constant="25" id="ouX-Ce-bxn"/>
                                 </constraints>
                                 <state key="normal" image="exclamation mark"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxn-2T-DP7">
+                                <rect key="frame" x="30" y="444" width="304" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Pps-jX-XkM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="gS8-e2-Yfy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="接单"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

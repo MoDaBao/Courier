@@ -45,15 +45,15 @@
     self.paymentLabel.clipsToBounds = YES;
     self.paymentLabel.backgroundColor = [UIColor colorWithRed:242 / 255.0f green:156 / 255.0f blue:159 / 255.0f alpha:1.0];
     
-//    // 设置距离标签
-//    self.distanceLabel.layer.cornerRadius = 3;
-//    self.distanceLabel.clipsToBounds = YES;
-//    self.distanceLabel.backgroundColor = [UIColor colorWithRed:244 / 255.0f green:143 / 255.0f blue:177 / 255.0f alpha:1.0];
-//    
-//    // 设置配送状态标签
-//    self.deliveryStatusLabel.layer.cornerRadius = 3;
-//    self.deliveryStatusLabel.clipsToBounds = YES;
-//    self.deliveryStatusLabel.backgroundColor = [UIColor colorWithRed:255 / 255.0f green:190 / 255.0f blue:231 / 255.0f alpha:1.0];
+    // 设置距离标签
+    self.distanceLabel.layer.cornerRadius = 3;
+    self.distanceLabel.clipsToBounds = YES;
+    self.distanceLabel.backgroundColor = [UIColor colorWithRed:244 / 255.0f green:143 / 255.0f blue:177 / 255.0f alpha:1.0];
+    
+    // 设置配送状态标签
+    self.deliveryStatusLabel.layer.cornerRadius = 3;
+    self.deliveryStatusLabel.clipsToBounds = YES;
+    self.deliveryStatusLabel.backgroundColor = [UIColor colorWithRed:255 / 255.0f green:190 / 255.0f blue:231 / 255.0f alpha:1.0];
     
     [self.pickBtn addTarget:self action:@selector(pickbtn) forControlEvents:UIControlEventTouchUpInside];
     
@@ -66,11 +66,14 @@
     
     // 订单类型
     if (model.type.intValue == 1) {
-//        self.orderTypeLabel.text = @"帮我拿";
+        //        self.orderTypeLabel.text = @"帮我拿";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_na"];
     } else if (model.type.intValue == 2) {
-//        self.orderTypeLabel.text = @"帮我送";
+        //        self.orderTypeLabel.text = @"帮我送";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_song"];
     } else {
-//        self.orderTypeLabel.text = @"帮我买";
+        //        self.orderTypeLabel.text = @"帮我买";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_mai"];
     }
     
     // 支付状态
@@ -91,7 +94,7 @@
         self.paymentLabel.text = @"货到付款";
     }
     
-//    self.distanceLabel.text = [NSString stringWithFormat:@"距%.2fkm",model.distance.floatValue / 1000.0];// 距离
+    self.distanceLabel.text = [NSString stringWithFormat:@"距%.2fkm",model.distance.floatValue / 1000.0];// 距离
 //    self.deliveryStatusLabel.text = @"配送中";// 配送状态
 //    self.orderNumberLabel.text = model.order_sn;// 订单号
     self.timeLabel.text = model.created;// 下单时间
@@ -106,28 +109,35 @@
     WaitReceivingTableViewCell *cell = self;
     self.click = ^(void) {
         
-        // 接单按钮
-        NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
-        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-        NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"responseObject = %@",responseObject);
-            NSNumber *result = responseObject[@"status"];
-            NSString *msg = nil;
-            
-            if (!result.integerValue) {
-                msg = @"接单成功";
-            } else {
-                msg = responseObject[@"msg"];
-            }
-            NSLog(@"%@",msg);
-            cell.orderRcceiving(msg);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            // 接单按钮
+            NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
+            NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                NSString *msg = nil;
+                
+                if (!result.integerValue) {
+                    msg = @"接单成功";
+                } else {
+                    msg = responseObject[@"msg"];
+                }
+                NSLog(@"%@",msg);
+                cell.orderRcceiving(msg);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
     };
     
     

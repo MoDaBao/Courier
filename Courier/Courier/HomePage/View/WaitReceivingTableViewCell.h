@@ -23,9 +23,9 @@ typedef void(^OrderReceivingBlock)(NSString *);
 
 @property (weak, nonatomic) IBOutlet UILabel *paymentLabel;// 支付方式
 
-//@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;// 距离
-//
-//@property (weak, nonatomic) IBOutlet UILabel *deliveryStatusLabel;// 配送状态
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;// 距离
+
+@property (weak, nonatomic) IBOutlet UILabel *deliveryStatusLabel;// 配送状态
 
 //@property (weak, nonatomic) IBOutlet UILabel *orderNumberLabel;// 订单号
 

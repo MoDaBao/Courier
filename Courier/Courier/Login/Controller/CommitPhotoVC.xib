@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommitPhotoVC">
+            <connections>
+                <outlet property="_table" destination="B5M-m9-gvR" id="QqA-Cc-QY3"/>
+                <outlet property="commitBtn" destination="BpM-VN-5cM" id="WcI-7b-Ff7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpM-VN-5cM">
+                    <rect key="frame" x="27" y="597" width="321" height="40"/>
+                    <color key="backgroundColor" red="0.75686274509999996" green="0.1019607843" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="bIu-De-vjV"/>
+                    </constraints>
+                    <state key="normal" title="申请提交 ">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="commitButtonClick:" destination="-1" eventType="touchUpInside" id="bFH-ds-Kea"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOJ-ru-65S">
+                    <rect key="frame" x="100" y="13" width="175" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="1lX-b1-qrs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="图片上传示例说明" image="1-0-2-5wenhao.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="demoBtnClick:" destination="-1" eventType="touchUpInside" id="Yhc-dg-jQS"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B5M-m9-gvR">
+                    <rect key="frame" x="0.0" y="43" width="375" height="546"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="orZ-vr-cjg"/>
+                        <outlet property="delegate" destination="-1" id="jkA-5H-W80"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="BpM-VN-5cM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Pn-w4-fGs"/>
+                <constraint firstItem="BpM-VN-5cM" firstAttribute="top" secondItem="B5M-m9-gvR" secondAttribute="bottom" constant="8" id="2cW-tp-IrX"/>
+                <constraint firstItem="LOJ-ru-65S" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6zo-aY-dyT"/>
+                <constraint firstAttribute="trailing" secondItem="B5M-m9-gvR" secondAttribute="trailing" id="FSa-3D-pJ9"/>
+                <constraint firstItem="LOJ-ru-65S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="Ht9-6d-uRR"/>
+                <constraint firstAttribute="bottom" secondItem="BpM-VN-5cM" secondAttribute="bottom" constant="30" id="Wlb-0V-Tzk"/>
+                <constraint firstItem="LOJ-ru-65S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="Xf9-PO-stj"/>
+                <constraint firstAttribute="trailing" secondItem="BpM-VN-5cM" secondAttribute="trailing" constant="27" id="eLF-7I-kWr"/>
+                <constraint firstAttribute="trailing" secondItem="LOJ-ru-65S" secondAttribute="trailing" constant="100" id="hVE-Z4-OQd"/>
+                <constraint firstItem="BpM-VN-5cM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="27" id="n03-k5-Ffe"/>
+                <constraint firstItem="B5M-m9-gvR" firstAttribute="top" secondItem="LOJ-ru-65S" secondAttribute="bottom" constant="8" id="tGl-6a-79F"/>
+                <constraint firstItem="B5M-m9-gvR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="x9S-1I-4ke"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1-0-2-5wenhao.png" width="19" height="19"/>
+    </resources>
+</document>

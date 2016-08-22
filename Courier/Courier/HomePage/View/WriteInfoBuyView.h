@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *defaultBtn;// 点击使用默认起送价
 @property (weak, nonatomic) IBOutlet UIButton *defaultStatusBtn;
 @property (weak, nonatomic) IBOutlet UIButton *defaultStatusButton;
-
+@property (weak, nonatomic) IBOutlet UILabel *defaultPrice;// 点击使用默认起送价标签
 
 @property (weak, nonatomic) IBOutlet UITextField *receivingTF;// 收货电话
 @property (weak, nonatomic) IBOutlet UILabel *totalDistance;// 总距离

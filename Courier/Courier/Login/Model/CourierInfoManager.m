@@ -26,6 +26,7 @@
     [self saveCourierAlias:dic[@"alias"]];
     [self saveCourierOnlineStatus:dic[@"is_online"]];
     [self saveCourierToken:dic[@"rtoken"]];
+    [self saveCourierPic:dic[@"pic"]];
 }
 //  移除所有跑腿信息
 - (void)removeAllCourierInfo {
@@ -34,6 +35,7 @@
     [self deleteCourierAlias];
     [self deleteCourierOnlineStatus];
     [self deleteCourierToken];
+    [self deleteCourierPic];
 }
 
 //  保存跑腿登录手机号码
@@ -132,6 +134,28 @@
 // 删除跑瑞融云token
 - (void)deleteCourierToken {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"rtoken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+// 保存跑腿头像
+- (void)saveCourierPic:(NSString *)pic {
+    [[NSUserDefaults standardUserDefaults] setObject:pic forKey:@"pic"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+// 获取跑腿头像
+- (NSString *)getCourierPic {
+    NSString *pic = [[NSUserDefaults standardUserDefaults] objectForKey:@"pic"];
+    if (!pic) {
+        return @" ";
+    }
+    return pic;
+}
+
+// 删除跑腿头像
+- (void)deleteCourierPic {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"pic"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -10,6 +10,15 @@
 #import "BaseModel.h"
 
 typedef void(^PushMapBuyView)(void);
+
+typedef void(^RequestBlock)(void);
+
+@protocol OrderDetailBuyTableViewCellDelegate <NSObject>
+
+- (void)orderBuyRefreshWithMessage:(NSString *)message status:(NSString *)status;
+
+@end
+
 @interface OrderDetailBuyTableViewCell : UITableViewCell
 
 
@@ -41,6 +50,11 @@ typedef void(^PushMapBuyView)(void);
 
 
 - (void)setDataWithModel:(BaseModel *)model;
+
+@property (nonatomic, assign) id<OrderDetailBuyTableViewCellDelegate> delegate;
+
+@property (nonatomic, copy) RequestBlock request;
+- (void)setBtnBlockWithModel:(BaseModel *)model;
 
 
 @end

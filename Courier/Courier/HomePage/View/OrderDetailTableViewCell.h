@@ -11,6 +11,16 @@
 
 typedef void(^PushMapView)(void);
 
+typedef void(^RequestBlock)(void);
+
+@protocol OrderDetailTableViewCellDelegate <NSObject>
+
+- (void)orderRefreshWithMessage:(NSString *)message status:(NSString *)status;
+
+@end
+
+
+
 @interface OrderDetailTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *contentV;// 内容视图
@@ -38,8 +48,13 @@ typedef void(^PushMapView)(void);
 
 @property (weak, nonatomic) IBOutlet UIButton *orderReceivingBtn;// 接单按钮
 
+@property (nonatomic, assign) id<OrderDetailTableViewCellDelegate> delegate;
+
 
 - (void)setDataWithModel:(BaseModel *)model;
+
+@property (nonatomic, copy) RequestBlock request;
+- (void)setBtnBlockWithModel:(BaseModel *)model;
 
 
 @end

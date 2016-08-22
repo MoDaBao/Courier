@@ -58,7 +58,6 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/en.lproj"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/zh-Hans.lproj"
@@ -66,7 +65,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RCConfig.plist"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/RongCloud.bundle"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/en.lproj"
   install_resource "RongCloudIMKit/Rong_Cloud_iOS_IMKit_SDK_v2_6_8_dev/zh-Hans.lproj"

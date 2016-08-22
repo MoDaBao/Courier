@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -76,8 +76,8 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3O-nQ-jmY">
                             <rect key="frame" x="101" y="41" width="264" height="30"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiu-7r-Pzp">
-                            <rect key="frame" x="101" y="11" width="264" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiu-7r-Pzp">
+                            <rect key="frame" x="101" y="1" width="264" height="30"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -265,8 +265,8 @@
                         <constraint firstItem="6iY-Jt-mdM" firstAttribute="centerY" secondItem="vNf-WX-9E5" secondAttribute="centerY" id="tlW-k8-7Oe"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-uK-ulG">
-                    <rect key="frame" x="30" y="378" width="315" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-uK-ulG">
+                    <rect key="frame" x="30" y="342" width="315" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="OeK-0P-tb4"/>
                     </constraints>
@@ -293,8 +293,8 @@
                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1" id="uOF-tL-vp3"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-VP-QHY">
-                            <rect key="frame" x="99" y="1" width="19.5" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OX-VP-QHY">
+                            <rect key="frame" x="99" y="1" width="0.0" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="VTf-NZ-nuR"/>
                             </constraints>
@@ -319,8 +319,8 @@
                             </constraints>
                             <state key="normal" image="exclamation mark"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAW-tv-50j">
-                            <rect key="frame" x="99" y="22" width="14" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAW-tv-50j">
+                            <rect key="frame" x="99" y="22" width="0.0" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="iiF-ec-zcg"/>
                             </constraints>
@@ -381,6 +381,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="defaultBtn" destination="36y-27-IpL" id="S4C-9S-VOR"/>
+                <outlet property="defaultPrice" destination="QbH-d9-zfU" id="Aj0-Vp-3vr"/>
                 <outlet property="defaultStatusBtn" destination="sjW-iq-NMG" id="w2f-kr-n6f"/>
                 <outlet property="defaultStatusButton" destination="LYO-PB-0dv" id="Jkh-X7-BlT"/>
                 <outlet property="endBtn" destination="y3O-nQ-jmY" id="8ov-H1-GnZ"/>

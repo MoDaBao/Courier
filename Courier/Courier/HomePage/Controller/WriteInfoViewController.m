@@ -236,16 +236,24 @@
     if (self.writeView.isChoose) {// 判断有无选择默认起送价
         _start_latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
         _start_longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
+        if ([_start_latitude isEqualToString:@"20"] && [_start_longitude isEqualToString:@"20"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
         _end_latitude = _start_latitude;
         _end_longitude = _start_longitude;
-        
-        
     }
     if (self.writeBuyView.isChoose) {
         _start_latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
         _start_longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
         _end_latitude = _start_latitude;
         _end_longitude = _start_longitude;
+        if ([_start_latitude isEqualToString:@"20"] && [_start_longitude isEqualToString:@"20"] && [_end_latitude isEqualToString:@"20"] && [_end_longitude isEqualToString:@"20"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
     }
     if (self.baseModel.type.intValue == 3) {
         // 买
@@ -300,81 +308,88 @@
     }
     
     
-    
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        NSNumber *result = responseObject[@"status"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (result.integerValue) {// 填单失败
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"]  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-                /*
-                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
-                 UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                 [alertC dismissViewControllerAnimated:YES completion:nil];
-                 }];
-                 [alertC addAction:confirm];
-                 [self.navigationController presentViewController:alertC animated:YES completion:nil];
-                 */
-            } else {// 填单成功
-                if (self.refresh) {
-                    self.refresh();
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                if (self.refreshModel) {
-                    
-//                    FeHourGlassViewController *fehourVC = [[FeHourGlassViewController alloc] init];
-//                    [self presentViewController:fehourVC animated:YES completion:nil];
-                    CGFloat height = 100;
-                    CGFloat width = 100;
-                    UIView *view = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height)];
-
-                    FeHourGlass * hourGlass = [[FeHourGlass alloc] initWithView:view];
-                    hourGlass.frame = CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height);
-                    hourGlass.layer.cornerRadius = 8;
-//                    hourGlass.backgroundColor = [
-                    [self.view addSubview:hourGlass];
-                    
-                    [hourGlass showWhileExecutingBlock:^{
-                        [self myTask];
-                    } completion:^{
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+            NSNumber *result = responseObject[@"status"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (result.integerValue) {// 填单失败
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"]  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                    /*
+                     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
+                     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                     [alertC dismissViewControllerAnimated:YES completion:nil];
+                     }];
+                     [alertC addAction:confirm];
+                     [self.navigationController presentViewController:alertC animated:YES completion:nil];
+                     */
+                } else {// 填单成功
+                    if (self.refresh) {
+                        self.refresh();
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    if (self.refreshModel) {
                         
-                        NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",self.baseModel.userid,@"userid",_baseModel.order_sn,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
-                        NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
-                        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-                        [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
+                        //                    FeHourGlassViewController *fehourVC = [[FeHourGlassViewController alloc] init];
+                        //                    [self presentViewController:fehourVC animated:YES completion:nil];
+                        CGFloat height = 100;
+                        CGFloat width = 100;
+                        UIView *view = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height)];
+                        
+                        FeHourGlass * hourGlass = [[FeHourGlass alloc] initWithView:view];
+                        hourGlass.frame = CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height);
+                        hourGlass.layer.cornerRadius = 8;
+                        //                    hourGlass.backgroundColor = [
+                        [self.view addSubview:hourGlass];
+                        
+                        [hourGlass showWhileExecutingBlock:^{
+                            [self myTask];
+                        } completion:^{
                             
-                        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                            //        NSLog(@"%@",responseObject);
-                            NSNumber *result = responseObject[@"status"];
-                            if (!result.integerValue) {
-                                NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-                                NSLog(@"%@",data);
-                                BaseModel *model = [[BaseModel alloc] init];
-                                [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
+                            NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"orderinfo",@"api",@"1",@"version",self.baseModel.userid,@"userid",_baseModel.order_sn,@"order_sn",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"equment",nil];
+                            NSString *paramater = [EncryptionAndDecryption encryptionWithDic:dataDic];
+                            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+                            [session POST:REQUESTURL parameters:@{@"key":paramater} progress:^(NSProgress * _Nonnull uploadProgress) {
                                 
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    self.refreshModel(model);
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                });
-                            }
-                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                            NSLog(@"error is %@",error);
+                            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                //        NSLog(@"%@",responseObject);
+                                NSNumber *result = responseObject[@"status"];
+                                if (!result.integerValue) {
+                                    NSDictionary *data = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                                    NSLog(@"%@",data);
+                                    BaseModel *model = [[BaseModel alloc] init];
+                                    [model setValuesForKeysWithDictionary:data[@"orderlist"][0]];
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        self.refreshModel(model);
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    });
+                                }
+                            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                NSLog(@"error is %@",error);
+                            }];
                         }];
-                    }];
-                    
-                    
-                    
+                        
+                        
+                        
+                    }
                 }
-            }
-        });
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+            });
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+    
+    
     
 
     

@@ -10,6 +10,15 @@
 #import "BaseModel.h"
 
 typedef void (^LookRouteBuyBlock)(void);
+
+typedef void(^RequestBlock)(void);
+
+@protocol OrderDetailDefaultBuyTableViewCellDelegate <NSObject>
+
+- (void)orderDefaultBuyRefreshWithMessage:(NSString *)message status:(NSString *)status;
+
+@end
+
 @interface OrderDetailDefaultBuyTableViewCell : UITableViewCell
 
 
@@ -40,6 +49,11 @@ typedef void (^LookRouteBuyBlock)(void);
 @property (nonatomic, copy) LookRouteBuyBlock lookRoute;
 
 - (void)setDataWithModel:(BaseModel *)model;
+
+@property (nonatomic, assign) id<OrderDetailDefaultBuyTableViewCellDelegate> delegate;
+
+@property (nonatomic, copy) RequestBlock request;
+- (void)setBtnBlockWithModel:(BaseModel *)model;
 
 
 @end

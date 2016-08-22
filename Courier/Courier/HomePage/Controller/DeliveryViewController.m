@@ -42,95 +42,115 @@
 
 // 配送中请求 下来刷新
 - (void)requestData {
-    self.start = 0;
     
-//    if (_isRefresh) {
-//        [NSThread sleepForTimeInterval:1.0f];
-//    }
-    
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"1"}];
-    NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        self.start = 0;
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //    if (_isRefresh) {
+        //        [NSThread sleepForTimeInterval:1.0f];
+        //    }
         
-//        _isRefresh = NO;
-        
-        NSNumber *result = responseObject[@"status"];
-//        self.pickBtn.userInteractionEnabled = YES;
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            [self.dataArray removeAllObjects];
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
-            if (dataDic.count) {// 当请求回来的数据条数为0的时候 页数不往下加
-                self.start ++;
-            }
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                DeliveryModel *model = [[DeliveryModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"1"}];
+        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self.tableView.mj_header endRefreshing];
-//                [self.tableView.mj_footer endRefreshing];
-                if (self.dataArray.count) {
-                    self.tableView.mj_footer.hidden = NO;
-                } else {
-                    self.tableView.mj_footer.hidden = YES;
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            //        _isRefresh = NO;
+            
+            NSNumber *result = responseObject[@"status"];
+            //        self.pickBtn.userInteractionEnabled = YES;
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                [self.dataArray removeAllObjects];
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                if (dataDic.count) {// 当请求回来的数据条数为0的时候 页数不往下加
+                    self.start ++;
                 }
-                if (_hourGlass) {
-                    
-                    [_hourGlass removeFromSuperview];
-                    _hourGlass = nil;
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    DeliveryModel *model = [[DeliveryModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.dataArray addObject:model];
                 }
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    //                [self.tableView.mj_header endRefreshing];
+                    [self.tableView headerEndRefreshing];
+                    //                [self.tableView.mj_footer endRefreshing];
+                    //                if (self.dataArray.count) {
+                    //                    self.tableView.mj_footer.hidden = NO;
+                    //                } else {
+                    //                    self.tableView.mj_footer.hidden = YES;
+                    //                }
+                    if (_hourGlass) {
+                        
+                        [_hourGlass removeFromSuperview];
+                        _hourGlass = nil;
+                    }
+                });
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.tableView headerEndRefreshing];
+    }
+    
+    
     
 }
 
 // 配送中请求 上拉加载
 - (void)requestLoadData {
     
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":@"20" ,@"type":@"1"}];
-    NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
+    
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":@"20" ,@"type":@"1"}];
+        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
             
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                DeliveryModel *model = [[DeliveryModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataArray addObject:model];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSNumber *result = responseObject[@"status"];
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    DeliveryModel *model = [[DeliveryModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+                if (dataDic.count) {
+                    self.start ++;
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    //                [self.tableView.mj_header endRefreshing];
+                    //                [self.tableView.mj_footer endRefreshing];
+                    [self.tableView footerEndRefreshing];
+                });
             }
-            if (dataDic.count) {
-                self.start ++;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-//                [self.tableView.mj_header endRefreshing];
-                [self.tableView.mj_footer endRefreshing];
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.tableView footerEndRefreshing];
+    }
+    
+    
     
 }
 
@@ -139,11 +159,11 @@
     self.navigationController.navigationBar.hidden = NO;
     self.tabBarController.tabBar.hidden = YES;
     
-    if (self.dataArray.count) {
-        self.tableView.mj_footer.hidden = NO;
-    } else {
-        self.tableView.mj_footer.hidden = YES;
-    }
+//    if (self.dataArray.count) {
+//        self.tableView.mj_footer.hidden = NO;
+//    } else {
+//        self.tableView.mj_footer.hidden = YES;
+//    }
 }
 
 - (void)viewDidLoad {
@@ -188,11 +208,19 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.96 alpha:1.00];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];// 上拉刷新
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestData)];// 上拉刷新
+    DeliveryViewController *deliverVC = self;
+    [self.tableView addHeaderWithCallback:^{
+        [deliverVC requestData];
+    }];
+    [self.tableView headerBeginRefreshing];
     // Enter the refresh status immediately
-    [self.tableView.mj_header beginRefreshing];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLoadData)];// 下拉加载
-    self.tableView.mj_footer.hidden = YES;
+//    [self.tableView.mj_header beginRefreshing];
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLoadData)];// 下拉加载
+//    self.tableView.mj_footer.hidden = YES;
+    [self.tableView addFooterWithCallback:^{
+        [deliverVC requestLoadData];
+    }];
 //    [self.tableView.mj_footer beginRefreshing];
 }
 
@@ -256,14 +284,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseModel *model = self.dataArray[indexPath.row];
     OrderDetailViewController *orderVC = [[OrderDetailViewController alloc] init];
+    orderVC.delegate = self;
     orderVC.baseModel = model;
     orderVC.isAlreadyDone = NO;
+    orderVC.isDelivery = YES;
     orderVC.orderStatus = self.navigationItem.title;
     [self.navigationController pushViewController:orderVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.96 alpha:1.00];
+}
+
+#pragma mark -----OrderDetailViewController的代理方法-----
+
+- (void)refreshDelivery {
+    [self requestData];
 }
 
 
@@ -318,7 +354,9 @@
 }
 
 - (void)defaultRefreshWithMessage:(NSString *)message status:(NSString *)status {
-    [self refreshWithMessage:message status:status];
+    self.status = status;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"%@%@",message, status] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确认", nil];
+    [alert show];
 }
 
 

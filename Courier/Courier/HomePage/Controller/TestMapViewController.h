@@ -1,13 +1,16 @@
 //
 //  TestMapViewController.h
-//  Courier
+//  RunErrands
 //
-//  Created by 莫大宝 on 16/7/7.
-//  Copyright © 2016年 dabao. All rights reserved.
+//  Created by 朱玉涵 on 16/8/8.
+//  Copyright © 2016年 com.WenlingOuYi.RunErrands. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <RongIMKit/RongIMKit.h>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchAPI.h>
+#import <AMapSearchKit/AMapCommonObj.h>
 
-@interface TestMapViewController : UIViewController
-
+@interface TestMapViewController : RCLocationPickerViewController
+@property (nonatomic, strong) AMapSearchAPI *search;
 @end

@@ -23,6 +23,7 @@ typedef void(^OrderReceivingBlock)(NSString *);
 
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLabel;// 支付状态
 
+@property (weak, nonatomic) IBOutlet UILabel *orderStatus;// 订单状态
 @property (nonatomic, copy) ClickBlock click;// 接单按钮
 @property (nonatomic, copy) OrderReceivingBlock orderRcceiving;
 

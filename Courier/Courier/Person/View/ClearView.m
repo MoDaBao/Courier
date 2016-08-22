@@ -17,7 +17,7 @@
     // Drawing code
     
     self.margin = 20;
-    CGFloat radius = 19 * kScaleForHeight;
+    CGFloat radius = 12 * kScaleForHeight;
     
     //中间镂空的矩形框
     CGRect myRect = CGRectMake(self.margin, self.height * .5 - radius, self.width - self.margin * 2, radius * 2);

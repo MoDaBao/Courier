@@ -118,7 +118,13 @@
 }
 
 - (void)messageBarButtonChat {
-    [self chat];
+    if (_baseModel.status.integerValue == 6) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"订单已完成" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        [self chat];
+    }
+    
 }
 
 - (void)bottomViewSetDataWithModel:(BaseModel *)model bottomView:(MapBottomView *)bottomView {

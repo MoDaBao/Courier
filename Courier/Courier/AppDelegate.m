@@ -27,7 +27,7 @@
     NSString *_order_sn;
 }
 
-
+// 获取默认起送信息
 - (void)setDefaultStartText {
     NSDictionary *dic = @{@"api":@"getDisPrice", @"version":@"1"};
     NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
@@ -142,34 +142,34 @@
 
 
 
-// 上传跑腿位置
-- (void)courierAddress {
-    
-    NSLog(@"上传了一次");
-    
-    // POST请求参数
-    NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":@"20", @"latitude":@"20"};
-    NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-    NSString *parmeter = [EncryptionAndDecryption encryptionWithDic:dic];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":parmeter} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.intValue) {
-            NSLog(@"上传跑腿位置失败");
-        } else {
-            NSLog(@"上传跑腿位置成功");
-        }
-//        NSLog(@"respopnseObject = %@",[responseObject class]);
-//        NSLog(@"%@", responseObject);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
-    
-    
-}
+//// 上传跑腿位置
+//- (void)courierAddress {
+//    
+//    NSLog(@"上传了一次");
+//    
+//    // POST请求参数
+//    NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":@"20", @"latitude":@"20"};
+//    NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+//    NSString *parmeter = [EncryptionAndDecryption encryptionWithDic:dic];
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    [session POST:REQUESTURL parameters:@{@"key":parmeter} progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSNumber *result = responseObject[@"status"];
+//        if (result.intValue) {
+//            NSLog(@"上传跑腿位置失败");
+//        } else {
+//            NSLog(@"上传跑腿位置成功");
+//        }
+////        NSLog(@"respopnseObject = %@",[responseObject class]);
+////        NSLog(@"%@", responseObject);
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"error is %@",error);
+//    }];
+//    
+//    
+//}
 
 
 
@@ -188,7 +188,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [JPUSHService setAlias:alias callbackSelector:nil object:nil];
     
     
+    NSString *token =
     
+    [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
+       
+                                                           withString:@""]
+      
+      stringByReplacingOccurrencesOfString:@">"
+      
+      withString:@""]
+     
+     stringByReplacingOccurrencesOfString:@" "
+     
+     withString:@""];
+    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
 
     
     

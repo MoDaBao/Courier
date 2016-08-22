@@ -34,6 +34,9 @@
 //@property (nonatomic, copy) NSString *end_latitude;
 //@property (nonatomic, copy) NSString *end_longitude;
 
+@property (nonatomic, copy) NSString *mainAddress;
+@property (nonatomic, copy) NSString *submitAddress;
+
 
 @end
 
@@ -108,6 +111,7 @@
 }
 
 - (void)messageBarButtonChat {
+    
     [self chat];
 }
 
@@ -220,7 +224,11 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请从下列地址中选择" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
     } else {
-        [self.delegate pushAddress:[NSString stringWithFormat:@"%@%@",self.searchView.mainAddress.text, self.searchView.submitAddress.text] latitude:self.latitude longitude:self.longitude clickedTextFiled:self.clickedTF];
+        if (!self.searchView.submitAddress.text.length) {// 用户未填写详细信息
+            [self.delegate pushAddress:[NSString stringWithFormat:@"%@%@",self.searchView.mainAddress.text, self.submitAddress] latitude:self.latitude longitude:self.longitude clickedTextFiled:self.clickedTF];
+        } else {
+            [self.delegate pushAddress:[NSString stringWithFormat:@"%@%@",self.searchView.mainAddress.text, self.searchView.submitAddress.text] latitude:self.latitude longitude:self.longitude clickedTextFiled:self.clickedTF];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -370,14 +378,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.dataArray.count) {
         AMapTip *tip = self.dataArray[indexPath.row];
-        self.searchView.mainAddress.text = tip.name;
-        self.searchView.submitAddress.text = tip.address;
+        self.searchView.mainAddress.text = [NSString stringWithFormat:@"%@附近",tip.name];
+        self.mainAddress = self.searchView.mainAddress.text;
+        self.submitAddress = tip.address;
+//        self.searchView.submitAddress.text = tip.address;
         self.latitude = [NSString stringWithFormat:@"%f",tip.location.latitude];
         self.longitude = [NSString stringWithFormat:@"%f",tip.location.longitude];
     } else {
         AMapPOI *poi = self.poiArray[indexPath.row];
-        self.searchView.mainAddress.text = poi.name;
-        self.searchView.submitAddress.text = poi.address;
+        self.searchView.mainAddress.text = [NSString stringWithFormat:@"%@附近",poi.name];
+//        self.searchView.submitAddress.text = poi.address;
+        self.mainAddress = self.searchView.mainAddress.text;
+        self.submitAddress = poi.address;
         self.latitude = [NSString stringWithFormat:@"%f",poi.location.latitude];
         self.longitude = [NSString stringWithFormat:@"%f",poi.location.longitude];
     }

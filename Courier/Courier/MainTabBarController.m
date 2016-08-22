@@ -22,7 +22,7 @@
 #import "ChatViewController.h"
 
 
-@interface MainTabBarController ()<MainTabBarDelegate, RCIMUserInfoDataSource, AMapLocationManagerDelegate, RCIMReceiveMessageDelegate, RCIMConnectionStatusDelegate, UIAlertViewDelegate, AMapSearchDelegate, RCIMReceiveMessageDelegate>
+@interface MainTabBarController ()<MainTabBarDelegate, RCIMUserInfoDataSource, AMapLocationManagerDelegate, RCIMReceiveMessageDelegate, RCIMConnectionStatusDelegate, UIAlertViewDelegate, AMapSearchDelegate, RCIMReceiveMessageDelegate, LoginViewControllerDelegate>
 @property(nonatomic, weak)MainTabBar *mainTabBar;
 
 //@property(nonatomic, strong)MessageViewController *messageVc;
@@ -39,6 +39,8 @@
 //@property (nonatomic, copy) NSString *targetId;
 @property (nonatomic, strong) BaseModel *baseModel;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation MainTabBarController
@@ -47,6 +49,14 @@
     [super viewDidLoad];
     [self SetupMainTabBar];
     [self SetupAllControllers];
+    
+    
+    
+    self.longitude = @"20";
+    self.latitude = @"20";
+    [[NSUserDefaults standardUserDefaults] setObject:self.longitude forKey:@"longitude"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.latitude forKey:@"latitude"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     
     // 定位
@@ -93,25 +103,40 @@
         NSLog(@"RCtoken错误");
     }];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
-//    [RCIM sharedRCIM].receiveMessageDelegate = self;
+    [RCIM sharedRCIM].receiveMessageDelegate = self;
     [RCIM sharedRCIM].connectionStatusDelegate = self;
     
     // 设置计时器每隔三十秒向服务器上传一次跑腿的位置
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(courierAddress) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:@"2333"];
-    
-    self.longitude = @"20";
-    self.latitude = @"20";
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(courierAddress) userInfo:nil repeats:YES];
+        
+    }
+   
     
 }
+
+#pragma mark -----LoginVC代理方法-----
+
+- (void)initRong {
+    [self initRongAndSendAddress];
+}
+
 
 #pragma mark -----融云代理方法-----
 
 // 一个账号不能同时登录两台设备
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
     NSLog(@"xxxx");
-    /*
+    
+    
+    
     if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
+        
+        
+        [[CourierInfoManager shareInstance] removeAllCourierInfo];
+        [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+        [[RCIMClient sharedRCIMClient]logout];// 退出融云
+
         
         UIAlertView *alert = [[UIAlertView alloc]
                               
@@ -129,9 +154,10 @@
         alert.tag = 7777;
         [alert show];
     }
-     */
+    
 }
 
+// 最先开始是把收到新消息弹窗的代码写在了这里
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
 //    _targetId = message.targetId;
 //    NSString *userid = [message.senderUserId substringFromIndex:1];
@@ -220,36 +246,53 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 7777) {
-        if (![[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@" "]) {// 退出登录时当在线状态为在线时改成下班状态
-            NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
-            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-            [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-                
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
-                NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
-                if (![responseObject[@"status"] integerValue]) {
-                    NSLog(@"成功");
-                    //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
-                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // 模态弹出登录页面
-                        [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                        LoginViewController *loginVC = [[LoginViewController alloc] init];
-                        // 此处应该要撤销计时器
-                        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-                        [delegate.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
-                        //                    [self presentViewController:loginVC animated:YES completion:nil];
-                    });
-                } else {
-                    NSLog(@"失败");
-                }
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"error is %@",error);
-            }];
-        }
+//        [[CourierInfoManager shareInstance] removeAllCourierInfo];
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        // 此处应该要撤销计时器
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
+        
+//        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 退出登录时当在线状态为在线时改成下班状态
+//            NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
+//            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//            [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+//                
+//            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                
+//                NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
+//                if (![responseObject[@"status"] integerValue]) {
+//                    NSLog(@"成功");
+//                    //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
+////                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
+////                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+////                    [[RCIMClient sharedRCIMClient]logout];// 退出融云
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        // 模态弹出登录页面
+//                        [[CourierInfoManager shareInstance] removeAllCourierInfo];
+//                        LoginViewController *loginVC = [[LoginViewController alloc] init];
+//                        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//                        // 此处应该要撤销计时器
+//                        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//                        [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
+//                        //                    [self presentViewController:loginVC animated:YES completion:nil];
+//                    });
+//                } else {
+//                    NSLog(@"失败");
+//                }
+//                
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                NSLog(@"error is %@",error);
+//            }];
+//        } else {
+//            // 模态弹出登录页面
+//            [[CourierInfoManager shareInstance] removeAllCourierInfo];
+//            LoginViewController *loginVC = [[LoginViewController alloc] init];
+//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//            // 此处应该要撤销计时器
+//            AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//            [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
+//        }
     } else if (alertView.tag == 1234) {
         
 //        ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:_baseModel];
@@ -282,19 +325,21 @@
 
 //  定位回调
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
+//    NSLog(@"MianTabBarController成功定位回调");
     self.longitude = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
     self.latitude = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
     [[NSUserDefaults standardUserDefaults] setObject:self.longitude forKey:@"longitude"];
     [[NSUserDefaults standardUserDefaults] setObject:self.latitude forKey:@"latitude"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     //    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
 }
 
-
+// 逆地理编码完成的回调
 - (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
 //    [self.delegate setAddress:response.regeocode.formattedAddress];// 让代理设置位置
-    if ([self.delegate respondsToSelector:@selector(setAddress:)]) {
-        [self.delegate setAddress:[NSString stringWithFormat:@"%@%@%@%@%@",response.regeocode.addressComponent.township, response.regeocode.addressComponent.neighborhood, response.regeocode.addressComponent.building, response.regeocode.addressComponent.streetNumber.street, response.regeocode.addressComponent.streetNumber.number]];
+    if ([self.tabdelegate respondsToSelector:@selector(setAddress:)]) {
+        [self.tabdelegate setAddress:[NSString stringWithFormat:@"%@%@%@%@%@",response.regeocode.addressComponent.township, response.regeocode.addressComponent.neighborhood, response.regeocode.addressComponent.building, response.regeocode.addressComponent.streetNumber.street, response.regeocode.addressComponent.streetNumber.number]];
     }
     
     
@@ -304,18 +349,22 @@
 /** 上传跑腿位置*/
 - (void)courierAddress {
     
-    NSLog(@"上传了一次");
+//    NSLog(@"上传了一次");
     
-    AMapReGeocodeSearchRequest *reGeo = [[AMapReGeocodeSearchRequest alloc] init];
-    reGeo.location = [AMapGeoPoint locationWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
-    reGeo.radius = 200;
-    reGeo.requireExtension = YES;
-    //发起逆向地理编码
-    //初始化检索对象
     
-    [_search AMapReGoecodeSearch:reGeo];
     
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        
+        AMapReGeocodeSearchRequest *reGeo = [[AMapReGeocodeSearchRequest alloc] init];
+        reGeo.location = [AMapGeoPoint locationWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
+        reGeo.radius = 200;
+        reGeo.requireExtension = YES;
+        //发起逆向地理编码
+        //初始化检索对象
+        
+        [_search AMapReGoecodeSearch:reGeo];
+        
+        
         // POST请求参数
         NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":self.longitude, @"latitude":self.latitude};
         NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
@@ -326,9 +375,9 @@
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSNumber *result = responseObject[@"status"];
             if (result.intValue) {
-                NSLog(@"失败");
+                NSLog(@"上传跑腿位置失败");
             } else {
-                NSLog(@"成功");
+                NSLog(@"上传跑腿位置成功");
             }
             NSLog(@"respopnseObject = %@",[responseObject class]);
             NSLog(@"%@", responseObject);

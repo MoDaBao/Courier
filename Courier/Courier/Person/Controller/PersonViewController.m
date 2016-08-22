@@ -12,9 +12,11 @@
 #import "HeartAppraiseRateView.h"
 #import "CourierInfoModel.h"
 #import "LoginViewController.h"
+#import "AppDelegate.h"
+#import "MainTabBarController.h"
 #define kTFMargin 20
 
-@interface PersonViewController ()
+@interface PersonViewController ()<LoginViewControllerDelegate>
 
 @property (nonatomic, copy) NSString *userName;
 
@@ -132,8 +134,9 @@
     logoutBtn.frame = CGRectMake(kTFMargin, attitudeView.y + attitudeView.height + 20, kScreenWidth - kTFMargin * 2, 40 * kScaleForHeight);
     [logoutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     logoutBtn.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-    [logoutBtn setBackgroundColor:[UIColor colorWithRed:0.75 green:0.12 blue:0.16 alpha:1.00]];
-    [logoutBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+//    [logoutBtn setBackgroundColor:[UIColor colorWithRed:0.75 green:0.12 blue:0.16 alpha:1.00]];
+    [logoutBtn setBackgroundColor:[UIColor lightGrayColor]];
+    [logoutBtn addTarget:self action:@selector(logoutBtn) forControlEvents:UIControlEventTouchUpInside];
     logoutBtn.layer.cornerRadius = logoutBtn.height * 0.45;// 设置圆角效果
     logoutBtn.layer.shadowColor = [UIColor blackColor].CGColor;// 设                                                                                                                                                                                                                                                                                             置阴影颜色
     logoutBtn.layer.shadowOffset = CGSizeMake(1, 1);// 阴影范围
@@ -159,51 +162,7 @@
 
 }
 
-- (void)logout {
-    /*
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"退出登录" message:@"确认要退出登录吗" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 退出登录时当在线状态为在线时改成下班状态
-            NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
-            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-            [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-                
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                
-                NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
-                if (![responseObject[@"status"] integerValue]) {
-                    NSLog(@"成功");
-//                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
-                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // 模态弹出登录页面
-                        [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                        LoginViewController *loginVC = [[LoginViewController alloc] init];
-                        // 此处应该要撤销计时器
-                        [self presentViewController:loginVC animated:YES completion:nil];
-                    });
-                } else {
-                    NSLog(@"失败");
-                }
-                
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"error is %@",error);
-            }];
-        }
-        
-        
-        
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alertC addAction:confirm];
-    [alertC addAction:cancel];
-    
-    [self presentViewController:alertC animated:YES completion:nil];
-    */
+- (void)logoutBtn {
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出登录" message:@"确认要退出登录吗" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     [alert show];
@@ -212,7 +171,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
     if (buttonIndex == 1) {
-        if (![[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@" "]) {// 退出登录时当在线状态为在线时改成下班状态
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 退出登录时当在线状态为在线时提示改成下班状态
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出时请先切换成下班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        } else if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"0"]) {
             NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
             AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
             [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -225,12 +187,17 @@
                     //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
                     [[CourierInfoManager shareInstance] removeAllCourierInfo];
                     [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+                    [[RCIMClient sharedRCIMClient]logout];// 退出融云
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // 模态弹出登录页面
                         [[CourierInfoManager shareInstance] removeAllCourierInfo];
                         LoginViewController *loginVC = [[LoginViewController alloc] init];
+                        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                        //                        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+                        //                        MainTabBarController *tabVC = (MainTabBarController *)appdelegate.window.rootViewController;
+                        //                        loginVC.delegate = tabVC;
                         // 此处应该要撤销计时器
-                        [self presentViewController:loginVC animated:YES completion:nil];
+                        [self presentViewController:naVC animated:YES completion:nil];
                     });
                 } else {
                     NSLog(@"失败");

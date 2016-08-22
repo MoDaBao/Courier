@@ -35,6 +35,9 @@
     
     [self.defaultStatusButton addTarget:self action:@selector(getDisPrice) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    self.defaultPrice.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultStartText"];
+    
     //    self.remarkLabel.hidden = YES;
     
 //    self.pusherPhoneTF.delegate = self;
@@ -113,7 +116,7 @@
 // 限制输入位数11位
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *str = [NSString stringWithFormat:@"%@%@",textField.text, string];
-    NSLog(@"length = %ld, str = %@, text = %@, replace = %@",str.length, str, textField.text, string);
+//    NSLog(@"length = %ld, str = %@, text = %@, replace = %@",str.length, str, textField.text, string);
     if (str.length > 11) {
         return NO;
     }

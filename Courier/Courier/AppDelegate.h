@@ -10,7 +10,7 @@
 
 static NSString *appKey = @"692787bd9088c49014bf5f84";
 static NSString *channel = @"App Store";
-static BOOL isProduction = FALSE;
+static BOOL isProduction = TRUE;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

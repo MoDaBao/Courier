@@ -33,7 +33,7 @@
 
 #import "JPUSHService.h"
 
-#import <MJRefresh/MJRefresh.h>
+#import "MJRefresh/MJRefresh.h"
 
 #import <MAMapKit/MAMapKit.h>
 

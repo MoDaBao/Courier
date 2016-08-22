@@ -138,22 +138,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.btnStatus message:[NSString stringWithFormat:@"确定%@吗?",self.btnStatus] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     [alert show];
     
-    /*
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:self.btnStatus message:[NSString stringWithFormat:@"确定%@吗?",self.btnStatus] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.request();
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alertC addAction:confirm];
-    [alertC addAction:cancelAction];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.window.rootViewController presentViewController:alertC animated:YES completion:nil];
-    
-     */
-//    [UIApplication sharedApplication].keyWindow.rootViewController  iOS8以上的系统才能使用
 }
 
 //  给block添加前往取货地点的实现
@@ -162,24 +147,33 @@
     DeliveryDefaultTableViewCell *cell = self;
     
     self.request = ^ {
-        NSDictionary *dic = @{@"api":@"start", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
-        NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"start", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"前往取货地点成功");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"前往取货地点失败");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
             
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"responseObject = %@",responseObject);
-            NSNumber *result = responseObject[@"status"];
-            if (!result.integerValue) {
-                NSLog(@"前往取货地点成功");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
-            } else {
-                NSLog(@"前往取货地点失败");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        }
+        
+        
     };
 }
 
@@ -188,24 +182,32 @@
     DeliveryDefaultTableViewCell *cell = self;
     
     self.request = ^ {
-        NSDictionary *dic = @{@"api":@"arriveStart", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
-        NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"responseObject = %@",responseObject);
-            NSNumber *result = responseObject[@"status"];
-            if (!result.integerValue) {
-                NSLog(@"确认取货成功");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
-            } else {
-                NSLog(@"确认取货失败");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"arriveStart", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"确认取货成功");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"确认取货失败");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
     };
 }
 
@@ -213,24 +215,32 @@
 - (void)confirmDelivery {
     DeliveryDefaultTableViewCell *cell = self;
     self.request = ^ {
-        NSDictionary *dic = @{@"api":@"end", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
-        NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"responseObject = %@",responseObject);
-            NSNumber *result = responseObject[@"status"];
-            if (!result.integerValue) {
-                NSLog(@"确认送达成功");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
-            } else {
-                NSLog(@"确认送达失败");
-                [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"end", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"确认送达成功");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"确认送达失败");
+                    [cell.delegate defaultRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
     };
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

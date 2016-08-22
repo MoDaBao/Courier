@@ -53,6 +53,13 @@
 // 删除跑瑞融云token
 - (void)deleteCourierToken;
 
+// 保存跑腿头像
+- (void)saveCourierPic:(NSString *)pic;
+// 获取跑腿头像
+- (NSString *)getCourierPic;
+// 删除跑腿头像
+- (void)deleteCourierPic;
+
 
 
 

@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalDistance;// 总距离
 @property (weak, nonatomic) IBOutlet UILabel *totalCost;// 总费用
 //@property (weak, nonatomic) IBOutlet UITextField *buyPrice;// 物品价格
+@property (weak, nonatomic) IBOutlet UILabel *defaultPrice;// 点击使用默认起送价标签
 
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;// 选择送货地址按钮
 @property (weak, nonatomic) IBOutlet UIButton *endBtn;// 选择收货地址按钮

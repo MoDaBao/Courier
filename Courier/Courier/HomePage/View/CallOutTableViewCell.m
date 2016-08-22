@@ -26,6 +26,12 @@
     self.payStatusLabel.clipsToBounds = YES;
     self.payStatusLabel.backgroundColor = [UIColor colorWithRed:239 / 255.0f green:83 / 255.0f blue:80 / 255.0f alpha:1.0];
     
+    // 设置订单状态标签的圆角和颜色
+    self.orderStatus.layer.cornerRadius = 3;
+    self.orderStatus.clipsToBounds = YES;
+    self.orderStatus.backgroundColor = [UIColor colorWithRed:255 / 255.0f green:190 / 255.0f blue:231 / 255.0f alpha:1.0];
+
+    
     // 设置接单按钮的圆角效果和阴影效果
     self.orderReceivingBtn.backgroundColor = [UIColor colorWithRed:193 / 255.0f green:26 / 255.0f blue:32 / 255.0f alpha:1.0];
     self.orderReceivingBtn.layer.cornerRadius = self.orderReceivingBtn.height * 0.45;// 设置圆角效果
@@ -56,10 +62,13 @@
     // 订单类型
     if (model.type.intValue == 1) {
 //        self.orderTypeLabel.text = @"帮我拿";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_na"];
     } else if (model.type.intValue == 2) {
 //        self.orderTypeLabel.text = @"帮我送";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_song"];
     } else {
 //        self.orderTypeLabel.text = @"帮我买";
+        self.orderTypeimage.image = [UIImage imageNamed:@"djd_mai"];
     }
     
     // 支付状态
@@ -71,28 +80,35 @@
     CallOutTableViewCell *cell = self;
     self.click = ^(void) {
        
-        // 接单按钮
-        NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
-        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-        NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"responseObject = %@",responseObject);
-            NSNumber *result = responseObject[@"status"];
-            NSString *msg = nil;
-            
-            if (!result.integerValue) {
-                msg = @"接单成功";
-            } else {
-                msg = responseObject[@"msg"];
-            }
-            NSLog(@"%@",msg);
-            cell.orderRcceiving(msg);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            // 接单按钮
+            NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
+            NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                NSString *msg = nil;
+                
+                if (!result.integerValue) {
+                    msg = @"接单成功";
+                } else {
+                    msg = responseObject[@"msg"];
+                }
+                NSLog(@"%@",msg);
+                cell.orderRcceiving(msg);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
     };
 }
 

@@ -10,6 +10,13 @@
 #import "BaseModel.h"
 
 typedef void (^LookRouteBlock)(void);
+typedef void(^RequestBlock)(void);
+
+@protocol OrderDetailDefaultTableViewCellDelegate <NSObject>
+
+- (void)orderDefaultRefreshWithMessage:(NSString *)message status:(NSString *)status;
+
+@end
 
 @interface OrderDetailDefaultTableViewCell : UITableViewCell
 
@@ -39,6 +46,12 @@ typedef void (^LookRouteBlock)(void);
 
 @property (nonatomic, copy) LookRouteBlock lookRoute;
 
+@property (nonatomic, copy) RequestBlock request;
+
+@property (nonatomic, assign) id<OrderDetailDefaultTableViewCellDelegate> delegate;
+
 - (void)setDataWithModel:(BaseModel *)model;
+
+- (void)setBtnBlockWithModel:(BaseModel *)model;
 
 @end

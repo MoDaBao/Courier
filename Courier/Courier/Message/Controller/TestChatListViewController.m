@@ -27,6 +27,8 @@
  */
 @property (nonatomic, strong) NSMutableArray *chatListArray;
 
+@property (nonatomic, strong) NSMutableArray *tempArr;
+
 @property (nonatomic, strong) BaseModel *baseModel;
 
 
@@ -46,6 +48,13 @@
         self.chatListArray = [NSMutableArray array];
     }
     return _chatListArray;
+}
+
+- (NSMutableArray *)tempArr {
+    if (!_tempArr) {
+        self.tempArr = [NSMutableArray array];
+    }
+    return _tempArr;
 }
 
 
@@ -83,6 +92,7 @@
     
     
     self.navigationItem.title = @"消息列表";
+    self.emptyConversationView.hidden = YES;
 }
 
 - (void)back {
@@ -91,6 +101,9 @@
 
 
 - (void)requestData {
+    
+    
+    
     NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"type",@"2",@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
     NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_token_",[[CourierInfoManager shareInstance] getCourierPid],@"_userid_",@"2",@"type",[[CourierInfoManager shareInstance] getCourierPid],@"userid",nil];
     
@@ -112,6 +125,10 @@
             NSLog(@"%@",self.dataArray);
             
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self willReloadTableData:_tempArr];
+            
+        });
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);
@@ -119,84 +136,6 @@
     
 }
 
-// 请求会话列表的订单数据
-- (void)requestDataWithDataArray:(NSMutableArray*)dataArray {
-    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"type",@"2",@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
-    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_token_",[[CourierInfoManager shareInstance] getCourierPid],@"_userid_",@"2",@"type",[[CourierInfoManager shareInstance] getCourierPid],@"userid",nil];
-    
-    
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    session.responseSerializer = [AFJSONResponseSerializer serializer];
-    //    [session.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html",@"text/plain",@"text/javascript",@"application/json",@"text/json",nil]];
-    [session POST:@"http://api.dev.yoguopin.com/order/userOrderList" parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        if ([responseObject[@"message"] isEqualToString:@"success"]) {
-            [self.dataArray removeAllObjects];
-            for (NSDictionary *dic in responseObject[@"data"][@"datalist"]) {
-                BaseModel *model = [[BaseModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
-            [self.chatListArray removeAllObjects];
-            for (RCConversationModel *model in dataArray) {
-                for (BaseModel *baseModel in self.dataArray) {
-                    if ([model.targetId isEqualToString:baseModel.order_sn]) {
-                        ChatListModel *chat = [[ChatListModel alloc] init];
-                        chat.order_sn = baseModel.order_sn;
-                        chat.type = baseModel.type;
-                        chat.payment = baseModel.payment;
-                        chat.pay_status = baseModel.pay_status;
-                        chat.distance = baseModel.distance;
-                        chat.create = baseModel.created;
-                        chat.status = baseModel.status;
-                        chat.name = baseModel.name;
-                        chat.userphone = baseModel.userphone;
-                        chat.userid = baseModel.userid;
-                        chat.conversationModel = model;
-                        
-                        [self.chatListArray addObject:chat];
-                    }
-                }
-            }
-            NSMutableArray *tempArray = [NSMutableArray array];
-            for (RCConversationModel *model in dataArray) {
-                NSInteger temp = 0;
-                for (BaseModel *chat in self.chatListArray) {
-                    if ([model.targetId isEqualToString:chat.order_sn]) {
-                        temp ++;
-                    }
-                    
-                }
-                if (temp == 0) {
-                    [tempArray addObject:model];
-                }
-            }
-            
-            [dataArray removeObjectsInArray:tempArray];
-            
-//            for (NSInteger i = 0; i < self.chatListArray.count; i ++) {
-//                for (NSInteger j = 0; j < dataArray.count; j ++) {
-//                    ChatListModel *chat = self.chatListArray[i];
-//                    RCConversationModel *model = dataArray[j];
-//                    if ([chat.order_sn isEqualToString:model.targetId]) {
-//                        [dataArray removeObject:model];
-//                        [dataArray insertObject:model atIndex:i];
-//                    }
-//                }
-//            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-            });
-            
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
-}
 
 
 
@@ -242,7 +181,8 @@
     
     // 加载订单数据
 //    [self requestDataWithDataArray:dataSource];
-    [self requestData];
+    
+    _tempArr = dataSource;
     
     for (RCConversationModel *model in dataSource) {
         model.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
@@ -272,6 +212,9 @@
         [self.chatListArray addObject:chat];
     }
     
+    
+    
+    self.conversationListDataSource = self.chatListArray;
     
     
     
@@ -435,6 +378,13 @@
 //    RCConversationModel *a = self.conversationListDataSource[0];
     return cell;
 }
+
+//
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

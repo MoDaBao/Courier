@@ -8,6 +8,11 @@
 
 #import "OrderDetailBuyTableViewCell.h"
 
+@interface OrderDetailBuyTableViewCell ()
+@property (nonatomic, copy) NSString *btnStatus;
+@property (nonatomic, strong) BaseModel *model;
+@end
+
 @implementation OrderDetailBuyTableViewCell
 
 - (void)awakeFromNib {
@@ -26,6 +31,7 @@
     self.orderReceivingBtn.layer.shadowOffset = CGSizeMake(1, 1);// 阴影范围
     self.orderReceivingBtn.layer.shadowOpacity = .5;// 阴影透明度
     self.orderReceivingBtn.layer.shadowRadius = 4;// 阴影半径
+    [self.orderReceivingBtn addTarget:self action:@selector(pickbtn) forControlEvents:UIControlEventTouchUpInside];
     
     // 设置内容试图的边框和圆角效果
     self.contentV.layer.cornerRadius = 5;
@@ -112,13 +118,24 @@
     self.remarkLabel.text = model.note;// 备注
     
     
-    self.orderReceivingBtn.hidden = YES;
+//    self.orderReceivingBtn.hidden = YES;
     
     
     
     [self.mapBtn addTarget:self action:@selector(pushMapView) forControlEvents:UIControlEventTouchUpInside];
     
+    if (model.status.integerValue == 2) {// 已接单
+        self.btnStatus = @"前往取货地点";
+        [self gotoPick];// 添加前往取货地点的实现
+    } else if (model.status.integerValue == 3) {// 在路上
+        self.btnStatus = @"确认取货";
+        [self confirmPick];// 添加确认取货的实现
+    } else if (model.status.integerValue == 4) {// 正在配送
+        self.btnStatus = @"确认送达";
+        [self confirmDelivery];// 添加确认送达的实现
+    }
     
+    [self.orderReceivingBtn setTitle:_btnStatus forState:UIControlStateNormal];
 }
 
 - (void)pushMapView {
@@ -174,6 +191,142 @@
     }
     
 }
+
+- (void)setBtnBlockWithModel:(BaseModel *)model {
+    if (model.status.integerValue == 2) {// 已接单
+        self.btnStatus = @"前往取货地点";
+        [self gotoPick];// 添加前往取货地点的实现
+    } else if (model.status.integerValue == 3) {// 在路上
+        self.btnStatus = @"确认取货";
+        [self confirmPick];// 添加确认取货的实现
+    } else if (model.status.integerValue == 4) {// 正在配送
+        self.btnStatus = @"确认送达";
+        [self confirmDelivery];// 添加确认送达的实现
+    }
+    [self.orderReceivingBtn setTitle:self.btnStatus forState:UIControlStateNormal];
+}
+
+
+
+//  取货按钮方法
+- (void)pickbtn {
+    
+    self.orderReceivingBtn.userInteractionEnabled = NO;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.btnStatus message:[NSString stringWithFormat:@"确定%@吗?",self.btnStatus] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    [alert show];
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
+    if (buttonIndex == 1) {
+        self.request();
+    }
+    
+}
+
+//  给block添加前往取货地点的实现
+- (void)gotoPick {
+    
+    OrderDetailBuyTableViewCell *cell = self;
+    
+    self.request = ^ {
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"start", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"前往取货地点成功");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"前往取货地点失败");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
+    };
+}
+
+//  给block添加确认取货的实现
+- (void)confirmPick {
+    OrderDetailBuyTableViewCell *cell = self;
+    
+    self.request = ^ {
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"arriveStart", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"确认取货成功");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"确认取货失败");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
+    };
+}
+
+//  给block添加确认送达的实现
+- (void)confirmDelivery {
+    OrderDetailBuyTableViewCell *cell = self;
+    self.request = ^ {
+        
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"end", @"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"order_sn":cell.model.order_sn};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session  = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSLog(@"确认送达成功");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"成功"];
+                } else {
+                    NSLog(@"确认送达失败");
+                    [cell.delegate orderBuyRefreshWithMessage:cell.btnStatus status:@"失败"];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+        
+    };
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

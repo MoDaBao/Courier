@@ -16,13 +16,13 @@
                     <rect key="frame" x="20" y="15" width="391" height="182"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt7-Jj-ISq">
-                            <rect key="frame" x="10" y="74" width="70" height="17"/>
+                            <rect key="frame" x="10" y="64" width="70" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcX-ch-706">
-                            <rect key="frame" x="85" y="74" width="35.5" height="17"/>
+                            <rect key="frame" x="85" y="64" width="35.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -36,24 +36,30 @@
                             <state key="normal" title="接单"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3y-19-yja">
-                            <rect key="frame" x="10" y="47" width="35.5" height="17"/>
+                            <rect key="frame" x="10" y="37" width="35.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已支付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvd-nm-IDi">
-                            <rect key="frame" x="47" y="16.5" width="36" height="14.5"/>
+                            <rect key="frame" x="32" y="11.5" width="36" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hGo-CX-tCI">
-                            <rect key="frame" x="10" y="10" width="27" height="27"/>
+                            <rect key="frame" x="10" y="10" width="17" height="17"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27" id="CBD-pR-pt4"/>
+                                <constraint firstAttribute="width" constant="17" id="CBD-pR-pt4"/>
                                 <constraint firstAttribute="width" secondItem="hGo-CX-tCI" secondAttribute="height" multiplier="1:1" id="Pho-0Z-Gf7"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待接单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnZ-Te-FfO">
+                            <rect key="frame" x="73" y="11.5" width="36" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -61,15 +67,17 @@
                         <constraint firstItem="Yvd-nm-IDi" firstAttribute="centerY" secondItem="hGo-CX-tCI" secondAttribute="centerY" id="60f-2O-5fG"/>
                         <constraint firstItem="KcX-ch-706" firstAttribute="centerY" secondItem="xt7-Jj-ISq" secondAttribute="centerY" id="66U-um-RX2"/>
                         <constraint firstItem="xt7-Jj-ISq" firstAttribute="top" secondItem="P3y-19-yja" secondAttribute="bottom" constant="10" id="AjH-7Z-aBF"/>
+                        <constraint firstItem="CnZ-Te-FfO" firstAttribute="leading" secondItem="Yvd-nm-IDi" secondAttribute="trailing" constant="5" id="Lrh-2p-fdP"/>
                         <constraint firstItem="P3y-19-yja" firstAttribute="leading" secondItem="FoP-Jp-euf" secondAttribute="leading" constant="10" id="Via-OY-lmh"/>
                         <constraint firstAttribute="trailing" secondItem="8hg-Uo-duS" secondAttribute="trailing" constant="30" id="WWh-jU-123"/>
-                        <constraint firstItem="Yvd-nm-IDi" firstAttribute="leading" secondItem="hGo-CX-tCI" secondAttribute="trailing" constant="10" id="aYF-01-gp5"/>
+                        <constraint firstItem="Yvd-nm-IDi" firstAttribute="leading" secondItem="hGo-CX-tCI" secondAttribute="trailing" constant="5" id="aYF-01-gp5"/>
                         <constraint firstItem="xt7-Jj-ISq" firstAttribute="leading" secondItem="FoP-Jp-euf" secondAttribute="leading" constant="10" id="aYo-22-xCM"/>
                         <constraint firstItem="hGo-CX-tCI" firstAttribute="top" secondItem="FoP-Jp-euf" secondAttribute="top" constant="10" id="c3W-fi-iZb"/>
                         <constraint firstItem="P3y-19-yja" firstAttribute="top" secondItem="hGo-CX-tCI" secondAttribute="bottom" constant="10" id="cYZ-aj-NuH"/>
                         <constraint firstAttribute="bottom" secondItem="8hg-Uo-duS" secondAttribute="bottom" constant="15" id="jEQ-zx-0EW"/>
                         <constraint firstItem="KcX-ch-706" firstAttribute="leading" secondItem="xt7-Jj-ISq" secondAttribute="trailing" constant="5" id="olP-K2-GOr"/>
                         <constraint firstItem="hGo-CX-tCI" firstAttribute="leading" secondItem="FoP-Jp-euf" secondAttribute="leading" constant="10" id="qnV-sZ-EI6"/>
+                        <constraint firstItem="CnZ-Te-FfO" firstAttribute="centerY" secondItem="Yvd-nm-IDi" secondAttribute="centerY" id="r3G-7d-Vo2"/>
                     </constraints>
                 </view>
             </subviews>
@@ -84,6 +92,7 @@
             <connections>
                 <outlet property="contentV" destination="FoP-Jp-euf" id="oSx-Gh-uPa"/>
                 <outlet property="orderReceivingBtn" destination="8hg-Uo-duS" id="Lf9-tL-T82"/>
+                <outlet property="orderStatus" destination="CnZ-Te-FfO" id="XAK-gu-c0C"/>
                 <outlet property="orderTypeimage" destination="hGo-CX-tCI" id="SCu-7M-BRw"/>
                 <outlet property="payStatusLabel" destination="Yvd-nm-IDi" id="lAi-CJ-VeL"/>
                 <outlet property="phoneLabel" destination="P3y-19-yja" id="7Rt-do-w1n"/>

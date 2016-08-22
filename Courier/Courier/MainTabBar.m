@@ -10,6 +10,9 @@
 #import "MainTabBarButton.h"
 
 @interface MainTabBar ()
+{
+    UIView *_line;
+}
 @property(nonatomic, strong)NSMutableArray *tabbarBtnArray;
 //@property(nonatomic, weak)UIButton *writeButton;
 @property(nonatomic, weak)MainTabBarButton *selectedButton;
@@ -45,13 +48,19 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
 //    self.writeButton.center = CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5);
-    
+    if (_line)
+    {
+        [_line removeFromSuperview];
+    }
+    _line = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, 1)];
+    _line.backgroundColor = [UIColor colorWithRed:0.83 green:0.13 blue:0.10 alpha:1.00];
+    [self addSubview:_line];
     
     CGFloat btnY = 0;
     CGFloat btnW = self.frame.size.width / (self.subviews.count - 1);
     CGFloat btnH = self.frame.size.height;
     
-    for (NSInteger nIndex = 0; nIndex < self.tabbarBtnArray.count; nIndex++) {
+    for (int nIndex = 0; nIndex < self.tabbarBtnArray.count; nIndex++) {
         CGFloat btnX = btnW * nIndex;
         MainTabBarButton *tabBarBtn = self.tabbarBtnArray[nIndex];
 //        btnX += btnW;
@@ -59,9 +68,6 @@
         tabBarBtn.tag = nIndex;
     }
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0,0, self.frame.size.width, 1)];
-    line.backgroundColor = [UIColor colorWithRed:0.83 green:0.13 blue:0.10 alpha:1.00];
-    [self addSubview:line];
 }
 
 - (void)addTabBarButtonWithTabBarItem:(UITabBarItem *)tabBarItem{

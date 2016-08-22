@@ -32,6 +32,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "MainTabBarController.h"
 #import "AppDelegate.h"
+#import "TableHeaderView.h"
 
 #define SecretKey @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"
 
@@ -80,13 +81,14 @@
         self.courierAddress.text = @"下班了";
     }
     
-    if ([[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {
+    if ([[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 未登录时
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        [self presentViewController:loginVC animated:YES completion:nil];
-        loginVC.delegate = self;
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        [self presentViewController:naVC animated:YES completion:nil];
+//        loginVC.delegate = self;
     }
     
-    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 上班状态
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"] && ![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 上班状态
         [self requestDeliveryData];
         [self requestNeedWriteData];
     }
@@ -96,81 +98,96 @@
 
 #pragma mark -----loginVC的代理方法
 
-// loginVC的代理方法
-- (void)loginsetAddress:(NSString *)address {
-    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
-        self.courierAddress.text = address;
-        
-        CGFloat screenW = kScreenWidth;
-        CGFloat width = [UILabel getWidthWithTitle:address font:self.courierAddress.font] > screenW / 3.0 * 2 ? screenW / 3.0 * 2 : [UILabel getWidthWithTitle:address font:self.courierAddress.font];
-        self.courierAddress.width = width;
-    }
-}
+//// loginVC的代理方法
+//- (void)loginsetAddress:(NSString *)address {
+//    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+//        self.courierAddress.text = address;
+//        
+//        CGFloat screenW = kScreenWidth;
+//        CGFloat width = [UILabel getWidthWithTitle:address font:self.courierAddress.font] > screenW / 3.0 * 2 ? screenW / 3.0 * 2 : [UILabel getWidthWithTitle:address font:self.courierAddress.font];
+//        self.courierAddress.width = width;
+//    }
+//}
+//
+//// loginVC的代理方法
+//
+//- (void)showAlert {
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          
+//                          initWithTitle:@"提示"
+//                          
+//                          message:@"您"
+//                          
+//                          @"的帐号在别的设备上登录，您被迫下线！"
+//                          
+//                          delegate:self
+//                          
+//                          cancelButtonTitle:@"知道了"
+//                          
+//                          otherButtonTitles:nil, nil];
+//    alert.tag = 7777;
+//    [alert show];
+//}
 
-// loginVC的代理方法
-- (void)showAlert {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          
-                          initWithTitle:@"提示"
-                          
-                          message:@"您"
-                          
-                          @"的帐号在别的设备上登录，您被迫下线！"
-                          
-                          delegate:self
-                          
-                          cancelButtonTitle:@"知道了"
-                          
-                          otherButtonTitles:nil, nil];
-    alert.tag = 7777;
-    [alert show];
-}
 
-
-#pragma mark -----UIAlertView代理方法-----
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
-    if (![[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@" "]) {// 退出登录时当在线状态为在线时改成下班状态
-        NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
-            if (![responseObject[@"status"] integerValue]) {
-                NSLog(@"成功");
-                //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
-                [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // 模态弹出登录页面
-                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
-                    LoginViewController *loginVC = [[LoginViewController alloc] init];
-                    // 此处应该要撤销计时器
-                    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-                    [delegate.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
-                    //                    [self presentViewController:loginVC animated:YES completion:nil];
-                });
-            } else {
-                NSLog(@"失败");
-            }
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
-    }
-}
+//#pragma mark -----UIAlertView代理方法-----
+//
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex NS_DEPRECATED_IOS(2_0, 9_0) {
+//    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 退出登录时 如果为现在状态提示用户先切换为下班状态
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"退出时请先切换为下班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+//        
+//    } else if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"0"]) {// 当前为下班状态
+//        NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
+//        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//        [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+//            
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            
+//            NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
+//            if (![responseObject[@"status"] integerValue]) {
+//                NSLog(@"成功");
+//                //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
+//                [[CourierInfoManager shareInstance] removeAllCourierInfo];
+//                [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+//                [[RCIMClient sharedRCIMClient]logout];// 退出融云
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    // 模态弹出登录页面
+//                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
+//                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+//                    LoginViewController *loginVC = [[LoginViewController alloc] init];
+//                    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//                    // 此处应该要撤销计时器
+//                    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//                    [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
+//                    //                    [self presentViewController:loginVC animated:YES completion:nil];
+//                });
+//            } else {
+//                NSLog(@"失败");
+//            }
+//            
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"error is %@",error);
+//        }];
+//    }
+//}
 
 #pragma mark -----tabVC的代理方法-----
 
 // tabVC的代理方法
 - (void)setAddress:(NSString *)address {
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
-        self.courierAddress.text = address;
+        if (address.length == 0) {
+            self.courierAddress.text = @"当前定位未开启，获取位置失败";
+        } else if ([address isEqualToString:@"(null)(null)"]) {
+            self.courierAddress.text = @"当前定位未开启，获取位置失败";
+        } else {
+            self.courierAddress.text = address;
+        }
+//        self.courierAddress.text = [address isEqualToString:@"(null)(null)"] ? @"当前定位未开启，获取位置失败" : address;
         
         CGFloat screenW = kScreenWidth;
-        CGFloat width = [UILabel getWidthWithTitle:address font:self.courierAddress.font] > screenW / 3.0 * 2 ? screenW / 3.0 * 2 : [UILabel getWidthWithTitle:address font:self.courierAddress.font];
+        CGFloat width = [UILabel getWidthWithTitle:self.courierAddress.text font:self.courierAddress.font] > (screenW * 1.0 / 3.0 * 2) ? (screenW * 1.0 / 3.0 * 2) : [UILabel getWidthWithTitle:self.courierAddress.text font:self.courierAddress.font];
         self.courierAddress.width = width;
     }
     
@@ -208,9 +225,10 @@
     // 地址
     self.courierAddress = [[UILabel alloc] initWithFrame:CGRectMake(workMargin, workY, 150, 20)];
     self.courierAddress.font = [UIFont systemFontOfSize:14];
+    tabVC.tabdelegate = self;
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
         self.courierAddress.text = @"上班中，正在定位";
-        tabVC.delegate = self;
+//        tabVC.tabdelegate = self;
     } else {
         self.courierAddress.text = @"下班了";
     }
@@ -235,40 +253,78 @@
     
     
     // 测试
-    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    testBtn.frame = CGRectMake(100, 100, 100, 30);
-    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
-    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:testBtn];
+//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    testBtn.frame = CGRectMake(100, 100 , 100, 30);
+//    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
+//    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:testBtn];
+    
+    
+    // 还是测试De
+//    TableHeaderView *test = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 40)];
+//    [self.view addSubview:test];
     
 }
 
 // 测试方法
 - (void)test {
     
-    NSDictionary *dic = @{@"BaseAppType":@"ios",
-                          @"BaseAppVersion":@"1.2.1",
-                          @"SystemVersion":@"iPhone_9.20",
-                          @"_sign_":@"c878fa183fa808ac50a8e43738a06445",
-                          @"car_type":@"3",
-                          @"card_opposite_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
-                          @"card_positive_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
-                          @"driving_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
-                          @"identity_card":@"612429196606296086",
-                          @"password":@"e10adc3949ba59abbe56e057f20f883e",
-                          @"phone":@"18888888888",
-                          @"username":@"哈哈哈",
-                          @"vehicle_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png"};
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    session.responseSerializer = [AFJSONResponseSerializer serializer];
-    [session POST:@"http://mapi.tzouyi.com/account/addpapply" parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
+    
+    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"username",@"123",@"avatar",@"123",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+    
+//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[MainData getIOSVersion]],@"SystemVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",userid]],@"_token_",userid,@"_userid_",userid,@"userid",userName,@"username",avatar,@"avatar",nil];
+    
+//    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"username",userName,@"avatar",avatar,@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+//    
+//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[MainData getIOSVersion]],@"SystemVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",userid]],@"_token_",userid,@"_userid_",userid,@"userid",userName,@"username",avatar,@"avatar",nil];
+    
+//    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",
+//                     @"BaseAppType",@"ios",
+//                     @"BaseAppVersion",@"1.2.1",
+//                     @"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],
+//                     @"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],
+//                     @"_userid_",[[CourierInfoManager shareInstance] getCourierPid],
+//                     @"type",@"2",
+//                     @"userid",[[CourierInfoManager shareInstance] getCourierPid],@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                  @"ios",@"BaseAppType",
+//                                  @"1.2.1",@"BaseAppVersion",
+//                                  [NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",
+//                                  @"1.2.1",@"BaseAppVersion",
+//                                  [MyMD5 md5:str],@"_sign_",
+//                                  [MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_token_",
+//                                  [[CourierInfoManager shareInstance] getCourierPid],@"_userid_",
+//                                  @"2",@"type",
+//                                  [[CourierInfoManager shareInstance] getCourierPid],@"userid",
+//                                  nil];
+    
+    
+//    NSDictionary *dic = @{@"BaseAppType":@"ios",
+//                          @"BaseAppVersion":@"1.2.1",
+//                          @"SystemVersion":@"iPhone_9.20",
+//                          @"_sign_":@"c878fa183fa808ac50a8e43738a06445",
+//                          @"car_type":@"3",
+//                          @"card_opposite_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+//                          @"card_positive_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+//                          @"driving_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png",
+//                          @"identity_card":@"612429196606296086",
+//                          @"password":@"e10adc3949ba59abbe56e057f20f883e",
+//                          @"phone":@"18888888888",
+//                          @"username":@"哈哈哈",
+//                          @"vehicle_image":@"/var/mobile/Containers/Data/Application/911BCF1F-74E9-4569-831D-E2EEC75CDFB2/tmp/headico.png"};
+    
+    
+    
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    session.requestSerializer = [AFJSONRequestSerializer serializer];
+//    session.responseSerializer = [AFJSONResponseSerializer serializer];
+//    [session POST:@"http://mapi.tzouyi.com/account/addpapply" parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"%@",error);
+//    }];
     
     
 }
@@ -277,129 +333,136 @@
 #pragma mark -----网络请求-----
 // 需填单请求
 - (void)requestNeedWriteData {
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"100" ,@"type":@"2"}];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
-            [self.needWriteArray removeAllObjects];
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                BaseModel *model = [[BaseModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.needWriteArray addObject:model];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                HomePageItemView *xutiandan = [self.homePageView viewWithTag:1002];
-                if (self.needWriteArray.count) {
-                    xutiandan.rightMark.hidden = NO;
-                } else {
-                    xutiandan.rightMark.hidden = YES;
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"100" ,@"type":@"2"}];
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSNumber *result = responseObject[@"status"];
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                [self.needWriteArray removeAllObjects];
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    BaseModel *model = [[BaseModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.needWriteArray addObject:model];
                 }
-                
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    HomePageItemView *xutiandan = [self.homePageView viewWithTag:1002];
+                    if (self.needWriteArray.count) {
+                        xutiandan.rightMark.hidden = NO;
+                    } else {
+                        xutiandan.rightMark.hidden = YES;
+                    }
+                    
+                });
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    }
+    
+    
     
 }
 
 // 配送中请求
 - (void)requestDeliveryData {
-    NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"1"}];
-    NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSNumber *result = responseObject[@"status"];
-        if (result.integerValue) {
-            NSLog(@"失败");
-        } else {
-            NSLog(@"成功");
-            [self.deliveryArray removeAllObjects];
-            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-            NSLog(@"dataDic = %@",dataDic);
-            for (NSDictionary *dic in dataDic[@"orderlist"]) {
-                DeliveryModel *model = [[DeliveryModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.deliveryArray addObject:model];
-            }
+    
+    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":@"0", @"num":@"20" ,@"type":@"1"}];
+        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                HomePageItemView *peisongzhong = [self.homePageView viewWithTag:1001];
-                if (self.deliveryArray.count) {
-                    peisongzhong.rightMark.hidden = NO;
-                } else {
-                    peisongzhong.rightMark.hidden = YES;
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSNumber *result = responseObject[@"status"];
+            if (result.integerValue) {
+                NSLog(@"失败");
+            } else {
+                NSLog(@"成功");
+                [self.deliveryArray removeAllObjects];
+                NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                NSLog(@"dataDic = %@",dataDic);
+                for (NSDictionary *dic in dataDic[@"orderlist"]) {
+                    DeliveryModel *model = [[DeliveryModel alloc] init];
+                    [model setValuesForKeysWithDictionary:dic];
+                    [self.deliveryArray addObject:model];
                 }
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"error is %@",error);
-    }];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    HomePageItemView *peisongzhong = [self.homePageView viewWithTag:1001];
+                    if (self.deliveryArray.count) {
+                        peisongzhong.rightMark.hidden = NO;
+                    } else {
+                        peisongzhong.rightMark.hidden = YES;
+                    }
+                });
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error is %@",error);
+        }];
+    }
     
 }
 
 
 
 // 此方法测试使用
-- (void)NewsListWithUserId:(NSString *)userid
-               WithPage_NO:(NSInteger)pageNo
-              WithPageSize:(NSInteger)pagesize
-                   Success:(void (^)(NSDictionary *json))success
-                      Fail:(void (^)(NSError *error))fail {
-    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_userid_",@"43",@"type",@"2",@"userid",@"43",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
-    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_token_",@"43",@"_userid_",@"2",@"type",@"43",@"userid",nil];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html",@"text/plain",@"text/javascript",@"application/json",@"text/json",nil]];
-    
-    
-//    NSLog(@"%@",[self JsonModel:Parameters_Dict]);
-    
-    
-    
-    [manager POST:[NSString stringWithFormat:@"http://api.dev.yoguopin.com/order/userOrderList"] parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSLog(@"%@",responseObject);
-        NSDictionary *dict = (NSDictionary *)responseObject;
-        
-        
-        //        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
-        if ([[dict objectForKey:@"status"] integerValue] == 1)
-        {
-//            [self showAlertWithMsg:[dict objectForKey:@"msg"]];
-        }
-        else
-        {
-            //            NSDictionary *dic = [self ChangeTheStringToDictory:[dict objectForKey:@"data"]];
-            //            NSLog(@"%@",dic);
-            success(dict);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failed:%@", error);
-        fail(error);
-    }];
-    
-    
-}
+//- (void)NewsListWithUserId:(NSString *)userid
+//               WithPage_NO:(NSInteger)pageNo
+//              WithPageSize:(NSInteger)pagesize
+//                   Success:(void (^)(NSDictionary *json))success
+//                      Fail:(void (^)(NSError *error))fail {
+//    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_userid_",@"43",@"type",@"2",@"userid",@"43",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_token_",@"43",@"_userid_",@"2",@"type",@"43",@"userid",nil];
+//    
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html",@"text/plain",@"text/javascript",@"application/json",@"text/json",nil]];
+//    
+//    
+////    NSLog(@"%@",[self JsonModel:Parameters_Dict]);
+//    
+//    
+//    
+//    [manager POST:[NSString stringWithFormat:@"http://api.dev.yoguopin.com/order/userOrderList"] parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//        NSLog(@"%@",responseObject);
+//        NSDictionary *dict = (NSDictionary *)responseObject;
+//        
+//        
+//        //        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//        
+//        if ([[dict objectForKey:@"status"] integerValue] == 1)
+//        {
+////            [self showAlertWithMsg:[dict objectForKey:@"msg"]];
+//        }
+//        else
+//        {
+//            //            NSDictionary *dic = [self ChangeTheStringToDictory:[dict objectForKey:@"data"]];
+//            //            NSLog(@"%@",dic);
+//            success(dict);
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"failed:%@", error);
+//        fail(error);
+//    }];
+//    
+//    
+//}
 
 
 // 上下班
@@ -428,11 +491,11 @@
             if (self.isWork) {// 1在线
                 [self.workBtn setBackgroundImage:[UIImage imageNamed:@"work"] forState:UIControlStateNormal];
                 self.courierAddress.text = @"上班中，正在定位";
-                tabVC.delegate = self;
+//                tabVC.tabdelegate = self;
             } else {// 0离线
                 [self.workBtn setBackgroundImage:[UIImage imageNamed:@"workout"] forState:UIControlStateNormal];
                 self.courierAddress.text = @"下班了";
-                tabVC.delegate = nil;
+//                tabVC.tabdelegate = nil;
             }
             [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"%d",self.isWork]];
         });
