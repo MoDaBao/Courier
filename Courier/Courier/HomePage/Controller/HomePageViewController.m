@@ -33,6 +33,8 @@
 #import "MainTabBarController.h"
 #import "AppDelegate.h"
 #import "TableHeaderView.h"
+#import "WalletViewController.h"
+#import "MyMD5.h"
 
 #define SecretKey @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"
 
@@ -253,24 +255,71 @@
     
     
     // 测试
-//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//    testBtn.frame = CGRectMake(100, 100 , 100, 30);
-//    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
-//    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:testBtn];
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    testBtn.frame = CGRectMake(100, 100 , 100, 30);
+    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
+    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testBtn];
+    
+    UIView *wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 100)];
+    wallet.backgroundColor = self.homePageView.backgroundColor;
+    [self.view addSubview:wallet];
+    
+    CGFloat walletW = 100;
+    CGFloat walletH = 30;
+    CGFloat walletX = (wallet.width - walletW) * .5;
+    CGFloat walletY = (wallet.height - walletH) * .5;
+    UIButton *walletBtn = [[UIButton alloc] initWithFrame:CGRectMake(walletX, walletY, walletW, walletH)];
+    [walletBtn setImage:[UIImage imageNamed:@"1-0-2-3diandongche"] forState:UIControlStateNormal];
+    walletBtn.imageView.contentMode = UIViewContentModeLeft;
+    [walletBtn setTitle:@"我的钱包" forState:UIControlStateNormal];
+    [walletBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [wallet addSubview:walletBtn];
+    
+    [self.view addSubview:wallet];
+    
+    
+    
+    
     
     
     // 还是测试De
 //    TableHeaderView *test = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, 40)];
 //    [self.view addSubview:test];
     
+    
+    // 再来一个测试按钮
+//    UIButton *testButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    testButton.frame = CGRectMake(100, 200, 100, 30);
+//    [testButton setTitle:@"接口调试按钮" forState:UIControlStateNormal];
+//    [testButton addTarget:self action:@selector(testButton) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:testButton];
+    
 }
+
+- (void)testButton {
+    
+//    [self zhangdanmingxi];
+//    [self wodehuokuan];
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
 
 // 测试方法
 - (void)test {
     
+    WalletViewController *walletVC = [[WalletViewController alloc] init];
+    [self.navigationController pushViewController:walletVC animated:YES];
     
-    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"username",@"123",@"avatar",@"123",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+//    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"username",@"123",@"avatar",@"123",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
     
 //    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[MainData getIOSVersion]],@"SystemVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",userid]],@"_token_",userid,@"_userid_",userid,@"userid",userName,@"username",avatar,@"avatar",nil];
     

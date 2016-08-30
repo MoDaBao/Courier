@@ -1,4 +1,4 @@
-//
+	//
 //  LoginViewController.m
 //  peisongduan
 //
@@ -215,9 +215,9 @@
             [[CourierInfoManager shareInstance]  setCourierInfoWithDic:dataDic];
             // 使用别名标识设备
             [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
-            [self.delegate initRong];// 初始化融云
+//            [self.delegate initRong];// 初始化融云
             
-            /*
+            
                 NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType", @"iOS", @"BaseAppVersion", @"1.0.1", @"SystemVersion", [NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]], @"_userid_", [NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"avatar", [[CourierInfoManager shareInstance] getCourierPic], @"userid", [NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"username", [[CourierInfoManager shareInstance] getCourierAlias], @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
                 NSString *sign = [MyMD5 md5:str];
                 NSDictionary *dic = @{@"BaseAppType":@"iOS", @"BaseAppVersion":@"1.0.1", @"SystemVersion":[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]], @"_sign_":sign, @"_userid_":[NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"avatar":[[CourierInfoManager shareInstance] getCourierPic], @"userid":[NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"username":[[CourierInfoManager shareInstance] getCourierAlias]};
@@ -231,15 +231,20 @@
                 } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     NSLog(@"%@",responseObject);
                     if ([responseObject[@"message"] isEqualToString:@"success"]) {
-                        [[CourierInfoManager shareInstance] saveCourierToken:responseObject[@"data"][@"token"]];
-//                        [self.delegate initRong];// 初始化融云
+                        if (responseObject[@"data"][@"token"] == [NSNull null]) {
+                            
+                        } else {
+                            [[CourierInfoManager shareInstance] saveCourierToken:responseObject[@"data"][@"token"]];
+                        }
+                        
+                        [self.delegate initRong];// 初始化融云
 //                        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierToken]);
                     }
                     
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     NSLog(@"error is %@", error);
                 }];
-                */
+            
             
             
             

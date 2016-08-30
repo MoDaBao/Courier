@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="MissionCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLQ-Lk-8sb">
+                        <rect key="frame" x="30" y="0.5" width="260" height="79"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超过50单 补贴3元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aej-G4-lZt">
+                                <rect key="frame" x="73" y="26" width="114" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（需注册30天以上）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsa-Pv-8BV">
+                                <rect key="frame" x="79" y="55.5" width="102" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aej-G4-lZt" firstAttribute="top" secondItem="gLQ-Lk-8sb" secondAttribute="top" constant="26" id="9Uv-Qe-iwW"/>
+                            <constraint firstAttribute="bottom" secondItem="jsa-Pv-8BV" secondAttribute="bottom" constant="10" id="cnf-7z-Z7I"/>
+                            <constraint firstItem="jsa-Pv-8BV" firstAttribute="centerX" secondItem="gLQ-Lk-8sb" secondAttribute="centerX" id="sps-tC-kwH"/>
+                            <constraint firstItem="aej-G4-lZt" firstAttribute="centerX" secondItem="gLQ-Lk-8sb" secondAttribute="centerX" id="vCB-mO-wgv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gLQ-Lk-8sb" secondAttribute="trailing" constant="30" id="HvQ-Oz-dTh"/>
+                    <constraint firstItem="gLQ-Lk-8sb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="KHF-Hv-rqo"/>
+                    <constraint firstAttribute="bottom" secondItem="gLQ-Lk-8sb" secondAttribute="bottom" id="ZKd-z1-hAR"/>
+                    <constraint firstItem="gLQ-Lk-8sb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d4h-Ua-Voc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="bgview" destination="gLQ-Lk-8sb" id="825-RG-Ch5"/>
+                <outlet property="contentLab" destination="aej-G4-lZt" id="o3M-c4-Aw2"/>
+                <outlet property="detContLab" destination="jsa-Pv-8BV" id="Xtt-Tw-E3G"/>
+            </connections>
+            <point key="canvasLocation" x="240" y="272"/>
+        </tableViewCell>
+    </objects>
+</document>

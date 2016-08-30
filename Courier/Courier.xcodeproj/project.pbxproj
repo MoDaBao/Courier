@@ -45,6 +45,26 @@
 		E716392D1D61ADD90020F22E /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E71639231D61ADD90020F22E /* UIScrollView+MJExtension.m */; };
 		E716392E1D61ADD90020F22E /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E71639251D61ADD90020F22E /* UIScrollView+MJRefresh.m */; };
 		E716392F1D61ADD90020F22E /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E71639271D61ADD90020F22E /* UIView+MJExtension.m */; };
+		E71859541D7433BA00428321 /* BankCardListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859371D7433BA00428321 /* BankCardListVC.m */; };
+		E71859551D7433BA00428321 /* BankCardListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859381D7433BA00428321 /* BankCardListVC.xib */; };
+		E71859561D7433BA00428321 /* BankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E718593A1D7433BA00428321 /* BankViewController.m */; };
+		E71859571D7433BA00428321 /* BankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718593B1D7433BA00428321 /* BankViewController.xib */; };
+		E71859581D7433BA00428321 /* CarListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E718593D1D7433BA00428321 /* CarListCell.m */; };
+		E71859591D7433BA00428321 /* CarListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718593E1D7433BA00428321 /* CarListCell.xib */; };
+		E718595A1D7433BA00428321 /* CommitCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859401D7433BA00428321 /* CommitCashVC.m */; };
+		E718595B1D7433BA00428321 /* CommitCashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859411D7433BA00428321 /* CommitCashVC.xib */; };
+		E718595C1D7433BA00428321 /* MissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859431D7433BA00428321 /* MissionCell.m */; };
+		E718595D1D7433BA00428321 /* MissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859441D7433BA00428321 /* MissionCell.xib */; };
+		E718595E1D7433BA00428321 /* MissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859461D7433BA00428321 /* MissionViewController.m */; };
+		E718595F1D7433BA00428321 /* MissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859471D7433BA00428321 /* MissionViewController.xib */; };
+		E71859601D7433BA00428321 /* MyDiscountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859491D7433BA00428321 /* MyDiscountVC.m */; };
+		E71859611D7433BA00428321 /* MyDiscountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718594A1D7433BA00428321 /* MyDiscountVC.xib */; };
+		E71859621D7433BA00428321 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E718594C1D7433BA00428321 /* OrderDetailCell.m */; };
+		E71859631D7433BA00428321 /* OrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718594D1D7433BA00428321 /* OrderDetailCell.xib */; };
+		E71859641D7433BA00428321 /* OrderDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E718594F1D7433BA00428321 /* OrderDetailInfoVC.m */; };
+		E71859651D7433BA00428321 /* OrderDetailInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859501D7433BA00428321 /* OrderDetailInfoVC.xib */; };
+		E71859661D7433BA00428321 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859521D7433BA00428321 /* WalletViewController.m */; };
+		E71859671D7433BA00428321 /* WalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859531D7433BA00428321 /* WalletViewController.xib */; };
 		E7299F4C1D4B2632008156BD /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4B1D4B2632008156BD /* OrderView.m */; };
 		E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4E1D4B2642008156BD /* OrderDefaultView.m */; };
 		E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F511D4B266C008156BD /* OrderNoAddressView.m */; };
@@ -260,6 +280,36 @@
 		E71639251D61ADD90020F22E /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		E71639261D61ADD90020F22E /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		E71639271D61ADD90020F22E /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		E71859361D7433BA00428321 /* BankCardListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankCardListVC.h; sourceTree = "<group>"; };
+		E71859371D7433BA00428321 /* BankCardListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankCardListVC.m; sourceTree = "<group>"; };
+		E71859381D7433BA00428321 /* BankCardListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BankCardListVC.xib; sourceTree = "<group>"; };
+		E71859391D7433BA00428321 /* BankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankViewController.h; sourceTree = "<group>"; };
+		E718593A1D7433BA00428321 /* BankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankViewController.m; sourceTree = "<group>"; };
+		E718593B1D7433BA00428321 /* BankViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BankViewController.xib; sourceTree = "<group>"; };
+		E718593C1D7433BA00428321 /* CarListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarListCell.h; sourceTree = "<group>"; };
+		E718593D1D7433BA00428321 /* CarListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarListCell.m; sourceTree = "<group>"; };
+		E718593E1D7433BA00428321 /* CarListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarListCell.xib; sourceTree = "<group>"; };
+		E718593F1D7433BA00428321 /* CommitCashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitCashVC.h; sourceTree = "<group>"; };
+		E71859401D7433BA00428321 /* CommitCashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitCashVC.m; sourceTree = "<group>"; };
+		E71859411D7433BA00428321 /* CommitCashVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitCashVC.xib; sourceTree = "<group>"; };
+		E71859421D7433BA00428321 /* MissionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionCell.h; sourceTree = "<group>"; };
+		E71859431D7433BA00428321 /* MissionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCell.m; sourceTree = "<group>"; };
+		E71859441D7433BA00428321 /* MissionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionCell.xib; sourceTree = "<group>"; };
+		E71859451D7433BA00428321 /* MissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionViewController.h; sourceTree = "<group>"; };
+		E71859461D7433BA00428321 /* MissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionViewController.m; sourceTree = "<group>"; };
+		E71859471D7433BA00428321 /* MissionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MissionViewController.xib; sourceTree = "<group>"; };
+		E71859481D7433BA00428321 /* MyDiscountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDiscountVC.h; sourceTree = "<group>"; };
+		E71859491D7433BA00428321 /* MyDiscountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDiscountVC.m; sourceTree = "<group>"; };
+		E718594A1D7433BA00428321 /* MyDiscountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDiscountVC.xib; sourceTree = "<group>"; };
+		E718594B1D7433BA00428321 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
+		E718594C1D7433BA00428321 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
+		E718594D1D7433BA00428321 /* OrderDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell.xib; sourceTree = "<group>"; };
+		E718594E1D7433BA00428321 /* OrderDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailInfoVC.h; sourceTree = "<group>"; };
+		E718594F1D7433BA00428321 /* OrderDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailInfoVC.m; sourceTree = "<group>"; };
+		E71859501D7433BA00428321 /* OrderDetailInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailInfoVC.xib; sourceTree = "<group>"; };
+		E71859511D7433BA00428321 /* WalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewController.h; sourceTree = "<group>"; };
+		E71859521D7433BA00428321 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
+		E71859531D7433BA00428321 /* WalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletViewController.xib; sourceTree = "<group>"; };
 		E7299F4A1D4B2632008156BD /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		E7299F4B1D4B2632008156BD /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
 		E7299F4D1D4B2642008156BD /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
@@ -857,6 +907,7 @@
 		E75D670B1D23AF1900D3AD1A /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				E7828FD11D6D387700016441 /* Wallet */,
 				E75D670C1D23AF1900D3AD1A /* Controller */,
 				E75D67221D23AF1900D3AD1A /* Model */,
 				E75D67291D23AF1900D3AD1A /* View */,
@@ -1008,6 +1059,43 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		E7828FD11D6D387700016441 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E71859361D7433BA00428321 /* BankCardListVC.h */,
+				E71859371D7433BA00428321 /* BankCardListVC.m */,
+				E71859381D7433BA00428321 /* BankCardListVC.xib */,
+				E71859391D7433BA00428321 /* BankViewController.h */,
+				E718593A1D7433BA00428321 /* BankViewController.m */,
+				E718593B1D7433BA00428321 /* BankViewController.xib */,
+				E718593C1D7433BA00428321 /* CarListCell.h */,
+				E718593D1D7433BA00428321 /* CarListCell.m */,
+				E718593E1D7433BA00428321 /* CarListCell.xib */,
+				E718593F1D7433BA00428321 /* CommitCashVC.h */,
+				E71859401D7433BA00428321 /* CommitCashVC.m */,
+				E71859411D7433BA00428321 /* CommitCashVC.xib */,
+				E71859421D7433BA00428321 /* MissionCell.h */,
+				E71859431D7433BA00428321 /* MissionCell.m */,
+				E71859441D7433BA00428321 /* MissionCell.xib */,
+				E71859451D7433BA00428321 /* MissionViewController.h */,
+				E71859461D7433BA00428321 /* MissionViewController.m */,
+				E71859471D7433BA00428321 /* MissionViewController.xib */,
+				E71859481D7433BA00428321 /* MyDiscountVC.h */,
+				E71859491D7433BA00428321 /* MyDiscountVC.m */,
+				E718594A1D7433BA00428321 /* MyDiscountVC.xib */,
+				E718594B1D7433BA00428321 /* OrderDetailCell.h */,
+				E718594C1D7433BA00428321 /* OrderDetailCell.m */,
+				E718594D1D7433BA00428321 /* OrderDetailCell.xib */,
+				E718594E1D7433BA00428321 /* OrderDetailInfoVC.h */,
+				E718594F1D7433BA00428321 /* OrderDetailInfoVC.m */,
+				E71859501D7433BA00428321 /* OrderDetailInfoVC.xib */,
+				E71859511D7433BA00428321 /* WalletViewController.h */,
+				E71859521D7433BA00428321 /* WalletViewController.m */,
+				E71859531D7433BA00428321 /* WalletViewController.xib */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		E7DA16401D6453ED002CD03B /* noice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1132,11 +1220,16 @@
 			files = (
 				E79C2DDC1D2B48D1003B7719 /* AMapNavi.bundle in Resources */,
 				82D8391B1D642120007BA849 /* CarTypeVC.xib in Resources */,
+				E71859651D7433BA00428321 /* OrderDetailInfoVC.xib in Resources */,
+				E718595D1D7433BA00428321 /* MissionCell.xib in Resources */,
+				E71859611D7433BA00428321 /* MyDiscountVC.xib in Resources */,
 				E700C8F51D3F584000D57FE4 /* TestMessageCell.xib in Resources */,
 				E7908EFB1D2A3CB400A62908 /* MapBottomView.xib in Resources */,
 				E7D7AF021D51CFD9005F01FF /* WaitReceivingTableViewCell.xib in Resources */,
 				E746B00B1D4604FA00A43298 /* Images.xcassets in Resources */,
 				82D8392B1D643717007BA849 /* SettingDetailVC.xib in Resources */,
+				E71859671D7433BA00428321 /* WalletViewController.xib in Resources */,
+				E718595F1D7433BA00428321 /* MissionViewController.xib in Resources */,
 				E75D676E1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.xib in Resources */,
 				E7D7AF4B1D52FDB3005F01FF /* WriteInfoView_2.xib in Resources */,
 				82D839211D642120007BA849 /* PhotoDemoVC.xib in Resources */,
@@ -1148,6 +1241,8 @@
 				E75D67701D23AF1900D3AD1A /* DeliveryTableViewCell.xib in Resources */,
 				E733FC931D684C05006AFBB6 /* ApplyViewController.xib in Resources */,
 				E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */,
+				E71859551D7433BA00428321 /* BankCardListVC.xib in Resources */,
+				E71859571D7433BA00428321 /* BankViewController.xib in Resources */,
 				E78AFF021D37739D00172509 /* SearchView.xib in Resources */,
 				E7C0CD491D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.xib in Resources */,
 				E7299F561D4B2D06008156BD /* OrderDefaultView.xib in Resources */,
@@ -1169,9 +1264,12 @@
 				E7299F581D4B3D16008156BD /* OrderNoAddressView.xib in Resources */,
 				E75D67681D23AF1900D3AD1A /* CallOutTableViewCell.xib in Resources */,
 				E71639281D61ADD90020F22E /* MJRefresh.bundle in Resources */,
+				E718595B1D7433BA00428321 /* CommitCashVC.xib in Resources */,
 				E75D676C1D23AF1900D3AD1A /* CheckingTableViewCell.xib in Resources */,
 				E75D67661D23AF1900D3AD1A /* AlreadyDoneTableViewCell.xib in Resources */,
 				E75D668D1D23ACEE00D3AD1A /* LaunchScreen.storyboard in Resources */,
+				E71859631D7433BA00428321 /* OrderDetailCell.xib in Resources */,
+				E71859591D7433BA00428321 /* CarListCell.xib in Resources */,
 				82D839231D642120007BA849 /* PhotoDemoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1249,7 +1347,9 @@
 				E75D675C1D23AF1900D3AD1A /* TodayInfoViewController.m in Sources */,
 				E716392C1D61ADD90020F22E /* MJRefreshHeaderView.m in Sources */,
 				E75D67731D23AF1900D3AD1A /* HomePageItemView.m in Sources */,
+				E71859641D7433BA00428321 /* OrderDetailInfoVC.m in Sources */,
 				E75D67561D23AF1900D3AD1A /* ChatViewController.m in Sources */,
+				E71859661D7433BA00428321 /* WalletViewController.m in Sources */,
 				E75D67691D23AF1900D3AD1A /* CheckingDefaultTableViewCell.m in Sources */,
 				82D8391C1D642120007BA849 /* CommitPhotoVC.m in Sources */,
 				E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */,
@@ -1259,6 +1359,7 @@
 				E75D67021D23AE1100D3AD1A /* NSDictionary+DicChangeJson.m in Sources */,
 				E75D67831D24F17200D3AD1A /* WaitOrdrReceivingModel.m in Sources */,
 				E78AFF061D378E1000172509 /* SearchTableViewCell.m in Sources */,
+				E71859541D7433BA00428321 /* BankCardListVC.m in Sources */,
 				E7D7AF011D51CFD9005F01FF /* WaitReceivingTableViewCell.m in Sources */,
 				E75D67601D23AF1900D3AD1A /* AlreadyDoneModel.m in Sources */,
 				E75D66851D23ACEE00D3AD1A /* main.m in Sources */,
@@ -1266,6 +1367,7 @@
 				E75D67801D23C51700D3AD1A /* ManagerViewController.m in Sources */,
 				E7D7AF4A1D52FDB3005F01FF /* WriteInfoView_2.m in Sources */,
 				E75D67651D23AF1900D3AD1A /* AlreadyDoneTableViewCell.m in Sources */,
+				E718595E1D7433BA00428321 /* MissionViewController.m in Sources */,
 				E75F1A991D2E333D00CC2B24 /* SelectableOverlay.m in Sources */,
 				E75D67591D23AF1900D3AD1A /* HomePageViewController.m in Sources */,
 				E700C8F31D3F562200D57FE4 /* TestMessageCell.m in Sources */,
@@ -1278,8 +1380,10 @@
 				E7C0CD481D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.m in Sources */,
 				E746B01D1D4858D200A43298 /* MyMD5.m in Sources */,
 				E75D66BD1D23ADE900D3AD1A /* MainTabBarButton.m in Sources */,
+				E718595C1D7433BA00428321 /* MissionCell.m in Sources */,
 				E71639291D61ADD90020F22E /* MJRefreshBaseView.m in Sources */,
 				E7908EF91D2A3C5600A62908 /* MapBottomView.m in Sources */,
+				E718595A1D7433BA00428321 /* CommitCashVC.m in Sources */,
 				82D839181D642120007BA849 /* ApplyViewController.m in Sources */,
 				E75D67741D23AF1900D3AD1A /* HomePageView.m in Sources */,
 				E75D66FA1D23AE1100D3AD1A /* PersonViewController.m in Sources */,
@@ -1291,6 +1395,8 @@
 				82D839261D64328F007BA849 /* Base64.m in Sources */,
 				E75D67771D23AF1900D3AD1A /* OrderDetailTableViewCell.m in Sources */,
 				E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */,
+				E71859561D7433BA00428321 /* BankViewController.m in Sources */,
+				E71859621D7433BA00428321 /* OrderDetailCell.m in Sources */,
 				E746B0201D488B5C00A43298 /* ChatListModel.m in Sources */,
 				E75D676D1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.m in Sources */,
 				E75D675A1D23AF1900D3AD1A /* NeedWriteViewController.m in Sources */,
@@ -1301,6 +1407,7 @@
 				E75D67061D23AE1100D3AD1A /* UIView+ChangeFrame.m in Sources */,
 				E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */,
 				E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */,
+				E71859601D7433BA00428321 /* MyDiscountVC.m in Sources */,
 				E75D67611D23AF1900D3AD1A /* BaseModel.m in Sources */,
 				E700C8EB1D3F145D00D57FE4 /* TestCell.m in Sources */,
 				E7C0CD431D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m in Sources */,
@@ -1317,6 +1424,7 @@
 				E7DA16451D6460A7002CD03B /* MapImagePreviewVC.m in Sources */,
 				E75D675E1D23AF1900D3AD1A /* WriteInfoViewController.m in Sources */,
 				E75D675D1D23AF1900D3AD1A /* WaitOrderReceivingViewController.m in Sources */,
+				E71859581D7433BA00428321 /* CarListCell.m in Sources */,
 				E7299F4C1D4B2632008156BD /* OrderView.m in Sources */,
 				E78AFF001D37735700172509 /* SearchView.m in Sources */,
 				E75D67051D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m in Sources */,

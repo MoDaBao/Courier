@@ -82,27 +82,36 @@
        
         if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
             // 接单按钮
-            NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
-            NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-                
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                NSLog(@"responseObject = %@",responseObject);
-                NSNumber *result = responseObject[@"status"];
-                NSString *msg = nil;
-                
-                if (!result.integerValue) {
-                    msg = @"接单成功";
-                } else {
-                    msg = responseObject[@"msg"];
-                }
-                NSLog(@"%@",msg);
-                cell.orderRcceiving(msg);
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"error is %@",error);
-            }];
+            NSString *latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
+            NSString *longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
+            if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 未开启定位
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {// 开启了定位
+                NSDictionary *dic = @{@"api":@"singleorder", @"version":@"1", @"order_sn":model.order_sn, @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]};
+                NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+                NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+                AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+                [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                    
+                } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    NSLog(@"responseObject = %@",responseObject);
+                    NSNumber *result = responseObject[@"status"];
+                    NSString *msg = nil;
+                    
+                    if (!result.integerValue) {
+                        msg = @"接单成功";
+                    } else {
+                        msg = responseObject[@"msg"];
+                    }
+                    NSLog(@"%@",msg);
+                    cell.orderRcceiving(msg);
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    NSLog(@"error is %@",error);
+                }];
+            }
+            
+            
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先切换为上班状态" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];

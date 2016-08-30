@@ -357,7 +357,7 @@
         
         float sortaPixel = 1.0/ [UIScreen mainScreen].scale;
         cell.line = [[UIView alloc] init];
-        cell.line.frame = CGRectMake(0,125,cell.width, sortaPixel);
+        cell.line.frame = CGRectMake(0,125,kScreenWidth, sortaPixel);
         cell.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
         [cell.contentView addSubview:cell.line];
     }

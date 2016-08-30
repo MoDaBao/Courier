@@ -80,15 +80,15 @@
     }
     
     
-    
 }
 
 
 /** 初始化融云 上传跑腿位置 */
 - (void)initRongAndSendAddress {
-    
+    // 8w7jv4qb7h9ey  生产环境
+    // mgb7ka1nbtzxg  开发环境
     // 融云初始化
-    [[RCIM sharedRCIM] initWithAppKey:@"mgb7ka1nbtzxg"];
+    [[RCIM sharedRCIM] initWithAppKey:@"8w7jv4qb7h9ey"];
         [[RCIMClient sharedRCIMClient]registerMessageType:SimpleMessage.class];
     
     
@@ -365,26 +365,35 @@
         [_search AMapReGoecodeSearch:reGeo];
         
         
-        // POST请求参数
-        NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":self.longitude, @"latitude":self.latitude};
-        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-        NSString *parmeter = [EncryptionAndDecryption encryptionWithDic:dic];
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        [session POST:REQUESTURL parameters:@{@"key":parmeter} progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSNumber *result = responseObject[@"status"];
-            if (result.intValue) {
-                NSLog(@"上传跑腿位置失败");
-            } else {
-                NSLog(@"上传跑腿位置成功");
-            }
-            NSLog(@"respopnseObject = %@",[responseObject class]);
-            NSLog(@"%@", responseObject);
-            
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error is %@",error);
-        }];
+        NSString *latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
+        NSString *longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
+        if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 已开启定位功能
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [alert show];
+        } else {
+            // POST请求参数
+            NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":self.longitude, @"latitude":self.latitude};
+            NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
+            NSString *parmeter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parmeter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSNumber *result = responseObject[@"status"];
+                if (result.intValue) {
+                    NSLog(@"上传跑腿位置失败");
+                } else {
+                    NSLog(@"上传跑腿位置成功");
+                }
+                NSLog(@"respopnseObject = %@",[responseObject class]);
+                NSLog(@"%@", responseObject);
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        }
+        
+        
     }
     
     
