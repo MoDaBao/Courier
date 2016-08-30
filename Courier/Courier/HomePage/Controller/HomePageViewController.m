@@ -255,29 +255,53 @@
     
     
     // 测试
-    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    testBtn.frame = CGRectMake(100, 100 , 100, 30);
-    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
-    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:testBtn];
+//    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    testBtn.frame = CGRectMake(100, 100 , 100, 30);
+//    [testBtn setTitle:@"测试" forState:UIControlStateNormal];
+//    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:testBtn];
     
-    UIView *wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 100)];
+    UIView *wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 70)];
     wallet.backgroundColor = self.homePageView.backgroundColor;
     [self.view addSubview:wallet];
     
-    CGFloat walletW = 100;
+    
+    CGFloat imgW = 20;
+    CGFloat imgH = imgW;
+    UIImageView *walletImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgW, imgH)];
+    walletImg.image = [UIImage imageNamed:@"money"];
+    
+    UIFont *font = [UIFont systemFontOfSize:16];
+    CGFloat walletW = [UILabel getWidthWithTitle:@"   我的钱包" font:font];
     CGFloat walletH = 30;
-    CGFloat walletX = (wallet.width - walletW) * .5;
-    CGFloat walletY = (wallet.height - walletH) * .5;
-    UIButton *walletBtn = [[UIButton alloc] initWithFrame:CGRectMake(walletX, walletY, walletW, walletH)];
-    [walletBtn setImage:[UIImage imageNamed:@"1-0-2-3diandongche"] forState:UIControlStateNormal];
+    CGFloat walletX = imgW;
+    UIButton *walletBtn = [[UIButton alloc] initWithFrame:CGRectMake(walletX, 0, walletW, walletH)];
     walletBtn.imageView.contentMode = UIViewContentModeLeft;
     [walletBtn setTitle:@"我的钱包" forState:UIControlStateNormal];
     [walletBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [wallet addSubview:walletBtn];
+    [walletBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    walletBtn.titleLabel.font = font;
+    
+    CGFloat walletBtnViewW = imgW + walletW;
+    CGFloat walletBtnViewX = (wallet.width - walletBtnViewW) * .5;
+    CGFloat walletBtnViewY = (wallet.height - walletH) * .5;
+    UIView *walletBtnView = [[UIView alloc] initWithFrame:CGRectMake(walletBtnViewX, walletBtnViewY, imgW + walletW, walletH)];
+    walletImg.y = (walletBtnView.height - imgH) * .5;
+    [walletBtnView addSubview:walletImg];
+    [walletBtnView addSubview:walletBtn];
+    
+    [wallet addSubview:walletBtnView];
     
     [self.view addSubview:wallet];
+
     
+    UIView *line = [[UIView alloc]initWithFrame:
+                    
+                    CGRectMake(0, wallet.height - 1,kScreenWidth, 1)];
+    
+    line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
+    
+    [wallet addSubview:line];//线是否加
     
     
     

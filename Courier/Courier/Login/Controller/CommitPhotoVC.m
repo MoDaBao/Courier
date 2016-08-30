@@ -66,7 +66,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    if ([self.carType integerValue] == 1)
+    {
+        return 2;
+    }
+    else
+    {
+        return 4;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -289,11 +296,23 @@
 
 - (IBAction)commitButtonClick:(UIButton *)sender
 {
-    if ([_imgTitle_1 length] == 0 || [_imgTitle_2 length] == 0 || [_imgTitle_3 length] == 0 ||[_imgTitle_4 length] == 0 )
+    if ([self.carType integerValue] == 1)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择证件图片！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
-        return;
+        if ([_imgTitle_1 length] == 0 || [_imgTitle_2 length] == 0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择证件图片！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+    }
+    else
+    {
+        if ([_imgTitle_1 length] == 0 || [_imgTitle_2 length] == 0 || [_imgTitle_3 length] == 0 ||[_imgTitle_4 length] == 0 )
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请选择证件图片！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
     }
     
     

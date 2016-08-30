@@ -12,7 +12,6 @@
 		82D839001D641E69007BA849 /* TestMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D838FE1D641E69007BA849 /* TestMapViewController.xib */; };
 		82D839161D642120007BA849 /* BiaoShiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D839021D642120007BA849 /* BiaoShiViewController.m */; };
 		82D839171D642120007BA849 /* BiaoShiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D839031D642120007BA849 /* BiaoShiViewController.xib */; };
-		82D839181D642120007BA849 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D839051D642120007BA849 /* ApplyViewController.m */; };
 		82D8391A1D642120007BA849 /* CarTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D839081D642120007BA849 /* CarTypeVC.m */; };
 		82D8391B1D642120007BA849 /* CarTypeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D839091D642120007BA849 /* CarTypeVC.xib */; };
 		82D8391C1D642120007BA849 /* CommitPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D8390B1D642120007BA849 /* CommitPhotoVC.m */; };
@@ -65,6 +64,8 @@
 		E71859651D7433BA00428321 /* OrderDetailInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859501D7433BA00428321 /* OrderDetailInfoVC.xib */; };
 		E71859661D7433BA00428321 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859521D7433BA00428321 /* WalletViewController.m */; };
 		E71859671D7433BA00428321 /* WalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859531D7433BA00428321 /* WalletViewController.xib */; };
+		E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E718596D1D7526BF00428321 /* ApplyViewController.m */; };
+		E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718596E1D7526BF00428321 /* ApplyViewController.xib */; };
 		E7299F4C1D4B2632008156BD /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4B1D4B2632008156BD /* OrderView.m */; };
 		E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4E1D4B2642008156BD /* OrderDefaultView.m */; };
 		E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F511D4B266C008156BD /* OrderNoAddressView.m */; };
@@ -72,7 +73,6 @@
 		E7299F561D4B2D06008156BD /* OrderDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7299F551D4B2D06008156BD /* OrderDefaultView.xib */; };
 		E7299F581D4B3D16008156BD /* OrderNoAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7299F571D4B3D16008156BD /* OrderNoAddressView.xib */; };
 		E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */; };
-		E733FC931D684C05006AFBB6 /* ApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E733FC921D684C05006AFBB6 /* ApplyViewController.xib */; };
 		E746B0041D42023900A43298 /* WriteInfoBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B0031D42023900A43298 /* WriteInfoBuyView.m */; };
 		E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E746B0051D42024D00A43298 /* WriteInfoBuyView.xib */; };
 		E746B0091D4315B600A43298 /* NetWorkRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B0081D4315B600A43298 /* NetWorkRequestManager.m */; };
@@ -221,11 +221,9 @@
 		82D839021D642120007BA849 /* BiaoShiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoShiViewController.m; sourceTree = "<group>"; };
 		82D839031D642120007BA849 /* BiaoShiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BiaoShiViewController.xib; sourceTree = "<group>"; };
 		82D839041D642120007BA849 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
-		82D839051D642120007BA849 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		82D839071D642120007BA849 /* CarTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTypeVC.h; sourceTree = "<group>"; };
 		82D839081D642120007BA849 /* CarTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypeVC.m; sourceTree = "<group>"; };
 		82D839091D642120007BA849 /* CarTypeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarTypeVC.xib; sourceTree = "<group>"; };
-		82D8390A1D642120007BA849 /* CommitPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitPhotoVC.h; sourceTree = "<group>"; };
 		82D8390B1D642120007BA849 /* CommitPhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitPhotoVC.m; sourceTree = "<group>"; };
 		82D8390C1D642120007BA849 /* CommitPhotoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitPhotoVC.xib; sourceTree = "<group>"; };
 		82D8390D1D642120007BA849 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
@@ -310,6 +308,9 @@
 		E71859511D7433BA00428321 /* WalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewController.h; sourceTree = "<group>"; };
 		E71859521D7433BA00428321 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
 		E71859531D7433BA00428321 /* WalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletViewController.xib; sourceTree = "<group>"; };
+		E718596C1D7526AC00428321 /* CommitPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitPhotoVC.h; sourceTree = "<group>"; };
+		E718596D1D7526BF00428321 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
+		E718596E1D7526BF00428321 /* ApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyViewController.xib; sourceTree = "<group>"; };
 		E7299F4A1D4B2632008156BD /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		E7299F4B1D4B2632008156BD /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
 		E7299F4D1D4B2642008156BD /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
@@ -320,7 +321,6 @@
 		E7299F551D4B2D06008156BD /* OrderDefaultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDefaultView.xib; sourceTree = "<group>"; };
 		E7299F571D4B3D16008156BD /* OrderNoAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderNoAddressView.xib; sourceTree = "<group>"; };
 		E7299F591D502CDB008156BD /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = "../Desktop/高德SDK/MAMapKit.framework"; sourceTree = "<group>"; };
-		E733FC921D684C05006AFBB6 /* ApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyViewController.xib; sourceTree = "<group>"; };
 		E746B0021D42023900A43298 /* WriteInfoBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteInfoBuyView.h; sourceTree = "<group>"; };
 		E746B0031D42023900A43298 /* WriteInfoBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteInfoBuyView.m; sourceTree = "<group>"; };
 		E746B0051D42024D00A43298 /* WriteInfoBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteInfoBuyView.xib; sourceTree = "<group>"; };
@@ -724,12 +724,12 @@
 				82D839021D642120007BA849 /* BiaoShiViewController.m */,
 				82D839031D642120007BA849 /* BiaoShiViewController.xib */,
 				82D839041D642120007BA849 /* ApplyViewController.h */,
-				82D839051D642120007BA849 /* ApplyViewController.m */,
-				E733FC921D684C05006AFBB6 /* ApplyViewController.xib */,
+				E718596D1D7526BF00428321 /* ApplyViewController.m */,
+				E718596E1D7526BF00428321 /* ApplyViewController.xib */,
 				82D839071D642120007BA849 /* CarTypeVC.h */,
 				82D839081D642120007BA849 /* CarTypeVC.m */,
 				82D839091D642120007BA849 /* CarTypeVC.xib */,
-				82D8390A1D642120007BA849 /* CommitPhotoVC.h */,
+				E718596C1D7526AC00428321 /* CommitPhotoVC.h */,
 				82D8390B1D642120007BA849 /* CommitPhotoVC.m */,
 				82D8390C1D642120007BA849 /* CommitPhotoVC.xib */,
 				82D8390D1D642120007BA849 /* PhotoCell.h */,
@@ -1237,9 +1237,9 @@
 				E75D67641D23AF1900D3AD1A /* AlreadyDoneDefaultTableViewCell.xib in Resources */,
 				E7299F541D4B29BC008156BD /* OrderView.xib in Resources */,
 				E78AFF071D378E1000172509 /* SearchTableViewCell.xib in Resources */,
+				E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */,
 				E7908EF61D2A124800A62908 /* CallOutCourierTableViewCell.xib in Resources */,
 				E75D67701D23AF1900D3AD1A /* DeliveryTableViewCell.xib in Resources */,
-				E733FC931D684C05006AFBB6 /* ApplyViewController.xib in Resources */,
 				E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */,
 				E71859551D7433BA00428321 /* BankCardListVC.xib in Resources */,
 				E71859571D7433BA00428321 /* BankViewController.xib in Resources */,
@@ -1384,7 +1384,6 @@
 				E71639291D61ADD90020F22E /* MJRefreshBaseView.m in Sources */,
 				E7908EF91D2A3C5600A62908 /* MapBottomView.m in Sources */,
 				E718595A1D7433BA00428321 /* CommitCashVC.m in Sources */,
-				82D839181D642120007BA849 /* ApplyViewController.m in Sources */,
 				E75D67741D23AF1900D3AD1A /* HomePageView.m in Sources */,
 				E75D66FA1D23AE1100D3AD1A /* PersonViewController.m in Sources */,
 				E75D66F41D23AE1100D3AD1A /* LoginViewController.m in Sources */,
@@ -1397,6 +1396,7 @@
 				E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */,
 				E71859561D7433BA00428321 /* BankViewController.m in Sources */,
 				E71859621D7433BA00428321 /* OrderDetailCell.m in Sources */,
+				E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */,
 				E746B0201D488B5C00A43298 /* ChatListModel.m in Sources */,
 				E75D676D1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.m in Sources */,
 				E75D675A1D23AF1900D3AD1A /* NeedWriteViewController.m in Sources */,

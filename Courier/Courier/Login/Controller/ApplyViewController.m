@@ -28,13 +28,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
 
-
 @property (weak, nonatomic) IBOutlet UIImageView *img_1;
 @property (weak, nonatomic) IBOutlet UIImageView *img_2;
 @property (weak, nonatomic) IBOutlet UIImageView *img_3;
 @property (weak, nonatomic) IBOutlet UIImageView *img_4;
 @property (weak, nonatomic) IBOutlet UIImageView *img_5;
-
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 
@@ -96,6 +94,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tap.numberOfTapsRequired = 1;
     [self.scroll addGestureRecognizer:tap];
+    
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"申请条例"];
+    NSRange strRange = {0,[str length]};
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:193/255.0 green:26/255.0 blue:32/255.0 alpha:1] range:strRange];
+    [self.tiaoliBtn setAttributedTitle:str forState:UIControlStateNormal];
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if (self.navigationController.viewControllers.count == 1) {// 关闭主界面的右滑返回
@@ -205,35 +210,12 @@
 {
     if (textField.tag == 1)
     {
-//        if ([textField.text length] != 0 && [textField.text length] < 6)
-//        {
-//            self.img_1.image = [UIImage imageNamed:@"ture_gou.png"];
-//        }
-//        else
-//        {
-//            self.img_1.image = [UIImage imageNamed:@"wrong_cal.png"];
-//        }
         self.img_1.hidden = YES;
-        if (range.location >= 5)
-        {
-            return NO;
-        }
-        else
-        {
             return YES;
-        }
     }
     else if (textField.tag == 2)
     {
         self.img_2.hidden = YES;
-//        if ([MainData validateUserPhone:textField.text])
-//        {
-//            self.img_2.image = [UIImage imageNamed:@"ture_gou.png"];
-//        }
-//        else
-//        {
-//            self.img_2.image = [UIImage imageNamed:@"wrong_cal.png"];
-//        }
         if (range.location >= 11)
         {
             return NO;
@@ -246,14 +228,6 @@
     else if (textField.tag == 3)
     {
         self.img_3.hidden = YES;
-//        if ([textField.text length] > 6 && [textField.text length] <= 18)
-//        {
-//            self.img_3.image = [UIImage imageNamed:@"ture_gou.png"];
-//        }
-//        else
-//        {
-//            self.img_3.image = [UIImage imageNamed:@"wrong_cal.png"];
-//        }
         if (range.location >= 18)
         {
             return NO;
@@ -266,13 +240,6 @@
     else
     {
         self.img_4.hidden = YES;
-//        if ([self cartIdWithidentityCard:textField.text])
-//        {
-//            self.img_4.image = [UIImage imageNamed:@"ture_gou.png"];
-//        }else
-//        {
-//            self.img_4.image = [UIImage imageNamed:@"wrong_cal.png"];
-//        }
         if (range.location >= 18)
         {
             return NO;
@@ -303,7 +270,7 @@
 {
     if (textField.tag == 1)
     {
-        if ([textField.text length] != 0 && [textField.text length] < 6)
+        if ([textField.text length] != 0)
         {
             self.img_1.image = [UIImage imageNamed:@"ture_gou.png"];
         }
@@ -389,23 +356,10 @@
 
 - (IBAction)tiaoliButtonClick:(UIButton *)sender
 {
-//    if (sender.selected)
-//    {
-//        [sender setImage:[UIImage imageNamed:@"1-0-2-4wugoutiaolikuang.png"] forState:UIControlStateNormal];
-//        _isSelect = NO;
-//    }
-//    else
-//    {
-//        [sender setImage:[UIImage imageNamed:@"1-0-2-1yougou.png"] forState:UIControlStateNormal];
-//        _isSelect = YES;
-//    }
-//    sender.selected = !sender.selected;
-    
     SettingDetailVC *VC = [[SettingDetailVC alloc] init];
     VC.titleStr = @"条例";
     VC.urlStr = @"http://tl.tzouyi.com";
     [self.navigationController pushViewController:VC animated:YES];
-    
 }
 
 - (void)showAlertWithMes:(NSString *)meg
