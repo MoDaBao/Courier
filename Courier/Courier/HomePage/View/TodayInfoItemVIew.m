@@ -25,6 +25,7 @@
         UIFont *font = [UIFont systemFontOfSize:16];
         CGFloat height = [UILabel getHeightWithTitle:title font:font] + 6;
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, centerY - height, frame.size.width, height)];
+        titleLabel.numberOfLines = 2;
         titleLabel.text = title;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = font;

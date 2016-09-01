@@ -425,6 +425,7 @@
                 <outlet property="paymentLabel" destination="REI-Mj-0LD" id="SsE-Vi-rIL"/>
                 <outlet property="remarkLabel" destination="XPD-98-ofy" id="7U8-GN-pxW"/>
                 <outlet property="startLabel" destination="AqG-qc-vQx" id="6dx-7u-8pk"/>
+                <outlet property="startphone" destination="l0x-o6-rph" id="Qka-BB-aiz"/>
                 <outlet property="timeLabel" destination="dgO-0L-hRJ" id="Ujz-Q4-PuQ"/>
                 <outlet property="userPhoneLabel" destination="C6o-VZ-cjp" id="crl-lx-pZB"/>
             </connections>

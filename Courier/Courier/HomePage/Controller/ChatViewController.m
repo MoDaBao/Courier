@@ -210,7 +210,7 @@
     if (_model.status.integerValue == 2 || _model.status.integerValue == 3 || _model.status.integerValue == 4 || _model.status.integerValue == 5 || _model.status.integerValue == 6 || _model.status.integerValue == 10) {
         OrderDetailViewController *orderVC = [[OrderDetailViewController alloc] init];
         orderVC.baseModel = _model;
-        orderVC.isAlreadyDone = YES;
+        
         orderVC.isDelivery = NO;
         //    orderVC.orderStatus = self.navigationItem.title;
         switch ([_model.status integerValue])
@@ -235,6 +235,7 @@
                 break;
             case 6:
                 orderVC.orderStatus = @"已完成";
+                orderVC.isAlreadyDone = YES;
                 break;
             case 7:
                 orderVC.orderStatus = @"正在退款";

@@ -73,7 +73,7 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"我的贷款";
+    self.navigationItem.title = @"我的货款";
 //    self.navigationController.navigationBar.translucent = NO;
     
     // 返回按钮

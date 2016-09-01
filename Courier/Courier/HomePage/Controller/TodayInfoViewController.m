@@ -52,10 +52,10 @@
         [self.courierInfoModel setValuesForKeysWithDictionary:dataDic];
         [self.dataArray addObject:@{@"今日有效单":[NSString stringWithFormat:@"%ld单",self.courierInfoModel.count.integerValue]}];
         [self.dataArray addObject:@{@"今日里程":[NSString stringWithFormat:@"%.2f千米",self.courierInfoModel.distance.floatValue / 1000.0]}];
-        [self.dataArray addObject:@{@"在线支付跑腿费":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.db_online.integerValue]}];
-        [self.dataArray addObject:@{@"货到付款跑腿费":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.db_unonline.integerValue]}];
-        [self.dataArray addObject:@{@"在线支付物品费":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.buy_online.integerValue]}];
-        [self.dataArray addObject:@{@"货到付款物品费":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.buy_unonline.integerValue]}];
+        [self.dataArray addObject:@{@"跑腿费(在线支付)":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.db_online.integerValue]}];
+        [self.dataArray addObject:@{@"跑腿费(货到付款)":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.db_unonline.integerValue]}];
+        [self.dataArray addObject:@{@"物品费(在线支付)":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.buy_online.integerValue]}];
+        [self.dataArray addObject:@{@"物品费(货到付款)":[NSString stringWithFormat:@"%ld元",self.courierInfoModel.buy_unonline.integerValue]}];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 获取数据之后创建视图
             [self createView];

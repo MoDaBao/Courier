@@ -97,8 +97,10 @@
     // 订单类型
     if (model.type.intValue == 1) {
         self.startLabel.text = @"拿货地址：";
+        self.startphone.text = @"拿货电话：";
     } else if (model.type.intValue == 2) {
         self.startLabel.text = @"送货地址：";
+        self.startphone.text = @"送货电话：";
     } else {
         self.startLabel.text = @"买货地址：";
         //        self.remarkLabel.hidden = NO;

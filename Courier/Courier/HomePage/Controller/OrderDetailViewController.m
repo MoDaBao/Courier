@@ -238,7 +238,7 @@
             };
             cell.delegate = self;
             if (_isAlreadyDone) {
-                cell.checkLabel.text = @"已送达";
+                cell.checkLabel.text = @"已完成";
             }
             if (_isDelivery) {
                 cell.orderReceivingBtn.hidden = NO;

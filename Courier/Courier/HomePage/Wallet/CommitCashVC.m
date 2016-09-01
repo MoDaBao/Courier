@@ -44,7 +44,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"提现";
-//    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.translucent = NO;
     
     // 返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -112,6 +112,8 @@
             {
                 self.bottomView.hidden = YES;
                 self.commitBtn.hidden = YES;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您当前无可提现货款" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
             }
             else
             {

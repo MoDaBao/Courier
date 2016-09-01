@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *endBtn;// 选择收货地址按钮
 //@property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *startphone;
 @property (nonatomic, assign) BOOL isChoose;
 
 @property (nonatomic, assign) id<WriteInfoView_2Delegate> delegate;

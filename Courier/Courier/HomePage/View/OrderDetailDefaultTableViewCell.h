@@ -44,6 +44,9 @@ typedef void(^RequestBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *orderReceivingBtn;// 接单按钮
 @property (weak, nonatomic) IBOutlet UIButton *defaultPrice;// 调用默认起送价接口的按钮
 
+@property (weak, nonatomic) IBOutlet UILabel *startphone;
+
+
 @property (nonatomic, copy) LookRouteBlock lookRoute;
 
 @property (nonatomic, copy) RequestBlock request;

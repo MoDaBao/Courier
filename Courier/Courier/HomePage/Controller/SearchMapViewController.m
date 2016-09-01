@@ -384,6 +384,7 @@
 //        self.searchView.submitAddress.text = tip.address;
         self.latitude = [NSString stringWithFormat:@"%f",tip.location.latitude];
         self.longitude = [NSString stringWithFormat:@"%f",tip.location.longitude];
+        [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(tip.location.latitude, tip.location.longitude)];
     } else {
         AMapPOI *poi = self.poiArray[indexPath.row];
         self.searchView.mainAddress.text = [NSString stringWithFormat:@"%@附近",poi.name];
@@ -392,7 +393,9 @@
         self.submitAddress = poi.address;
         self.latitude = [NSString stringWithFormat:@"%f",poi.location.latitude];
         self.longitude = [NSString stringWithFormat:@"%f",poi.location.longitude];
+        [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude)];
     }
+    
     
 }
 

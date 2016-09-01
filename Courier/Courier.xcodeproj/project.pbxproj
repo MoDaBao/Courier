@@ -50,7 +50,6 @@
 		E71859571D7433BA00428321 /* BankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718593B1D7433BA00428321 /* BankViewController.xib */; };
 		E71859581D7433BA00428321 /* CarListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E718593D1D7433BA00428321 /* CarListCell.m */; };
 		E71859591D7433BA00428321 /* CarListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718593E1D7433BA00428321 /* CarListCell.xib */; };
-		E718595A1D7433BA00428321 /* CommitCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859401D7433BA00428321 /* CommitCashVC.m */; };
 		E718595B1D7433BA00428321 /* CommitCashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859411D7433BA00428321 /* CommitCashVC.xib */; };
 		E718595C1D7433BA00428321 /* MissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859431D7433BA00428321 /* MissionCell.m */; };
 		E718595D1D7433BA00428321 /* MissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859441D7433BA00428321 /* MissionCell.xib */; };
@@ -66,6 +65,7 @@
 		E71859671D7433BA00428321 /* WalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71859531D7433BA00428321 /* WalletViewController.xib */; };
 		E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E718596D1D7526BF00428321 /* ApplyViewController.m */; };
 		E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718596E1D7526BF00428321 /* ApplyViewController.xib */; };
+		E71859721D756C1E00428321 /* CommitCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859711D756C1E00428321 /* CommitCashVC.m */; };
 		E7299F4C1D4B2632008156BD /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4B1D4B2632008156BD /* OrderView.m */; };
 		E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4E1D4B2642008156BD /* OrderDefaultView.m */; };
 		E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F511D4B266C008156BD /* OrderNoAddressView.m */; };
@@ -288,7 +288,6 @@
 		E718593D1D7433BA00428321 /* CarListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarListCell.m; sourceTree = "<group>"; };
 		E718593E1D7433BA00428321 /* CarListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarListCell.xib; sourceTree = "<group>"; };
 		E718593F1D7433BA00428321 /* CommitCashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitCashVC.h; sourceTree = "<group>"; };
-		E71859401D7433BA00428321 /* CommitCashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitCashVC.m; sourceTree = "<group>"; };
 		E71859411D7433BA00428321 /* CommitCashVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitCashVC.xib; sourceTree = "<group>"; };
 		E71859421D7433BA00428321 /* MissionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionCell.h; sourceTree = "<group>"; };
 		E71859431D7433BA00428321 /* MissionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCell.m; sourceTree = "<group>"; };
@@ -311,6 +310,7 @@
 		E718596C1D7526AC00428321 /* CommitPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitPhotoVC.h; sourceTree = "<group>"; };
 		E718596D1D7526BF00428321 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		E718596E1D7526BF00428321 /* ApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyViewController.xib; sourceTree = "<group>"; };
+		E71859711D756C1E00428321 /* CommitCashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitCashVC.m; sourceTree = "<group>"; };
 		E7299F4A1D4B2632008156BD /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		E7299F4B1D4B2632008156BD /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
 		E7299F4D1D4B2642008156BD /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
@@ -1072,7 +1072,7 @@
 				E718593D1D7433BA00428321 /* CarListCell.m */,
 				E718593E1D7433BA00428321 /* CarListCell.xib */,
 				E718593F1D7433BA00428321 /* CommitCashVC.h */,
-				E71859401D7433BA00428321 /* CommitCashVC.m */,
+				E71859711D756C1E00428321 /* CommitCashVC.m */,
 				E71859411D7433BA00428321 /* CommitCashVC.xib */,
 				E71859421D7433BA00428321 /* MissionCell.h */,
 				E71859431D7433BA00428321 /* MissionCell.m */,
@@ -1383,7 +1383,6 @@
 				E718595C1D7433BA00428321 /* MissionCell.m in Sources */,
 				E71639291D61ADD90020F22E /* MJRefreshBaseView.m in Sources */,
 				E7908EF91D2A3C5600A62908 /* MapBottomView.m in Sources */,
-				E718595A1D7433BA00428321 /* CommitCashVC.m in Sources */,
 				E75D67741D23AF1900D3AD1A /* HomePageView.m in Sources */,
 				E75D66FA1D23AE1100D3AD1A /* PersonViewController.m in Sources */,
 				E75D66F41D23AE1100D3AD1A /* LoginViewController.m in Sources */,
@@ -1425,6 +1424,7 @@
 				E75D675E1D23AF1900D3AD1A /* WriteInfoViewController.m in Sources */,
 				E75D675D1D23AF1900D3AD1A /* WaitOrderReceivingViewController.m in Sources */,
 				E71859581D7433BA00428321 /* CarListCell.m in Sources */,
+				E71859721D756C1E00428321 /* CommitCashVC.m in Sources */,
 				E7299F4C1D4B2632008156BD /* OrderView.m in Sources */,
 				E78AFF001D37735700172509 /* SearchView.m in Sources */,
 				E75D67051D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m in Sources */,

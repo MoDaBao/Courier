@@ -80,8 +80,10 @@
     // 订单类型
     if (model.type.intValue == 1) {
         self.orderTypeLabel.text = @"帮我拿";
+        self.startphone.text = @"拿货电话：";
     } else if (model.type.intValue == 2) {
         self.orderTypeLabel.text = @"帮我送";
+        self.startphone.text = @"送货电话：";
     } else {
         self.orderTypeLabel.text = @"帮我买";
     }

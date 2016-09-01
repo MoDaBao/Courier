@@ -103,7 +103,7 @@
     if (self.baseModel.type.integerValue == 3) {// 买的时候加载购买的填单view
         self.writeBuyView = [[[NSBundle mainBundle] loadNibNamed:@"WriteInfoBuyView" owner:nil options:nil] lastObject];
         self.writeBuyView.delegate = self;
-        //    self.writeBuyView setda÷÷
+        //    self.writeBuyView setda
         self.writeBuyView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.00];
         self.writeBuyView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight);
         _scrollView.backgroundColor = self.writeBuyView.backgroundColor;
@@ -128,7 +128,13 @@
         self.writeView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight);
         _scrollView.backgroundColor = self.writeView.backgroundColor;
         [_scrollView addSubview:self.writeView];
-        self.writeView.receivingTF.text = _baseModel.userphone;
+        
+        if (_baseModel.type.intValue == 1) {
+            self.writeView.receivingTF.text = _baseModel.userphone;
+        } else if (_baseModel.type.intValue == 2) {
+            self.writeView.pusherPhoneTF.text = _baseModel.userphone;
+        }
+        
         if (_baseModel.start.length) {
             self.writeView.startTF.text = _baseModel.start;
             self.writeView.endTF.text = _baseModel.end;

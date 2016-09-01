@@ -228,8 +228,8 @@
                     }
                     
                 }
-                _isExpansion = NO;
-                _isNeedExpansion = NO;
+//                _isExpansion = NO;
+//                _isNeedExpansion = NO;
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -273,16 +273,7 @@
 #pragma mark -----TableHeaderView代理方法-----
 
 - (void)reloadTableViewWithExpansion:(BOOL)isExpansion tag:(NSInteger)tag view:(TableHeaderView *)view{
-//    if (tag == 23333) {// 直接送的单子
-//        _isExpansion = isExpansion;
-//    } else {
-//        _isNeedExpansion = isExpansion;
-//    }
-//    [self.tableView reloadData];
     
-//    if (view == _fristView) {// 要填单
-//        
-//    }
     if (view == _fristView) {
          NSLog(@"2333333%@",view);
         _isNeedExpansion = isExpansion;
@@ -368,14 +359,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-//        _fristView = nil;
         if (!_fristView) {
             _fristView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) title:@"要填单的单子"];
             _fristView.delegate = self;
         }
         return _fristView;
     } else if (section == 1) {
-//        _secondView = nil;
         if (!_secondView) {
             _secondView = [[TableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) title:@"直接送的单子"];
             _secondView.delegate = self;
@@ -388,6 +377,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    if (section == 0) {
+//        [_fristView.rightImage setImage:[UIImage imageNamed:@"djd_down"] forState:UIControlStateNormal];
+//        _fristView.expansion.text = @"(点击展开)";
+//    } else {
+//        [_secondView.rightImage setImage:[UIImage imageNamed:@"djd_down"] forState:UIControlStateNormal];
+//        _secondView.expansion.text = @"(点击展开)";
+//    }
     return 40;
 }
 

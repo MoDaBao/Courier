@@ -48,6 +48,10 @@
 @property (nonatomic, strong) NSMutableArray *deliveryArray;
 @property (nonatomic, strong) NSMutableArray *needWriteArray;
 
+@property (nonatomic, assign) BOOL isShowWallet;// 是否显示钱包
+
+@property (nonatomic, strong) UIView *wallet;
+
 @end
 
 @implementation HomePageViewController
@@ -64,6 +68,65 @@
         self.needWriteArray = [NSMutableArray array];
     }
     return _needWriteArray;
+}
+
+//校验是否显示钱包
+- (void)shifouxianshiqianbao {
+    
+    //http://client.local.courier.net/account/checkWallet       校验是否显示钱包
+    //    {"BaseAppType":"android","BaseAppVersion":"1.2.1","SystemVersion":"4.4.4","_sign_":"c4161a4eecf435d6490e2d5c1770f261","_token_":"ec7b8d2b9f42bda73d461cea0845399d","_userid_":"12"}
+    //    BaseAppType 系统类型：android 安卓 ios 苹果
+    //    BaseAppVersion App版本号【三位计算，比如：1.0.0】
+    //    SystemVersion 系统版本号
+    //    _sign_ 签名方式【key=value&key1=value1…&key=secretKey】从小到大排序，然后md5
+    //    _token_ 用户登录TOKEN 【md5（小写（用户ID+secretKey））】
+    //    _userid_ 用户ID
+    //    userid   用户ID
+    
+    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.0.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
+    NSDictionary *dataDic = @{
+                              @"BaseAppType":@"ios",
+                              @"BaseAppVersion":@"1.0.1",
+                              @"SystemVersion":[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],
+                              @"_sign_":[MyMD5 md5:str],
+                              @"_token_":[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],
+                              @"_userid_":[[CourierInfoManager shareInstance] getCourierPid],
+                              @"userid":[[CourierInfoManager shareInstance] getCourierPid]
+                              };
+    
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    session.responseSerializer = [AFJSONResponseSerializer serializer];
+    [session POST:@"http://mapi.tzouyi.com/account/checkWallet" parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        if ([responseObject[@"message"] isEqualToString:@"success"]) {
+            BOOL data = responseObject[@"data"];
+            if (data) {
+                _isShowWallet = YES;
+            } else {
+                _isShowWallet = NO;
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (_isShowWallet) {
+                _wallet.hidden = NO;
+            } else {
+                _wallet.hidden = YES;
+            }
+        });
+        
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"error is %@",error);
+        
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,6 +157,8 @@
         [self requestDeliveryData];
         [self requestNeedWriteData];
     }
+    
+    [self shifouxianshiqianbao];
     
 }
 
@@ -261,9 +326,9 @@
 //    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:testBtn];
     
-    UIView *wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 70)];
-    wallet.backgroundColor = self.homePageView.backgroundColor;
-    [self.view addSubview:wallet];
+    _wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 70)];
+    _wallet.backgroundColor = self.homePageView.backgroundColor;
+    [self.view addSubview:_wallet];
     
     
     CGFloat imgW = 20;
@@ -279,32 +344,35 @@
     walletBtn.imageView.contentMode = UIViewContentModeLeft;
     [walletBtn setTitle:@"我的钱包" forState:UIControlStateNormal];
     [walletBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [walletBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+//    [walletBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     walletBtn.titleLabel.font = font;
     
     CGFloat walletBtnViewW = imgW + walletW;
-    CGFloat walletBtnViewX = (wallet.width - walletBtnViewW) * .5;
-    CGFloat walletBtnViewY = (wallet.height - walletH) * .5;
+    CGFloat walletBtnViewX = (_wallet.width - walletBtnViewW) * .5;
+    CGFloat walletBtnViewY = (_wallet.height - walletH) * .5;
     UIView *walletBtnView = [[UIView alloc] initWithFrame:CGRectMake(walletBtnViewX, walletBtnViewY, imgW + walletW, walletH)];
     walletImg.y = (walletBtnView.height - imgH) * .5;
     [walletBtnView addSubview:walletImg];
     [walletBtnView addSubview:walletBtn];
     
-    [wallet addSubview:walletBtnView];
+    [_wallet addSubview:walletBtnView];
     
-    [self.view addSubview:wallet];
+    [self.view addSubview:_wallet];
 
     
     UIView *line = [[UIView alloc]initWithFrame:
                     
-                    CGRectMake(0, wallet.height - 1,kScreenWidth, 1)];
+                    CGRectMake(0, _wallet.height - 1,kScreenWidth, 1)];
     
     line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
     
-    [wallet addSubview:line];//线是否加
+    [_wallet addSubview:line];//线是否加
     
     
-    
+    UIButton *walletClick = [UIButton buttonWithType:UIButtonTypeSystem];
+    walletClick.frame = CGRectMake(0, 0, _wallet.width, _wallet.height);
+    [walletClick addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [_wallet addSubview:walletClick];
     
     
     // 还是测试De

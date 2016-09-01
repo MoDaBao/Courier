@@ -45,6 +45,8 @@ typedef void(^RequestBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *mapBtn;
 @property (nonatomic, copy) PushMapView push;
 
+@property (weak, nonatomic) IBOutlet UILabel *startphone;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *orderReceivingBtn;// 接单按钮
 
