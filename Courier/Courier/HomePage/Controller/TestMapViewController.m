@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"发送位置";
-    
+//    self.navigationController.navigationBar.translucent = NO;
     
     _right = [UIButton buttonWithType:UIButtonTypeCustom];
     _right.frame = CGRectMake(0, 0, 40, 40);

@@ -57,9 +57,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"申请成为配送员";
     
-    self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"redLineNew.png"];
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault]; //此处使底部线条颜色为红色
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"redLineNew.png"];
+//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault]; //此处使底部线条颜色为红色
+//    self.navigationController.navigationBar.translucent = NO;
     
     self.commitBtn.layer.cornerRadius = 20;
     self.commitBtn.clipsToBounds = YES;

@@ -14,6 +14,7 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "MainTabBarController.h"
+#import "MainNavigationController.h"
 #define kTFMargin 20
 
 @interface PersonViewController ()<LoginViewControllerDelegate>
@@ -192,7 +193,7 @@
                         // 模态弹出登录页面
                         [[CourierInfoManager shareInstance] removeAllCourierInfo];
                         LoginViewController *loginVC = [[LoginViewController alloc] init];
-                        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+                        MainNavigationController *naVC = [[MainNavigationController alloc] initWithRootViewController:loginVC];
                         //                        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
                         //                        MainTabBarController *tabVC = (MainTabBarController *)appdelegate.window.rootViewController;
                         //                        loginVC.delegate = tabVC;

@@ -23,9 +23,9 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"位置信息";
     
-    self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"redLineNew.png"];
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault]; //此处使底部线条颜色为红色
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.shadowImage = [UIImage imageNamed:@"redLineNew.png"];
+//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault]; //此处使底部线条颜色为红色
+//    self.navigationController.navigationBar.translucent = NO;
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];

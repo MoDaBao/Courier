@@ -35,6 +35,7 @@
 #import "TableHeaderView.h"
 #import "WalletViewController.h"
 #import "MyMD5.h"
+#import "MainNavigationController.h"
 
 #define SecretKey @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"
 
@@ -148,7 +149,7 @@
     
     if ([[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 未登录时
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        MainNavigationController *naVC = [[MainNavigationController alloc] initWithRootViewController:loginVC];
         [self presentViewController:naVC animated:YES completion:nil];
 //        loginVC.delegate = self;
     }

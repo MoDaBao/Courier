@@ -44,7 +44,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.title = @"提现";
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.translucent = NO;
     
     // 返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];

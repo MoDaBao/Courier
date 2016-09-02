@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommitPhotoVC">
@@ -31,7 +31,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOJ-ru-65S">
-                    <rect key="frame" x="100" y="13" width="175" height="22"/>
+                    <rect key="frame" x="100" y="77" width="175" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="1lX-b1-qrs"/>
                     </constraints>
@@ -44,7 +44,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B5M-m9-gvR">
-                    <rect key="frame" x="0.0" y="43" width="375" height="546"/>
+                    <rect key="frame" x="0.0" y="107" width="375" height="482"/>
                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="orZ-vr-cjg"/>
@@ -60,7 +60,7 @@
                 <constraint firstAttribute="trailing" secondItem="B5M-m9-gvR" secondAttribute="trailing" id="FSa-3D-pJ9"/>
                 <constraint firstItem="LOJ-ru-65S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="Ht9-6d-uRR"/>
                 <constraint firstAttribute="bottom" secondItem="BpM-VN-5cM" secondAttribute="bottom" constant="30" id="Wlb-0V-Tzk"/>
-                <constraint firstItem="LOJ-ru-65S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="13" id="Xf9-PO-stj"/>
+                <constraint firstItem="LOJ-ru-65S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="77" id="Xf9-PO-stj"/>
                 <constraint firstAttribute="trailing" secondItem="BpM-VN-5cM" secondAttribute="trailing" constant="27" id="eLF-7I-kWr"/>
                 <constraint firstAttribute="trailing" secondItem="LOJ-ru-65S" secondAttribute="trailing" constant="100" id="hVE-Z4-OQd"/>
                 <constraint firstItem="BpM-VN-5cM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="27" id="n03-k5-Ffe"/>

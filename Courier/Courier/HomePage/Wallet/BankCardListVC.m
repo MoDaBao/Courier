@@ -42,6 +42,7 @@
     BankViewController *VC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.childViewControllers.count - 2];
     self.bankNameDelegate = VC;
     
+    
 }
 
 - (void)back

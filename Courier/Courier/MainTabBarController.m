@@ -248,7 +248,7 @@
     if (alertView.tag == 7777) {
 //        [[CourierInfoManager shareInstance] removeAllCourierInfo];
         LoginViewController *loginVC = [[LoginViewController alloc] init];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        MainNavigationController *naVC = [[MainNavigationController alloc] initWithRootViewController:loginVC];
         // 此处应该要撤销计时器
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
