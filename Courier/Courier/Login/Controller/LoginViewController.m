@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import "MOTextField.h"
 #import "TipMessageView.h"
-#import "ManagerViewController.h"
 #import "AppDelegate.h"
 #import "MainTabBarController.h"
 #import "SimpleMessage.h"
@@ -37,8 +36,7 @@
 
 @implementation LoginViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -127,32 +125,13 @@
     _tabVC = (MainTabBarController *)appdelegate.window.rootViewController;
     self.delegate = _tabVC;
     
-    
-    // 定位
-//    self.locationManager = [[AMapLocationManager alloc] init];
-//    self.locationManager.delegate = self;
-//    
-//    //设置允许后台定位参数，保持不会被系统挂起
-//    [self.locationManager setPausesLocationUpdatesAutomatically:NO];
-//    [self.locationManager setAllowsBackgroundLocationUpdates:YES];//iOS9(含)以上系统需设置
-//    [self.locationManager startUpdatingLocation];// 开启持续定位
-//    
-//    // 带逆地理信息的一次定位（返回坐标和地址信息）
-//    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    
-//    _search = [[AMapSearchAPI alloc] init];
-//    _search.delegate = self;
 
     [self createView];
     
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self];
-//    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-//    window.rootViewController = nav;
 }
 
 //申请镖师
-- (void)shenqingbiaoshiBtn
-{
+- (void)shenqingbiaoshiBtn {
     BiaoShiViewController *VC = [[BiaoShiViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
 }
@@ -237,7 +216,13 @@
                             [[CourierInfoManager shareInstance] saveCourierToken:responseObject[@"data"][@"token"]];
                         }
                         
-                        [self.delegate initRong];// 初始化融云
+                        if ([self.delegate respondsToSelector:@selector(initRong)]) {
+                            [self.delegate initRong];// 初始化融云
+                        }
+                        if ([self.delegate respondsToSelector:@selector(initCheckOrderTimer)]) {
+                            [self.delegate initCheckOrderTimer];// 初始化订单检测提醒的计时器
+                        }
+                        
 //                        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierToken]);
                     }
                     
@@ -249,15 +234,6 @@
             
             
             dispatch_async(dispatch_get_main_queue(), ^{
-//                [self dismissViewControllerAnimated:YES completion:nil];
-//                if (!self.isDismiss) {
-//                    UIApplication *application = [UIApplication sharedApplication];
-//                    AppDelegate *delegate = application.delegate;
-//                    ManagerViewController *managerVC = (ManagerViewController *)delegate.window.rootViewController;
-//                    [managerVC setRootVC:[[MainTabBarController alloc] init]];
-//                } else {
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-//                }
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
@@ -280,154 +256,6 @@
     }];
     
 }
-
-///** 初始化融云 上传跑腿位置 */
-//- (void)initRongAndSendAddress {
-//    
-//    
-//    // 融云初始化
-//    [[RCIM sharedRCIM] initWithAppKey:@"mgb7ka1nbtzxg"];
-//    [[RCIMClient sharedRCIMClient]registerMessageType:SimpleMessage.class];
-//    
-//    
-//    [[RCIM sharedRCIM] connectWithToken:[[CourierInfoManager shareInstance] getCourierToken] success:^(NSString *userId) {
-//        NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
-//    } error:^(RCConnectErrorCode status) {
-//        NSLog(@"登陆的错误码为:%ld", (long)status);
-//    } tokenIncorrect:^{
-//        //token过期或者不正确。
-//        //如果设置了token有效期并且token过期，请重新请求您的服务器获取新的token
-//        //如果没有设置token有效期却提示token错误，请检查您客户端和服务器的appkey是否匹配，还有检查您获取token的流程。
-//        NSLog(@"RCtoken错误");
-//    }];
-//    [[RCIM sharedRCIM] setUserInfoDataSource:self];
-//    [RCIM sharedRCIM].connectionStatusDelegate = _tabVC;
-//    [RCIM sharedRCIM].receiveMessageDelegate = _tabVC;
-//    // 设置计时器每隔三十秒向服务器上传一次跑腿的位置
-//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(courierAddress) userInfo:nil repeats:YES];
-//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:@"2333"];
-//    
-//    self.longitude = @"20";
-//    self.latitude = @"20";
-//    
-//}
-
-//// 一个账号不能同时登录两台设备
-//- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
-//    NSLog(@"您的账号已在另一台设备上上线");
-//    
-//    if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
-////        [self.delegate showAlert];
-//        
-//        
-//        
-//    }
-//    
-//}
-//
-//
-//
-//// 获取聊天用户信息
-//- (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion {
-//    
-//    NSLog(@"userid = %@",userId);
-//    
-//    NSDictionary *dic = @{@"api":@"getUser",@"version":@"1",@"userid":userId};
-//    NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
-//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
-//        NSNumber *result = responseObject[@"status"];
-//        if (!result.intValue) {
-//            NSLog(@"获取用户信息成功");
-//            NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
-//            NSLog(@"dataDic = %@",dataDic);
-//            RCUserInfo *user = [[RCUserInfo alloc] init];
-//            user.userId = userId;
-//            if (dataDic[@"user"][@"alias"] == [NSNull null]) {
-//                user.name = dataDic[@"user"][@"phone"];
-//            } else {
-//                user.name = dataDic[@"user"][@"alias"];
-//            }
-//            
-//            user.portraitUri = dataDic[@"user"][@"pic"];
-//            return completion(user);
-//        }
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"error is %@",error);
-//    }];
-//    
-//    
-//    
-//    
-//}
-//
-////  定位回调
-////- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
-////    self.longitude = [NSString stringWithFormat:@"%f",location.coordinate.longitude];
-////    self.latitude = [NSString stringWithFormat:@"%f",location.coordinate.latitude];
-////    [[NSUserDefaults standardUserDefaults] setObject:self.longitude forKey:@"longitude"];
-////    [[NSUserDefaults standardUserDefaults] setObject:self.latitude forKey:@"latitude"];
-////    [[NSUserDefaults standardUserDefaults] synchronize];
-////    //    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
-////}
-//
-//
-/** 上传跑腿位置*/
-//- (void)courierAddress {
-//    
-//    NSLog(@"上传了一次");
-//    
-//    
-////    AMapReGeocodeSearchRequest *reGeo = [[AMapReGeocodeSearchRequest alloc] init];
-////    reGeo.location = [AMapGeoPoint locationWithLatitude:[[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] doubleValue] longitude:[[[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"] doubleValue]];
-////    reGeo.radius = 200;
-////    reGeo.requireExtension = YES;
-////    //发起逆向地理编码
-////    //初始化检索对象
-////    
-////    [_search AMapReGoecodeSearch:reGeo];
-//    
-//    
-//    if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
-//        // POST请求参数
-//        NSDictionary *dic = @{@"api":@"courierAddress", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"longitude":self.longitude, @"latitude":self.latitude};
-//        NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
-//        NSString *parmeter = [EncryptionAndDecryption encryptionWithDic:dic];
-//        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//        [session POST:REQUESTURL parameters:@{@"key":parmeter} progress:^(NSProgress * _Nonnull uploadProgress) {
-//            
-//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            NSNumber *result = responseObject[@"status"];
-//            if (result.intValue) {
-//                NSLog(@"失败");
-//            } else {
-//                NSLog(@"成功");
-//            }
-//            NSLog(@"respopnseObject = %@",[responseObject class]);
-//            NSLog(@"%@", responseObject);
-//            
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"error is %@",error);
-//        }];
-//    }
-//    
-//    
-//    
-//    
-//}
-
-//- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
-//    //    [self.delegate setAddress:response.regeocode.formattedAddress];// 让代理设置位置
-//    if ([self.delegate respondsToSelector:@selector(loginsetAddress:)]) {
-//        [self.delegate loginsetAddress:[NSString stringWithFormat:@"%@%@%@%@%@",response.regeocode.addressComponent.township, response.regeocode.addressComponent.neighborhood, response.regeocode.addressComponent.building, response.regeocode.addressComponent.streetNumber.street, response.regeocode.addressComponent.streetNumber.number]];
-//    }
-//    
-//    
-//}
 
 
 - (void)didReceiveMemoryWarning {

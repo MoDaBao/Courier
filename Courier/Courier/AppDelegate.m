@@ -12,7 +12,6 @@
 #import "MessageViewController.h"
 #import "PersonViewController.h"
 #import "MainTabBarController.h"
-#import "ManagerViewController.h"
 #import "WaitOrderReceivingViewController.h"
 
 #define CurrentSystemVersion ([[[UIDevice currentDevice] systemVersion] floatValue])
@@ -121,16 +120,7 @@
     // 高德SDK 配置用户Key
     [AMapServices sharedServices].apiKey = @"c34ce3eddc215c53b4f2102ba1cdc40c";
     
-    /*
-    ManagerViewController *testVC = [[ManagerViewController alloc] init];
-    if ([[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {
-        LoginViewController *loginVC = [[LoginViewController alloc] init];
-        testVC.rootVC = loginVC;
-    } else {
-        testVC.rootVC = [[MainTabBarController alloc] init];
-    }
-    self.window.rootViewController = testVC;
-    */
+    
     
     MainTabBarController *mainTabVC = [[MainTabBarController alloc] init];
     self.window.rootViewController = mainTabVC;

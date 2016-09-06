@@ -20,6 +20,7 @@
 #import "WaitOrdrReceivingModel.h"
 #import "BaseModel.h"
 #import "ChatViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface MainTabBarController ()<MainTabBarDelegate, RCIMUserInfoDataSource, AMapLocationManagerDelegate, RCIMReceiveMessageDelegate, RCIMConnectionStatusDelegate, UIAlertViewDelegate, AMapSearchDelegate, RCIMReceiveMessageDelegate, LoginViewControllerDelegate>
@@ -39,14 +40,17 @@
 //@property (nonatomic, copy) NSString *targetId;
 @property (nonatomic, strong) BaseModel *baseModel;
 
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;// 30秒上传跑腿位置的计时器
+@property (nonatomic, strong) NSTimer *checkOrderTimer;// 60秒监测订单的计时器
 
 @end
 
 @implementation MainTabBarController
 
-- (void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     [self SetupMainTabBar];
     [self SetupAllControllers];
     
@@ -75,8 +79,9 @@
     _search.delegate = self;
     
 
-    if (![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {
-        [self initRongAndSendAddress];
+    if (![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 当用户已经登录的时候
+        [self initRongAndSendAddress];// 初始化融云
+        [self initTimer];//
     }
     
     
@@ -115,10 +120,95 @@
     
 }
 
+- (void)initTimer {
+    if (!_checkOrderTimer) {
+        _checkOrderTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(checkOrder) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)checkOrder {
+    
+    if (![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            NSDictionary *dic = @{@"api":@"pgetorders", @"version":@"1", @"start":@"0", @"num":@"10"};
+            NSString *parameter = [EncryptionAndDecryption encryptionWithDic:dic];
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            [session POST:REQUESTURL parameters:@{@"key":parameter} progress:^(NSProgress * _Nonnull uploadProgress) {
+                
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                NSNumber *result = responseObject[@"status"];
+                if (!result.integerValue) {
+                    NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
+                    NSLog(@"dataDic = %@",dataDic);
+                    if (dataDic.count) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIViewController *vc = nil;
+                            if (self.selectedIndex == 0) {
+                                vc = self.homeVc.navigationController.childViewControllers.lastObject;
+                            } else if (self.selectedIndex == 1) {
+                                vc = self.chatListVC.navigationController.childViewControllers.lastObject;
+                            } else if (self.selectedIndex == 2) {
+                                vc = self.personVC.navigationController.childViewControllers.lastObject;
+                            }
+                            
+                            if (![vc isKindOfClass:[WaitOrderReceivingViewController class]]) {
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您当前有可接订单" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                [alert show];
+                                // 加上声音和震动提示
+                                
+                                //系统声音
+                                AudioServicesPlaySystemSound(1007);
+                                //震动
+                                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                                
+                                
+                                //测试推送
+                                UILocalNotification *localnotification;
+                                if (!localnotification)
+                                {
+                                    localnotification = [[UILocalNotification alloc]init];
+                                }
+                                
+                                localnotification.repeatInterval = 0;
+                                /**
+                                 *  设置推送的相关属性
+                                 */
+                                localnotification.alertBody = @"您当前有可接订单";//通知具体内容
+                                localnotification.soundName = UILocalNotificationDefaultSoundName;//通知时的音效
+                                NSDictionary *dit_noti = [NSDictionary dictionaryWithObject:@"affair.schedule" forKey:@"id"];
+                                localnotification.userInfo = dit_noti;
+                                
+                                /**
+                                 *  调度本地通知,通知会在特定时间发出
+                                 */
+                                [[UIApplication sharedApplication] presentLocalNotificationNow:localnotification];
+                                
+                                
+                            }
+                            
+                        });
+                    }
+                }
+                
+                
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"error is %@",error);
+            }];
+        }
+    }
+    
+    
+}
+
 #pragma mark -----LoginVC代理方法-----
 
 - (void)initRong {
     [self initRongAndSendAddress];
+}
+
+- (void)initCheckOrderTimer {
+    [self initTimer];
 }
 
 
@@ -132,7 +222,7 @@
     
     if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
         
-        
+        // 当被迫下线的时候就先移除当前用户的登录信息
         [[CourierInfoManager shareInstance] removeAllCourierInfo];
         [JPUSHService setAlias:nil callbackSelector:nil object:nil];
         [[RCIMClient sharedRCIMClient]logout];// 退出融云
@@ -157,7 +247,7 @@
     
 }
 
-// 最先开始是把收到新消息弹窗的代码写在了这里
+// 最先开始是把收到新消息弹窗的代码写在了这里 现在改到了消息列表的视图控制器中
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left {
 //    _targetId = message.targetId;
 //    NSString *userid = [message.senderUserId substringFromIndex:1];
@@ -245,7 +335,7 @@
 #pragma mark -----UIAlertView代理-----
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 7777) {
+    if (alertView.tag == 7777) {// 当前弹窗为被迫下线的弹窗
 //        [[CourierInfoManager shareInstance] removeAllCourierInfo];
         LoginViewController *loginVC = [[LoginViewController alloc] init];
         MainNavigationController *naVC = [[MainNavigationController alloc] initWithRootViewController:loginVC];
@@ -253,46 +343,7 @@
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
         
-//        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {// 退出登录时当在线状态为在线时改成下班状态
-//            NSString *parameterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"isWork", @"is_online":@"0",@"version":@"1",@"pid":[[CourierInfoManager shareInstance] getCourierPid], @"phone":[[CourierInfoManager shareInstance] getCourierPhone]}];
-//            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//            [session POST:REQUESTURL parameters:@{@"key":parameterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
-//                
-//            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//                
-//                NSLog(@"data = %@",[EncryptionAndDecryption decryptionWithString:responseObject[@"data"]]);
-//                if (![responseObject[@"status"] integerValue]) {
-//                    NSLog(@"成功");
-//                    //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
-////                    [[CourierInfoManager shareInstance] removeAllCourierInfo];
-////                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
-////                    [[RCIMClient sharedRCIMClient]logout];// 退出融云
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        // 模态弹出登录页面
-//                        [[CourierInfoManager shareInstance] removeAllCourierInfo];
-//                        LoginViewController *loginVC = [[LoginViewController alloc] init];
-//                        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-//                        // 此处应该要撤销计时器
-//                        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//                        [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
-//                        //                    [self presentViewController:loginVC animated:YES completion:nil];
-//                    });
-//                } else {
-//                    NSLog(@"失败");
-//                }
-//                
-//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//                NSLog(@"error is %@",error);
-//            }];
-//        } else {
-//            // 模态弹出登录页面
-//            [[CourierInfoManager shareInstance] removeAllCourierInfo];
-//            LoginViewController *loginVC = [[LoginViewController alloc] init];
-//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-//            // 此处应该要撤销计时器
-//            AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//            [delegate.window.rootViewController presentViewController:naVC animated:YES completion:nil];
-//        }
+
     } else if (alertView.tag == 1234) {
         
 //        ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:_baseModel];

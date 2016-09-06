@@ -19,6 +19,7 @@
 #import "WriteInfoViewController.h"
 #import "TestMapViewController.h"
 #import "MapImagePreviewVC.h"
+#import "SimpleMessage.h"
 
 @interface ChatViewController ()<RCIMReceiveMessageDelegate, UIGestureRecognizerDelegate>
 
@@ -42,7 +43,7 @@
     self.tabBarController.tabBar.hidden = YES;
 }
 
-- (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag{
+- (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag {
     switch (tag)
     {
         case PLUGIN_BOARD_ITEM_LOCATION_TAG:
@@ -79,6 +80,7 @@
 
 //  创建视图
 - (void)createView {
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     backBtn.frame = CGRectMake(0, 0, 20, 20);
     [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -201,11 +203,7 @@
 }
 
 - (void)order {
-    
-//    if (_model.type.integerValue == 3) { // 帮我买
-//        
-//    }
-    
+
     
     if (_model.status.integerValue == 2 || _model.status.integerValue == 3 || _model.status.integerValue == 4 || _model.status.integerValue == 5 || _model.status.integerValue == 6 || _model.status.integerValue == 10) {
         OrderDetailViewController *orderVC = [[OrderDetailViewController alloc] init];
@@ -280,8 +278,7 @@
 }
 
 
-- (void)presentLocationViewController:(RCLocationMessage *)locationMessageContent
-{
+- (void)presentLocationViewController:(RCLocationMessage *)locationMessageContent {
     NSLog(@"%@",locationMessageContent);
     
     
@@ -319,17 +316,33 @@
     }
 }
 
+//- (RCMessage *)willAppendAndDisplayMessage:(RCMessage *)message {
+//    NSLog(@"2233333");
+//    SimpleMessage *simpMsg = [SimpleMessage messageWithContent:@"XXXX"];
+//    simpMsg.extra = @" ";
+//    message.content = simpMsg;
+//    
+//    return message;
+//}
+//
+//
+//- (RCMessageContent *)willSendMessage:(RCMessageContent *)messageCotent {
+//    NSLog(@"452");
+//    SimpleMessage *simpMsg = [SimpleMessage messageWithContent:@"XXXX"];
+//    simpMsg.extra = @" ";
+//    return simpMsg;
+//}
 
 - (RCMessageBaseCell *)rcConversationCollectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RCMessageModel *model = self.conversationDataRepository[indexPath.row];
-    NSString * cellIndentifier=@"SimpleMessageCell";
-    RCMessageBaseCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier           forIndexPath:indexPath];
+    NSString * cellIndentifier = @"SimpleMessageCell";
+    SimpleMessageCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIndentifier           forIndexPath:indexPath];
     [cell setDataModel:model];
     return cell;
 }
 - (CGSize)rcConversationCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     //返回自定义cell的实际高度（这里请返回消息的实际大小）
-    return CGSizeMake(300, 60);
+    return CGSizeMake(300, 200);
 }
 
 

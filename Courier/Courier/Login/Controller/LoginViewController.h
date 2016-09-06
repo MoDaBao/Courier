@@ -13,6 +13,7 @@
 - (void)loginsetAddress:(NSString *)address;
 - (void)showAlert;// 弹出账号在另一台设备上登录的弹窗
 - (void)initRong;// 初始化融云
+- (void)initCheckOrderTimer;// 初始化订单监测提醒的计时器
 
 @end
 

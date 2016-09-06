@@ -145,7 +145,6 @@
 		E75D67791D23AF1900D3AD1A /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D674D1D23AF1900D3AD1A /* TipView.m */; };
 		E75D677A1D23AF1900D3AD1A /* TodayInfoItemVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D674F1D23AF1900D3AD1A /* TodayInfoItemVIew.m */; };
 		E75D677B1D23AF1900D3AD1A /* TodayInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D67511D23AF1900D3AD1A /* TodayInfoView.m */; };
-		E75D67801D23C51700D3AD1A /* ManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D677F1D23C51700D3AD1A /* ManagerViewController.m */; };
 		E75D67831D24F17200D3AD1A /* WaitOrdrReceivingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D67821D24F17200D3AD1A /* WaitOrdrReceivingModel.m */; };
 		E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D67851D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m */; };
 		E75D67881D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E75D67861D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.xib */; };
@@ -454,8 +453,6 @@
 		E75D674F1D23AF1900D3AD1A /* TodayInfoItemVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayInfoItemVIew.m; sourceTree = "<group>"; };
 		E75D67501D23AF1900D3AD1A /* TodayInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayInfoView.h; sourceTree = "<group>"; };
 		E75D67511D23AF1900D3AD1A /* TodayInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayInfoView.m; sourceTree = "<group>"; };
-		E75D677E1D23C51700D3AD1A /* ManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerViewController.h; sourceTree = "<group>"; };
-		E75D677F1D23C51700D3AD1A /* ManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerViewController.m; sourceTree = "<group>"; };
 		E75D67811D24F17200D3AD1A /* WaitOrdrReceivingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitOrdrReceivingModel.h; sourceTree = "<group>"; };
 		E75D67821D24F17200D3AD1A /* WaitOrdrReceivingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitOrdrReceivingModel.m; sourceTree = "<group>"; };
 		E75D67841D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedWriteOrderTableViewCell.h; sourceTree = "<group>"; };
@@ -654,8 +651,6 @@
 			children = (
 				E75D66861D23ACEE00D3AD1A /* AppDelegate.h */,
 				E75D66871D23ACEE00D3AD1A /* AppDelegate.m */,
-				E75D677E1D23C51700D3AD1A /* ManagerViewController.h */,
-				E75D677F1D23C51700D3AD1A /* ManagerViewController.m */,
 				E75D66B41D23ADE900D3AD1A /* MainTabBarController.h */,
 				E75D66B51D23ADE900D3AD1A /* MainTabBarController.m */,
 				E75D66B61D23ADE900D3AD1A /* MainTabBarButton.h */,
@@ -1364,7 +1359,6 @@
 				E75D67601D23AF1900D3AD1A /* AlreadyDoneModel.m in Sources */,
 				E75D66851D23ACEE00D3AD1A /* main.m in Sources */,
 				E716392B1D61ADD90020F22E /* MJRefreshFooterView.m in Sources */,
-				E75D67801D23C51700D3AD1A /* ManagerViewController.m in Sources */,
 				E7D7AF4A1D52FDB3005F01FF /* WriteInfoView_2.m in Sources */,
 				E75D67651D23AF1900D3AD1A /* AlreadyDoneTableViewCell.m in Sources */,
 				E718595E1D7433BA00428321 /* MissionViewController.m in Sources */,
