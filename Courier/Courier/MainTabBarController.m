@@ -8,10 +8,8 @@
 
 #import "MainTabBarController.h"
 #import "MainTabBar.h"
-#import "MessageViewController.h"
 #import "PersonViewController.h"
 #import "MainNavigationController.h"
-#import "ChatListViewController.h"
 #import "SimpleMessage.h"
 #import "LoginViewController.h"
 #import "TestChatListViewController.h"
@@ -25,11 +23,6 @@
 
 @interface MainTabBarController ()<MainTabBarDelegate, RCIMUserInfoDataSource, AMapLocationManagerDelegate, RCIMReceiveMessageDelegate, RCIMConnectionStatusDelegate, UIAlertViewDelegate, AMapSearchDelegate, RCIMReceiveMessageDelegate, LoginViewControllerDelegate>
 @property(nonatomic, weak)MainTabBar *mainTabBar;
-
-//@property(nonatomic, strong)MessageViewController *messageVc;
-//@property (nonatomic, strong) ChatListViewController *chatListVC;
-
-
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;// 定位管理对象
 @property (nonatomic, strong) AMapSearchAPI *search;
@@ -53,7 +46,6 @@
     
     [self SetupMainTabBar];
     [self SetupAllControllers];
-    
     
     
     self.longitude = @"20";
@@ -114,7 +106,6 @@
     // 设置计时器每隔三十秒向服务器上传一次跑腿的位置
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(courierAddress) userInfo:nil repeats:YES];
-        
     }
    
     
@@ -127,6 +118,10 @@
 }
 
 - (void)checkOrder {
+    
+//    if ([self.tabCheckDelegate respondsToSelector:@selector(checkOrder)]) {
+//        [self.tabCheckDelegate checkOrder];
+//    }
     
     if (![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {
         if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
@@ -155,7 +150,7 @@
                             if (![vc isKindOfClass:[WaitOrderReceivingViewController class]]) {
                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您当前有可接订单" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                                 [alert show];
-                                // 加上声音和震动提示
+                                // 加上声音和震动提示 如果在后台要有推送
                                 
                                 //系统声音
                                 AudioServicesPlaySystemSound(1007);
@@ -218,15 +213,13 @@
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
     NSLog(@"xxxx");
     
-    
-    
     if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
         
         // 当被迫下线的时候就先移除当前用户的登录信息
         [[CourierInfoManager shareInstance] removeAllCourierInfo];
         [JPUSHService setAlias:nil callbackSelector:nil object:nil];
         [[RCIMClient sharedRCIMClient]logout];// 退出融云
-
+        
         
         UIAlertView *alert = [[UIAlertView alloc]
                               
@@ -243,6 +236,15 @@
                               otherButtonTitles:nil, nil];
         alert.tag = 7777;
         [alert show];
+        
+        // 将页面跳到首页页面
+        if (self.selectedIndex == 0) {
+            [self.homeVc.navigationController popToRootViewControllerAnimated:NO];
+        } else if (self.selectedIndex == 1) {
+            [self.chatListVC.navigationController popToRootViewControllerAnimated:NO];
+            self.selectedIndex = 0;
+        }
+        
     }
     
 }
@@ -483,9 +485,6 @@
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.homeVc = homeVC;
 
-    
-//    ChatListViewController *chatListVC = [[ChatListViewController alloc]init];
-//    self.chatListVC = chatListVC;
     
     TestChatListViewController *chatListVC = [[TestChatListViewController alloc] init];
     self.chatListVC = chatListVC;

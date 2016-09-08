@@ -42,13 +42,6 @@
     self.navigationController.navigationBar.hidden = NO;
     self.tabBarController.tabBar.hidden = YES;
     
-//    if (self.dataArray.count) {
-//        self.tableView.mj_footer.hidden = NO;
-//    } else {
-//        self.tableView.mj_footer.hidden = YES;
-//    }
-    
-//    [self requestData];
 }
 
 // 已完成请求  下拉刷新
@@ -109,7 +102,7 @@
 //    }
     
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
-        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":[NSString stringWithFormat:@"%ld",self.num] ,@"type":@"4"}];
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",(long)self.start], @"num":[NSString stringWithFormat:@"%ld",self.num] ,@"type":@"4"}];
         AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
         [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
             

@@ -17,8 +17,8 @@ typedef void(^RefreshModel)(BaseModel *);
 
 @property (nonatomic, strong) BaseModel *baseModel;
 
-@property (nonatomic, copy) RefreshBlock refresh;
-@property (nonatomic, copy) RefreshModel refreshModel;
+@property (nonatomic, copy) RefreshBlock refresh;// 返回需填单列表刷新的block
+@property (nonatomic, copy) RefreshModel refreshModel;// 刷新聊天页面的订单详情的block
 
 
 @end

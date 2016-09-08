@@ -79,14 +79,7 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
-                    //                [self.tableView.mj_header endRefreshing];
                     [self.tableView headerEndRefreshing];
-                    //                [self.tableView.mj_footer endRefreshing];
-                    //                if (self.dataArray.count) {
-                    //                    self.tableView.mj_footer.hidden = NO;
-                    //                } else {
-                    //                    self.tableView.mj_footer.hidden = YES;
-                    //                }
                     if (_hourGlass) {
                         
                         [_hourGlass removeFromSuperview];
@@ -112,7 +105,7 @@
     
     
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
-        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",self.start], @"num":@"20" ,@"type":@"1"}];
+        NSString *paramterStr = [EncryptionAndDecryption encryptionWithDic:@{@"api":@"distribution", @"version":@"1", @"pid":[[CourierInfoManager shareInstance] getCourierPid], @"start":[NSString stringWithFormat:@"%ld",(long)self.start], @"num":@"20" ,@"type":@"1"}];
         NSLog(@"%@",[[CourierInfoManager shareInstance] getCourierPid]);
         AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
         [session POST:REQUESTURL parameters:@{@"key":paramterStr} progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -214,14 +207,9 @@
         [deliverVC requestData];
     }];
     [self.tableView headerBeginRefreshing];
-    // Enter the refresh status immediately
-//    [self.tableView.mj_header beginRefreshing];
-//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestLoadData)];// 下拉加载
-//    self.tableView.mj_footer.hidden = YES;
     [self.tableView addFooterWithCallback:^{
         [deliverVC requestLoadData];
     }];
-//    [self.tableView.mj_footer beginRefreshing];
 }
 
 - (void)back {

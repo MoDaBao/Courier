@@ -11,7 +11,6 @@
 #import "WriteInfoBuyView.h"
 #import "MessageBarButton.h"
 #import "ChatViewController.h"
-#import "FeHourGlassViewController.h"
 #import "FeHourGlass.h"
 
 @interface WriteInfoViewController ()<SearchMapViewControllerDelegate, WriteInfoView_2Delegate, WriteInfoBuyViewDelegate>
@@ -173,10 +172,6 @@
     _end_longitude = nil;
 }
 
-//// 如果是地址已经填好的帮我买订单要调用这个方法赋值
-//- (void)buy {
-//    
-//}
 
 
 // 调出聊天界面
@@ -236,7 +231,6 @@
     
     
     // 网络请求参数
-    //    NSString *is_bonus = _baseModel.bonus_id ? @"1" : @"0";// 是否有红包 0是无  1是有
     NSString *parameter = nil;
     NSString *note = _baseModel.note ? _baseModel.note : @"";
     if (self.writeView.isChoose) {// 判断有无选择默认起送价
@@ -318,7 +312,7 @@
         
         NSString *latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
         NSString *longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
-        if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 已开启定位功能
+        if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 尚未开启定位功能
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         } else {
@@ -332,14 +326,7 @@
                     if (result.integerValue) {// 填单失败
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:responseObject[@"msg"]  delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                         [alert show];
-                        /*
-                         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"提示" message:responseObject[@"msg"] preferredStyle:UIAlertControllerStyleAlert];
-                         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                         [alertC dismissViewControllerAnimated:YES completion:nil];
-                         }];
-                         [alertC addAction:confirm];
-                         [self.navigationController presentViewController:alertC animated:YES completion:nil];
-                         */
+                        
                     } else {// 填单成功
                         if (self.refresh) {
                             self.refresh();
@@ -347,8 +334,6 @@
                         }
                         if (self.refreshModel) {
                             
-                            //                    FeHourGlassViewController *fehourVC = [[FeHourGlassViewController alloc] init];
-                            //                    [self presentViewController:fehourVC animated:YES completion:nil];
                             CGFloat height = 100;
                             CGFloat width = 100;
                             UIView *view = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - width) * .5, (kScreenHeight - kNavigationBarHeight - height) * .5, width, height)];
@@ -386,8 +371,6 @@
                                     NSLog(@"error is %@",error);
                                 }];
                             }];
-                            
-                            
                             
                         }
                     }

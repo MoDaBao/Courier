@@ -7,9 +7,7 @@
 //
 
 #import "TestChatListViewController.h"
-#import "TestCell.h"
 #import "ChatListCell.h"
-#import "ChatListViewController.h"
 #import "ChatViewController.h"
 #import "BaseModel.h"
 #import "ChatListModel.h"
@@ -82,17 +80,10 @@
 //    self.conversationListTableView.separatorColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
     self.conversationListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-//    backBtn.frame = CGRectMake(0, 0, 20, 20);
-//    [backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-//    self.navigationItem.leftBarButtonItem = backItem;
-    
     
     self.navigationItem.title = @"消息列表";
     self.emptyConversationView.hidden = YES;
+    
 }
 
 - (void)back {
@@ -101,8 +92,6 @@
 
 
 - (void)requestData {
-    
-    
     
     NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"type",@"2",@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
     NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_token_",[[CourierInfoManager shareInstance] getCourierPid],@"_userid_",@"2",@"type",[[CourierInfoManager shareInstance] getCourierPid],@"userid",nil];
@@ -126,7 +115,7 @@
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self willReloadTableData:_tempArr];
+            [self willReloadTableData:self.tempArr];
             
         });
         
@@ -135,9 +124,6 @@
     }];
     
 }
-
-
-
 
 
 // push到会话页面
@@ -150,7 +136,6 @@
         temp.isEnteredToCollectionViewController = YES;
         [self.navigationController pushViewController:temp animated:YES];
     } else if (model.conversationType == ConversationType_GROUP) {
-        //        ChatViewController *chatVC = [[ChatViewController alloc] initWithModel:nil];
         BaseModel *baseModel = nil;
         for (BaseModel *base in self.dataArray) {
             if ([base.order_sn isEqualToString:model.order_sn]) {
@@ -182,7 +167,7 @@
     // 加载订单数据
 //    [self requestDataWithDataArray:dataSource];
     
-    _tempArr = dataSource;
+    self.tempArr = dataSource;
     
     for (RCConversationModel *model in dataSource) {
         model.conversationModelType = RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
@@ -213,10 +198,7 @@
     }
     
     
-    
     self.conversationListDataSource = self.chatListArray;
-    
-    
     
     
     return self.chatListArray;
@@ -224,7 +206,6 @@
 
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    
     
     
     [UIApplication sharedApplication].applicationIconBadgeNumber =
@@ -379,7 +360,7 @@
     return cell;
 }
 
-//
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;

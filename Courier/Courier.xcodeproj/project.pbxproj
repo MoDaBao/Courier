@@ -25,14 +25,12 @@
 		82D839261D64328F007BA849 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D839251D64328F007BA849 /* Base64.m */; };
 		82D8392A1D643717007BA849 /* SettingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D839281D643717007BA849 /* SettingDetailVC.m */; };
 		82D8392B1D643717007BA849 /* SettingDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D839291D643717007BA849 /* SettingDetailVC.xib */; };
-		E700C8EB1D3F145D00D57FE4 /* TestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8EA1D3F145D00D57FE4 /* TestCell.m */; };
 		E700C8EE1D3F1A7600D57FE4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8ED1D3F1A7600D57FE4 /* ChatListCell.m */; };
 		E700C8F01D3F1A8800D57FE4 /* ChatListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E700C8EF1D3F1A8800D57FE4 /* ChatListCell.xib */; };
 		E700C8F31D3F562200D57FE4 /* TestMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8F21D3F562200D57FE4 /* TestMessageCell.m */; };
 		E700C8F51D3F584000D57FE4 /* TestMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E700C8F41D3F584000D57FE4 /* TestMessageCell.xib */; };
 		E700C8F81D3F5F3900D57FE4 /* SimpleMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8F71D3F5F3900D57FE4 /* SimpleMessage.m */; };
 		E700C8FB1D3F606900D57FE4 /* SimpleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E700C8FA1D3F606900D57FE4 /* SimpleMessageCell.m */; };
-		E704C9A01D5C56B9007ECEF0 /* FeHourGlassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */; };
 		E704C9A31D5C56C5007ECEF0 /* FeHourGlass.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C9A21D5C56C5007ECEF0 /* FeHourGlass.m */; };
 		E704C9A61D5C56D0007ECEF0 /* UIColor+flat.m in Sources */ = {isa = PBXBuildFile; fileRef = E704C9A41D5C56D0007ECEF0 /* UIColor+flat.m */; };
 		E712FEC31D518C1300AD70C3 /* CourierInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E712FEC11D518C1300AD70C3 /* CourierInfoManager.m */; };
@@ -92,14 +90,11 @@
 		E75D66F41D23AE1100D3AD1A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66C31D23AE1100D3AD1A /* LoginViewController.m */; };
 		E75D66F61D23AE1100D3AD1A /* MOTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66C91D23AE1100D3AD1A /* MOTextField.m */; };
 		E75D66F71D23AE1100D3AD1A /* TipMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66CB1D23AE1100D3AD1A /* TipMessageView.m */; };
-		E75D66F81D23AE1100D3AD1A /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66CF1D23AE1100D3AD1A /* ChatListViewController.m */; };
-		E75D66F91D23AE1100D3AD1A /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66D11D23AE1100D3AD1A /* MessageViewController.m */; };
 		E75D66FA1D23AE1100D3AD1A /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66D71D23AE1100D3AD1A /* PersonViewController.m */; };
 		E75D66FB1D23AE1100D3AD1A /* CourierInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DA1D23AE1100D3AD1A /* CourierInfoModel.m */; };
 		E75D66FC1D23AE1100D3AD1A /* AppraiseRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DD1D23AE1100D3AD1A /* AppraiseRateView.m */; };
 		E75D66FD1D23AE1100D3AD1A /* ClearView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DF1D23AE1100D3AD1A /* ClearView.m */; };
 		E75D66FE1D23AE1100D3AD1A /* HeartAppraiseRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66E11D23AE1100D3AD1A /* HeartAppraiseRateView.m */; };
-		E75D66FF1D23AE1100D3AD1A /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E75D66E21D23AE1100D3AD1A /* PushConfig.plist */; };
 		E75D67001D23AE1100D3AD1A /* EncryptionAndDecryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66E61D23AE1100D3AD1A /* EncryptionAndDecryption.m */; };
 		E75D67021D23AE1100D3AD1A /* NSDictionary+DicChangeJson.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66EA1D23AE1100D3AD1A /* NSDictionary+DicChangeJson.m */; };
 		E75D67031D23AE1100D3AD1A /* NSString+EncodeAndDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66EC1D23AE1100D3AD1A /* NSString+EncodeAndDecode.m */; };
@@ -241,8 +236,6 @@
 		82D839291D643717007BA849 /* SettingDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingDetailVC.xib; sourceTree = "<group>"; };
 		E6C9AB5C25786FB2023DB2C2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E700C8E61D3F091500D57FE4 /* TestChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestChatListViewController.h; sourceTree = "<group>"; };
-		E700C8E91D3F145D00D57FE4 /* TestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCell.h; sourceTree = "<group>"; };
-		E700C8EA1D3F145D00D57FE4 /* TestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCell.m; sourceTree = "<group>"; };
 		E700C8EC1D3F1A7600D57FE4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		E700C8ED1D3F1A7600D57FE4 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		E700C8EF1D3F1A8800D57FE4 /* ChatListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListCell.xib; sourceTree = "<group>"; };
@@ -253,8 +246,6 @@
 		E700C8F71D3F5F3900D57FE4 /* SimpleMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessage.m; sourceTree = "<group>"; };
 		E700C8F91D3F606900D57FE4 /* SimpleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMessageCell.h; sourceTree = "<group>"; };
 		E700C8FA1D3F606900D57FE4 /* SimpleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMessageCell.m; sourceTree = "<group>"; };
-		E704C99E1D5C56B9007ECEF0 /* FeHourGlassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHourGlassViewController.h; sourceTree = "<group>"; };
-		E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHourGlassViewController.m; sourceTree = "<group>"; };
 		E704C9A11D5C56C5007ECEF0 /* FeHourGlass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHourGlass.h; sourceTree = "<group>"; };
 		E704C9A21D5C56C5007ECEF0 /* FeHourGlass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHourGlass.m; sourceTree = "<group>"; };
 		E704C9A41D5C56D0007ECEF0 /* UIColor+flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+flat.m"; sourceTree = "<group>"; };
@@ -357,10 +348,6 @@
 		E75D66C91D23AE1100D3AD1A /* MOTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOTextField.m; sourceTree = "<group>"; };
 		E75D66CA1D23AE1100D3AD1A /* TipMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipMessageView.h; sourceTree = "<group>"; };
 		E75D66CB1D23AE1100D3AD1A /* TipMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipMessageView.m; sourceTree = "<group>"; };
-		E75D66CE1D23AE1100D3AD1A /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
-		E75D66CF1D23AE1100D3AD1A /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
-		E75D66D01D23AE1100D3AD1A /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
-		E75D66D11D23AE1100D3AD1A /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		E75D66D61D23AE1100D3AD1A /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
 		E75D66D71D23AE1100D3AD1A /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
 		E75D66D91D23AE1100D3AD1A /* CourierInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierInfoModel.h; sourceTree = "<group>"; };
@@ -371,7 +358,6 @@
 		E75D66DF1D23AE1100D3AD1A /* ClearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearView.m; sourceTree = "<group>"; };
 		E75D66E01D23AE1100D3AD1A /* HeartAppraiseRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartAppraiseRateView.h; sourceTree = "<group>"; };
 		E75D66E11D23AE1100D3AD1A /* HeartAppraiseRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartAppraiseRateView.m; sourceTree = "<group>"; };
-		E75D66E21D23AE1100D3AD1A /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		E75D66E41D23AE1100D3AD1A /* ConstantHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantHeader.h; sourceTree = "<group>"; };
 		E75D66E51D23AE1100D3AD1A /* EncryptionAndDecryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionAndDecryption.h; sourceTree = "<group>"; };
 		E75D66E61D23AE1100D3AD1A /* EncryptionAndDecryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptionAndDecryption.m; sourceTree = "<group>"; };
@@ -666,7 +652,6 @@
 				E75D66E31D23AE1100D3AD1A /* tool */,
 				E75D66891D23ACEE00D3AD1A /* Assets.xcassets */,
 				E75D668B1D23ACEE00D3AD1A /* LaunchScreen.storyboard */,
-				E75D66E21D23AE1100D3AD1A /* PushConfig.plist */,
 				E75D668E1D23ACEE00D3AD1A /* Info.plist */,
 				E746B00A1D4604FA00A43298 /* Images.xcassets */,
 				E75D66831D23ACEE00D3AD1A /* Supporting Files */,
@@ -776,16 +761,8 @@
 		E75D66CD1D23AE1100D3AD1A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E75D66CE1D23AE1100D3AD1A /* ChatListViewController.h */,
-				E75D66CF1D23AE1100D3AD1A /* ChatListViewController.m */,
-				E75D66D01D23AE1100D3AD1A /* MessageViewController.h */,
-				E75D66D11D23AE1100D3AD1A /* MessageViewController.m */,
 				E700C8E61D3F091500D57FE4 /* TestChatListViewController.h */,
 				E762B3DA1D5D993300BD968B /* TestChatListViewController.m */,
-				E704C99E1D5C56B9007ECEF0 /* FeHourGlassViewController.h */,
-				E704C99F1D5C56B9007ECEF0 /* FeHourGlassViewController.m */,
-				E700C8E91D3F145D00D57FE4 /* TestCell.h */,
-				E700C8EA1D3F145D00D57FE4 /* TestCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1252,7 +1229,6 @@
 				E7C0CD441D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.xib in Resources */,
 				E75D676A1D23AF1900D3AD1A /* CheckingDefaultTableViewCell.xib in Resources */,
 				82D8391F1D642120007BA849 /* PhotoCell.xib in Resources */,
-				E75D66FF1D23AE1100D3AD1A /* PushConfig.plist in Resources */,
 				82D8391D1D642120007BA849 /* CommitPhotoVC.xib in Resources */,
 				E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */,
 				E75D675F1D23AF1900D3AD1A /* WriteInfoViewController.xib in Resources */,
@@ -1396,19 +1372,16 @@
 				E79C2DDF1D2BACAB003B7719 /* MessageBarButton.m in Sources */,
 				82D8391E1D642120007BA849 /* PhotoCell.m in Sources */,
 				E704C9A61D5C56D0007ECEF0 /* UIColor+flat.m in Sources */,
-				E704C9A01D5C56B9007ECEF0 /* FeHourGlassViewController.m in Sources */,
 				E75D67061D23AE1100D3AD1A /* UIView+ChangeFrame.m in Sources */,
 				E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */,
 				E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */,
 				E71859601D7433BA00428321 /* MyDiscountVC.m in Sources */,
 				E75D67611D23AF1900D3AD1A /* BaseModel.m in Sources */,
-				E700C8EB1D3F145D00D57FE4 /* TestCell.m in Sources */,
 				E7C0CD431D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m in Sources */,
 				E746B0091D4315B600A43298 /* NetWorkRequestManager.m in Sources */,
 				E700C8FB1D3F606900D57FE4 /* SimpleMessageCell.m in Sources */,
 				E75D67551D23AF1900D3AD1A /* AlreadyDoneViewController.m in Sources */,
 				E704C9A31D5C56C5007ECEF0 /* FeHourGlass.m in Sources */,
-				E75D66F91D23AE1100D3AD1A /* MessageViewController.m in Sources */,
 				E75D678B1D2626DA00D3AD1A /* PathPlaningMapViewController.m in Sources */,
 				E75D676B1D23AF1900D3AD1A /* CheckingTableViewCell.m in Sources */,
 				E75D66FD1D23AE1100D3AD1A /* ClearView.m in Sources */,
@@ -1438,7 +1411,6 @@
 				E78AFEFD1D34EAE600172509 /* RouteCollectionViewCell.m in Sources */,
 				E712FEC31D518C1300AD70C3 /* CourierInfoManager.m in Sources */,
 				82D839221D642120007BA849 /* PhotoDemoCell.m in Sources */,
-				E75D66F81D23AE1100D3AD1A /* ChatListViewController.m in Sources */,
 				E75D67751D23AF1900D3AD1A /* OrderDetailDefaultTableViewCell.m in Sources */,
 				E75D67631D23AF1900D3AD1A /* AlreadyDoneDefaultTableViewCell.m in Sources */,
 				E75D66F71D23AE1100D3AD1A /* TipMessageView.m in Sources */,

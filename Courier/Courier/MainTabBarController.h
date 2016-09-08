@@ -14,6 +14,7 @@
 @protocol MainTabBarControllerDelegate <NSObject>
 
 - (void)setAddress:(NSString *)address;
+//- (void)checkOrder;
 
 @end
 
@@ -26,5 +27,6 @@
 @property(nonatomic, strong) PersonViewController *personVC;
 
 @property (nonatomic, assign) id<MainTabBarControllerDelegate> tabdelegate;
+//@property (nonatomic, assign) id<MainTabBarControllerDelegate> tabCheckDelegate;
 
 @end

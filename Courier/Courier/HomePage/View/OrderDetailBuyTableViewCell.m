@@ -68,6 +68,8 @@
 
 - (void)setDataWithModel:(BaseModel *)model {
     
+    self.model = model;
+    
     // 订单类型
     if (model.type.intValue == 1) {
         self.orderTypeLabel.text = @"帮我拿";
@@ -281,7 +283,7 @@
             
             NSString *latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
             NSString *longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
-            if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 已开启定位功能
+            if ([latitude isEqualToString:@"20"] || [longitude isEqualToString:@"20"]) {// 未开启定位功能
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先打开定位功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
             } else {

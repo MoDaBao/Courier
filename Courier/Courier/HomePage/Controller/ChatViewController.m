@@ -253,7 +253,7 @@
         }
         [self.navigationController pushViewController:orderVC animated:YES];
     } else {
-        NSString *msg = nil;
+//        NSString *msg = nil;
         if (_model.status.integerValue == 10) {
 //            msg = @"请等待用户审核";
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

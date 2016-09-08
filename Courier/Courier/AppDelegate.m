@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "HomePageViewController.h"
-#import "MessageViewController.h"
 #import "PersonViewController.h"
 #import "MainTabBarController.h"
 #import "WaitOrderReceivingViewController.h"
@@ -18,13 +17,57 @@
 
 
 
-@interface AppDelegate ()<UIAlertViewDelegate>
+@interface AppDelegate ()<UIAlertViewDelegate, MainTabBarControllerDelegate, CLLocationManagerDelegate>
+
+//@property (nonatomic, strong) CLLocationManager *locationManager;
+
+@property (nonatomic, assign) BOOL isActive;
+
+
+
 
 @end
 
 @implementation AppDelegate {
     NSString *_order_sn;
 }
+
+
+#pragma mark -----MainTabBarController代理方法-----
+
+- (void)checkOrder {
+    NSLog(@"checkOrder");
+}
+
+
+#pragma mark -----CLLocationManagerDelegate-----
+
+//- (void)locationManager: (CLLocationManager *)manager
+//       didFailWithError: (NSError *)error {
+//    
+//    NSString *errorString;
+//    [manager stopUpdatingLocation];
+//    NSLog(@"Error: %@",[error localizedDescription]);
+//    switch([error code]) {
+//        case kCLErrorDenied:
+//            //Access denied by user
+//            errorString = @"Access to Location Services denied by user";
+//            //Do something...
+//            break;
+//        case kCLErrorLocationUnknown:
+//            //Probably temporary...
+//            errorString = @"Location data unavailable";
+//            //Do something else...
+//            break;
+//        default:
+//            errorString = @"An unknown error has occurred";
+//            break;
+//    }
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:errorString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//    [alert show];
+//}
+
+
 
 // 获取默认起送信息
 - (void)setDefaultStartText {
@@ -52,6 +95,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+//    _locationManager = [[CLLocationManager alloc] init];
+//    _locationManager.delegate = self;
+    
     
     [self setDefaultStartText];
     
@@ -123,6 +171,7 @@
     
     
     MainTabBarController *mainTabVC = [[MainTabBarController alloc] init];
+//    mainTabVC.tabCheckDelegate = self;
     self.window.rootViewController = mainTabVC;
     
     

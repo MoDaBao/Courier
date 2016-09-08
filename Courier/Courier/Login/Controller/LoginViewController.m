@@ -17,7 +17,7 @@
 
 #define kTFMargin 20
 
-@interface LoginViewController ()<UITextFieldDelegate, RCIMUserInfoDataSource, RCIMConnectionStatusDelegate, UIAlertViewDelegate, AMapSearchDelegate, RCIMReceiveMessageDelegate>
+@interface LoginViewController ()<UITextFieldDelegate, UIAlertViewDelegate, AMapSearchDelegate>
 
 @property (nonatomic, strong) MOTextField *accountTF;// 账号
 @property (nonatomic, strong) MOTextField *passwordTF;// 密码

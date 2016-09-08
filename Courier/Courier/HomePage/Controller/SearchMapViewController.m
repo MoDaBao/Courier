@@ -331,7 +331,7 @@
     [self.dataArray removeAllObjects];
     [self.poiArray removeAllObjects];
     for (AMapPOI *poi in response.pois) {
-        NSLog(@"%@",poi);
+//        NSLog(@"%@",poi);
         [self.poiArray addObject:poi];
     }
     [self.tableView reloadData];
