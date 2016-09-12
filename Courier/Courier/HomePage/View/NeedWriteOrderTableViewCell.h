@@ -16,7 +16,9 @@ typedef void (^ClickBlock)(void);
 
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;// 编号
 
-@property (weak, nonatomic) IBOutlet UILabel *orderTypeLabel;// 订单类型
+//@property (weak, nonatomic) IBOutlet UILabel *orderTypeLabel;// 订单类型
+@property (weak, nonatomic) IBOutlet UIImageView *orderTypeImage;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *payStatusLabel;// 支付状态
 

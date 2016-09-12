@@ -30,9 +30,9 @@
     self.contentV.layer.borderColor = [UIColor colorWithRed:0.75 green:0.12 blue:0.16 alpha:1.00].CGColor;
     
     // 设置订单类型标签的圆角和颜色
-    self.orderTypeLabel.layer.cornerRadius = 3;
-    self.orderTypeLabel.clipsToBounds = YES;
-    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
+//    self.orderTypeLabel.layer.cornerRadius = 3;
+//    self.orderTypeLabel.clipsToBounds = YES;
+//    self.orderTypeLabel.backgroundColor = [UIColor colorWithRed:211 / 255.0f green:47 / 255.0f blue:47 / 255.0f alpha:1.0];
     
     // 设置支付状态标签的圆角和颜色
     self.payStatusLabel.layer.cornerRadius = 3;
@@ -59,12 +59,18 @@
 - (void)setDataWithMolde:(BaseModel *)model {
     // 订单类型
     if (model.type.intValue == 1) {
-        self.orderTypeLabel.text = @"帮我拿";
+        //        self.orderTypeLabel.text = @"帮我拿";
+        self.orderTypeImage.image = [UIImage imageNamed:@"djd_na"];
     } else if (model.type.intValue == 2) {
-        self.orderTypeLabel.text = @"帮我送";
+        //        self.orderTypeLabel.text = @"帮我送";
+        self.orderTypeImage.image = [UIImage imageNamed:@"djd_song"];
     } else {
-        self.orderTypeLabel.text = @"帮我买";
+        //        self.orderTypeLabel.text = @"帮我买";
+        self.orderTypeImage.image = [UIImage imageNamed:@"djd_mai"];
     }
+
+    
+    
     
     // 支付状态
     if (!model.pay_status.boolValue) {
