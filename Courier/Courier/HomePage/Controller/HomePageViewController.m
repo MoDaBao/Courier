@@ -36,6 +36,7 @@
 #import "WalletViewController.h"
 #import "MyMD5.h"
 #import "MainNavigationController.h"
+#import "MapNavViewController.h"
 
 #define SecretKey @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"
 
@@ -297,7 +298,7 @@
     
     UIButton *walletClick = [UIButton buttonWithType:UIButtonTypeSystem];
     walletClick.frame = CGRectMake(0, 0, _wallet.width, _wallet.height);
-    [walletClick addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [walletClick addTarget:self action:@selector(walletClick) forControlEvents:UIControlEventTouchUpInside];
     [_wallet addSubview:walletClick];
     
     
@@ -315,14 +316,17 @@
     
 }
 
+- (void)walletClick {
+    WalletViewController *walletVC = [[WalletViewController alloc] init];
+    [self.navigationController pushViewController:walletVC animated:YES];
+
+}
+
+
 - (void)testButton {
     
 //    [self zhangdanmingxi];
 //    [self wodehuokuan];
-    
-    
-    
-    
     
     
     
@@ -334,8 +338,10 @@
 // 测试方法
 - (void)test {
     
-    WalletViewController *walletVC = [[WalletViewController alloc] init];
-    [self.navigationController pushViewController:walletVC animated:YES];
+    MapNavViewController *mapNavVC = [[MapNavViewController alloc] init];
+    [self.navigationController pushViewController:mapNavVC animated:YES];
+    
+    
     
 //    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",[[CourierInfoManager shareInstance] getCourierPid]]],@"_userid_",[[CourierInfoManager shareInstance] getCourierPid],@"userid",[[CourierInfoManager shareInstance] getCourierPid],@"username",@"123",@"avatar",@"123",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
     

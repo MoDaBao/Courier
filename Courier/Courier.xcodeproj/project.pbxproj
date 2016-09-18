@@ -175,6 +175,7 @@
 		E79C2DDC1D2B48D1003B7719 /* AMapNavi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */; };
 		E79C2DDF1D2BACAB003B7719 /* MessageBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C2DDE1D2BACAB003B7719 /* MessageBarButton.m */; };
 		E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C2DE11D2CE1DB003B7719 /* SearchMapViewController.m */; };
+		E7A5B5BE1D87EC7D00335A4D /* MapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5B5BD1D87EC7D00335A4D /* MapNavViewController.m */; };
 		E7C0CD431D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C0CD411D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m */; };
 		E7C0CD441D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C0CD421D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.xib */; };
 		E7C0CD481D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C0CD461D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.m */; };
@@ -486,6 +487,8 @@
 		E79C2DDE1D2BACAB003B7719 /* MessageBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBarButton.m; sourceTree = "<group>"; };
 		E79C2DE01D2CE1DB003B7719 /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
 		E79C2DE11D2CE1DB003B7719 /* SearchMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMapViewController.m; sourceTree = "<group>"; };
+		E7A5B5BC1D87EC7D00335A4D /* MapNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavViewController.h; sourceTree = "<group>"; };
+		E7A5B5BD1D87EC7D00335A4D /* MapNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNavViewController.m; sourceTree = "<group>"; };
 		E7C0CD401D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailBuyTableViewCell.h; sourceTree = "<group>"; };
 		E7C0CD411D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailBuyTableViewCell.m; sourceTree = "<group>"; };
 		E7C0CD421D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailBuyTableViewCell.xib; sourceTree = "<group>"; };
@@ -920,6 +923,8 @@
 				82D838FC1D641E69007BA849 /* TestMapViewController.h */,
 				82D838FD1D641E69007BA849 /* TestMapViewController.m */,
 				82D838FE1D641E69007BA849 /* TestMapViewController.xib */,
+				E7A5B5BC1D87EC7D00335A4D /* MapNavViewController.h */,
+				E7A5B5BD1D87EC7D00335A4D /* MapNavViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1403,6 +1408,7 @@
 				E75D677A1D23AF1900D3AD1A /* TodayInfoItemVIew.m in Sources */,
 				E762B3DB1D5D993300BD968B /* TestChatListViewController.m in Sources */,
 				E75D66BC1D23ADE900D3AD1A /* MainTabBarController.m in Sources */,
+				E7A5B5BE1D87EC7D00335A4D /* MapNavViewController.m in Sources */,
 				E75D675B1D23AF1900D3AD1A /* OrderDetailViewController.m in Sources */,
 				E75D67571D23AF1900D3AD1A /* CheckingViewController.m in Sources */,
 				E75D66FC1D23AE1100D3AD1A /* AppraiseRateView.m in Sources */,
