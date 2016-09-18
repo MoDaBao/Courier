@@ -21,12 +21,12 @@
     self.contentV.backgroundColor = [UIColor whiteColor];
     
     // 设置编号标签的圆角效果
-    self.numberLabel.layer.cornerRadius = self.numberLabel.height * .5f;
+    self.numberLabel.layer.cornerRadius = 18 * .5f;
     self.numberLabel.clipsToBounds = YES;
     
     // 设置接单按钮的圆角效果和阴影效果
     self.orderReceivingBtn.backgroundColor = [UIColor colorWithRed:193 / 255.0f green:26 / 255.0f blue:32 / 255.0f alpha:1.0];
-    self.orderReceivingBtn.layer.cornerRadius = self.orderReceivingBtn.height * 0.45;// 设置圆角效果
+    self.orderReceivingBtn.layer.cornerRadius = 40 * 0.45;// 设置圆角效果
     self.orderReceivingBtn.layer.shadowColor = [UIColor blackColor].CGColor;// 设置阴影颜色
     self.orderReceivingBtn.layer.shadowOffset = CGSizeMake(1, 1);// 阴影范围
     self.orderReceivingBtn.layer.shadowOpacity = .5;// 阴影透明度

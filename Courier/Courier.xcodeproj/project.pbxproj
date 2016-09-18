@@ -64,12 +64,6 @@
 		E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E718596D1D7526BF00428321 /* ApplyViewController.m */; };
 		E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718596E1D7526BF00428321 /* ApplyViewController.xib */; };
 		E71859721D756C1E00428321 /* CommitCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859711D756C1E00428321 /* CommitCashVC.m */; };
-		E7299F4C1D4B2632008156BD /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4B1D4B2632008156BD /* OrderView.m */; };
-		E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F4E1D4B2642008156BD /* OrderDefaultView.m */; };
-		E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7299F511D4B266C008156BD /* OrderNoAddressView.m */; };
-		E7299F541D4B29BC008156BD /* OrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7299F531D4B29BC008156BD /* OrderView.xib */; };
-		E7299F561D4B2D06008156BD /* OrderDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7299F551D4B2D06008156BD /* OrderDefaultView.xib */; };
-		E7299F581D4B3D16008156BD /* OrderNoAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7299F571D4B3D16008156BD /* OrderNoAddressView.xib */; };
 		E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */; };
 		E746B0041D42023900A43298 /* WriteInfoBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B0031D42023900A43298 /* WriteInfoBuyView.m */; };
 		E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E746B0051D42024D00A43298 /* WriteInfoBuyView.xib */; };
@@ -77,6 +71,12 @@
 		E746B00B1D4604FA00A43298 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E746B00A1D4604FA00A43298 /* Images.xcassets */; };
 		E746B01D1D4858D200A43298 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B01C1D4858D200A43298 /* MyMD5.m */; };
 		E746B0201D488B5C00A43298 /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B01F1D488B5C00A43298 /* ChatListModel.m */; };
+		E74EEF061D8E913300768442 /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEEFE1D8E913300768442 /* OrderDefaultView.m */; };
+		E74EEF071D8E913300768442 /* OrderDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */; };
+		E74EEF081D8E913300768442 /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF011D8E913300768442 /* OrderNoAddressView.m */; };
+		E74EEF091D8E913300768442 /* OrderNoAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEF021D8E913300768442 /* OrderNoAddressView.xib */; };
+		E74EEF0A1D8E913300768442 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF041D8E913300768442 /* OrderView.m */; };
+		E74EEF0B1D8E913300768442 /* OrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEF051D8E913300768442 /* OrderView.xib */; };
 		E75D66851D23ACEE00D3AD1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66841D23ACEE00D3AD1A /* main.m */; };
 		E75D66881D23ACEE00D3AD1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66871D23ACEE00D3AD1A /* AppDelegate.m */; };
 		E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75D66891D23ACEE00D3AD1A /* Assets.xcassets */; };
@@ -302,15 +302,6 @@
 		E718596D1D7526BF00428321 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		E718596E1D7526BF00428321 /* ApplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyViewController.xib; sourceTree = "<group>"; };
 		E71859711D756C1E00428321 /* CommitCashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitCashVC.m; sourceTree = "<group>"; };
-		E7299F4A1D4B2632008156BD /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
-		E7299F4B1D4B2632008156BD /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
-		E7299F4D1D4B2642008156BD /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
-		E7299F4E1D4B2642008156BD /* OrderDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDefaultView.m; sourceTree = "<group>"; };
-		E7299F501D4B266C008156BD /* OrderNoAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoAddressView.h; sourceTree = "<group>"; };
-		E7299F511D4B266C008156BD /* OrderNoAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNoAddressView.m; sourceTree = "<group>"; };
-		E7299F531D4B29BC008156BD /* OrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderView.xib; sourceTree = "<group>"; };
-		E7299F551D4B2D06008156BD /* OrderDefaultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDefaultView.xib; sourceTree = "<group>"; };
-		E7299F571D4B3D16008156BD /* OrderNoAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderNoAddressView.xib; sourceTree = "<group>"; };
 		E7299F591D502CDB008156BD /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = "../Desktop/高德SDK/MAMapKit.framework"; sourceTree = "<group>"; };
 		E746B0021D42023900A43298 /* WriteInfoBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteInfoBuyView.h; sourceTree = "<group>"; };
 		E746B0031D42023900A43298 /* WriteInfoBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteInfoBuyView.m; sourceTree = "<group>"; };
@@ -322,6 +313,15 @@
 		E746B01C1D4858D200A43298 /* MyMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMD5.m; sourceTree = "<group>"; };
 		E746B01E1D488B5C00A43298 /* ChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListModel.h; sourceTree = "<group>"; };
 		E746B01F1D488B5C00A43298 /* ChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListModel.m; sourceTree = "<group>"; };
+		E74EEEFD1D8E913300768442 /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
+		E74EEEFE1D8E913300768442 /* OrderDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDefaultView.m; sourceTree = "<group>"; };
+		E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDefaultView.xib; sourceTree = "<group>"; };
+		E74EEF001D8E913300768442 /* OrderNoAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNoAddressView.h; sourceTree = "<group>"; };
+		E74EEF011D8E913300768442 /* OrderNoAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNoAddressView.m; sourceTree = "<group>"; };
+		E74EEF021D8E913300768442 /* OrderNoAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderNoAddressView.xib; sourceTree = "<group>"; };
+		E74EEF031D8E913300768442 /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
+		E74EEF041D8E913300768442 /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
+		E74EEF051D8E913300768442 /* OrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderView.xib; sourceTree = "<group>"; };
 		E75D66801D23ACEE00D3AD1A /* Courier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Courier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75D66841D23ACEE00D3AD1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E75D66861D23ACEE00D3AD1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -787,15 +787,15 @@
 				E700C8EC1D3F1A7600D57FE4 /* ChatListCell.h */,
 				E700C8ED1D3F1A7600D57FE4 /* ChatListCell.m */,
 				E700C8EF1D3F1A8800D57FE4 /* ChatListCell.xib */,
-				E7299F4A1D4B2632008156BD /* OrderView.h */,
-				E7299F4B1D4B2632008156BD /* OrderView.m */,
-				E7299F531D4B29BC008156BD /* OrderView.xib */,
-				E7299F4D1D4B2642008156BD /* OrderDefaultView.h */,
-				E7299F4E1D4B2642008156BD /* OrderDefaultView.m */,
-				E7299F551D4B2D06008156BD /* OrderDefaultView.xib */,
-				E7299F501D4B266C008156BD /* OrderNoAddressView.h */,
-				E7299F511D4B266C008156BD /* OrderNoAddressView.m */,
-				E7299F571D4B3D16008156BD /* OrderNoAddressView.xib */,
+				E74EEEFD1D8E913300768442 /* OrderDefaultView.h */,
+				E74EEEFE1D8E913300768442 /* OrderDefaultView.m */,
+				E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */,
+				E74EEF001D8E913300768442 /* OrderNoAddressView.h */,
+				E74EEF011D8E913300768442 /* OrderNoAddressView.m */,
+				E74EEF021D8E913300768442 /* OrderNoAddressView.xib */,
+				E74EEF031D8E913300768442 /* OrderView.h */,
+				E74EEF041D8E913300768442 /* OrderView.m */,
+				E74EEF051D8E913300768442 /* OrderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1200,6 +1200,7 @@
 				E71859651D7433BA00428321 /* OrderDetailInfoVC.xib in Resources */,
 				E718595D1D7433BA00428321 /* MissionCell.xib in Resources */,
 				E71859611D7433BA00428321 /* MyDiscountVC.xib in Resources */,
+				E74EEF0B1D8E913300768442 /* OrderView.xib in Resources */,
 				E700C8F51D3F584000D57FE4 /* TestMessageCell.xib in Resources */,
 				E7908EFB1D2A3CB400A62908 /* MapBottomView.xib in Resources */,
 				E7D7AF021D51CFD9005F01FF /* WaitReceivingTableViewCell.xib in Resources */,
@@ -1212,17 +1213,16 @@
 				82D839211D642120007BA849 /* PhotoDemoVC.xib in Resources */,
 				E75D67721D23AF1900D3AD1A /* FillOutAndPresentTableViewCell.xib in Resources */,
 				E75D67641D23AF1900D3AD1A /* AlreadyDoneDefaultTableViewCell.xib in Resources */,
-				E7299F541D4B29BC008156BD /* OrderView.xib in Resources */,
 				E78AFF071D378E1000172509 /* SearchTableViewCell.xib in Resources */,
 				E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */,
 				E7908EF61D2A124800A62908 /* CallOutCourierTableViewCell.xib in Resources */,
 				E75D67701D23AF1900D3AD1A /* DeliveryTableViewCell.xib in Resources */,
+				E74EEF071D8E913300768442 /* OrderDefaultView.xib in Resources */,
 				E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */,
 				E71859551D7433BA00428321 /* BankCardListVC.xib in Resources */,
 				E71859571D7433BA00428321 /* BankViewController.xib in Resources */,
 				E78AFF021D37739D00172509 /* SearchView.xib in Resources */,
 				E7C0CD491D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.xib in Resources */,
-				E7299F561D4B2D06008156BD /* OrderDefaultView.xib in Resources */,
 				E75D67881D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.xib in Resources */,
 				E770B3BD1D558D100028FF20 /* AMap.bundle in Resources */,
 				E75D67781D23AF1900D3AD1A /* OrderDetailTableViewCell.xib in Resources */,
@@ -1237,10 +1237,10 @@
 				82D8391D1D642120007BA849 /* CommitPhotoVC.xib in Resources */,
 				E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */,
 				E75D675F1D23AF1900D3AD1A /* WriteInfoViewController.xib in Resources */,
-				E7299F581D4B3D16008156BD /* OrderNoAddressView.xib in Resources */,
 				E75D67681D23AF1900D3AD1A /* CallOutTableViewCell.xib in Resources */,
 				E71639281D61ADD90020F22E /* MJRefresh.bundle in Resources */,
 				E718595B1D7433BA00428321 /* CommitCashVC.xib in Resources */,
+				E74EEF091D8E913300768442 /* OrderNoAddressView.xib in Resources */,
 				E75D676C1D23AF1900D3AD1A /* CheckingTableViewCell.xib in Resources */,
 				E75D67661D23AF1900D3AD1A /* AlreadyDoneTableViewCell.xib in Resources */,
 				E75D668D1D23ACEE00D3AD1A /* LaunchScreen.storyboard in Resources */,
@@ -1328,7 +1328,6 @@
 				E71859661D7433BA00428321 /* WalletViewController.m in Sources */,
 				E75D67691D23AF1900D3AD1A /* CheckingDefaultTableViewCell.m in Sources */,
 				82D8391C1D642120007BA849 /* CommitPhotoVC.m in Sources */,
-				E7299F521D4B266C008156BD /* OrderNoAddressView.m in Sources */,
 				82D8391A1D642120007BA849 /* CarTypeVC.m in Sources */,
 				E75D66881D23ACEE00D3AD1A /* AppDelegate.m in Sources */,
 				E7CFDB5C1D6162CF0070E329 /* TableHeaderView.m in Sources */,
@@ -1367,7 +1366,6 @@
 				E75D67031D23AE1100D3AD1A /* NSString+EncodeAndDecode.m in Sources */,
 				82D839261D64328F007BA849 /* Base64.m in Sources */,
 				E75D67771D23AF1900D3AD1A /* OrderDetailTableViewCell.m in Sources */,
-				E7299F4F1D4B2642008156BD /* OrderDefaultView.m in Sources */,
 				E71859561D7433BA00428321 /* BankViewController.m in Sources */,
 				E71859621D7433BA00428321 /* OrderDetailCell.m in Sources */,
 				E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */,
@@ -1381,9 +1379,11 @@
 				E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */,
 				E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */,
 				E71859601D7433BA00428321 /* MyDiscountVC.m in Sources */,
+				E74EEF0A1D8E913300768442 /* OrderView.m in Sources */,
 				E75D67611D23AF1900D3AD1A /* BaseModel.m in Sources */,
 				E7C0CD431D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.m in Sources */,
 				E746B0091D4315B600A43298 /* NetWorkRequestManager.m in Sources */,
+				E74EEF081D8E913300768442 /* OrderNoAddressView.m in Sources */,
 				E700C8FB1D3F606900D57FE4 /* SimpleMessageCell.m in Sources */,
 				E75D67551D23AF1900D3AD1A /* AlreadyDoneViewController.m in Sources */,
 				E704C9A31D5C56C5007ECEF0 /* FeHourGlass.m in Sources */,
@@ -1397,7 +1397,6 @@
 				E75D675D1D23AF1900D3AD1A /* WaitOrderReceivingViewController.m in Sources */,
 				E71859581D7433BA00428321 /* CarListCell.m in Sources */,
 				E71859721D756C1E00428321 /* CommitCashVC.m in Sources */,
-				E7299F4C1D4B2632008156BD /* OrderView.m in Sources */,
 				E78AFF001D37735700172509 /* SearchView.m in Sources */,
 				E75D67051D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m in Sources */,
 				82D839161D642120007BA849 /* BiaoShiViewController.m in Sources */,
@@ -1416,6 +1415,7 @@
 				82D8392A1D643717007BA849 /* SettingDetailVC.m in Sources */,
 				E78AFEFD1D34EAE600172509 /* RouteCollectionViewCell.m in Sources */,
 				E712FEC31D518C1300AD70C3 /* CourierInfoManager.m in Sources */,
+				E74EEF061D8E913300768442 /* OrderDefaultView.m in Sources */,
 				82D839221D642120007BA849 /* PhotoDemoCell.m in Sources */,
 				E75D67751D23AF1900D3AD1A /* OrderDetailDefaultTableViewCell.m in Sources */,
 				E75D67631D23AF1900D3AD1A /* AlreadyDoneDefaultTableViewCell.m in Sources */,

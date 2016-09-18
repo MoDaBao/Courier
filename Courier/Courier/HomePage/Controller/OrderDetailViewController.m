@@ -118,16 +118,33 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_isDelivery) {
+    if (_isDelivery) {// 在配送中查看单子 需要留出配送按钮的高度
         if ([self.baseModel.start isEqualToString:@""] || [self.baseModel.end isEqualToString:@""]) {
-            return 505;
+            if (self.baseModel.type.integerValue == 3) {// 帮我买
+                return 505;
+            } else {
+                return 525;
+            }
+            
         }
-        return 525;
-    } else {
+        if (self.baseModel.type.integerValue == 3) {
+            return 525;
+        } else {
+            return 545;
+        }
+    } else {// 在不是配送中的页面查看单子
         if ([self.baseModel.start isEqualToString:@""] || [self.baseModel.end isEqualToString:@""]) {
-            return 448;
+            if (self.baseModel.type.integerValue == 3) {
+                return 448;
+            } else {
+                return 468;
+            }
         }
-        return 468;
+        if (self.baseModel.type.integerValue == 3) {
+            return 468;
+        } else {
+             return 488;
+        }
     }
     
 }

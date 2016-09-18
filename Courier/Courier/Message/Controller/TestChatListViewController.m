@@ -14,6 +14,8 @@
 #import "MainTabBarController.h"
 #import "AppDelegate.h"
 
+#define ChatListCellHeight 126
+
 @interface TestChatListViewController ()<UIAlertViewDelegate>
 
 /**
@@ -325,7 +327,7 @@
 
 // 高度
 - (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 126;
+    return ChatListCellHeight;
 }
 
 // 自定义cell
@@ -336,9 +338,9 @@
 //        cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ChatListCell" owner:nil options:nil] lastObject];
         
-        float sortaPixel = 1.0/ [UIScreen mainScreen].scale;
+        float sortaPixel = 1.0 / [UIScreen mainScreen].scale;
         cell.line = [[UIView alloc] init];
-        cell.line.frame = CGRectMake(0,125,kScreenWidth, sortaPixel);
+        cell.line.frame = CGRectMake(0, ChatListCellHeight - 2, kScreenWidth, 1);
         cell.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
         [cell.contentView addSubview:cell.line];
     }
