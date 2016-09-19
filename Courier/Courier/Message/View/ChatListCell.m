@@ -11,6 +11,7 @@
 @interface ChatListCell ()
 
 @property (nonatomic, copy) NSString *userid;
+//@property (nonatomic, copy) NSString *pic;
 
 @end
 
@@ -25,6 +26,7 @@
 */
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     
     self.icon.layer.cornerRadius = 35 * .5;
     self.icon.clipsToBounds = YES;
@@ -114,10 +116,16 @@
             NSDictionary *dataDic = [EncryptionAndDecryption decryptionWithString:responseObject[@"data"]];
             
             NSString *pic = dataDic[@"user"][@"pic"];
+            
+            
             NSLog(@"dataDic = %@",dataDic);
+//            if (![pic isEqualToString:_pic]) {
+            [self.icon sd_setImageWithURL:[NSURL URLWithString:pic] placeholderImage:[UIImage imageNamed:@"img_22"]];
+//                _pic = pic;
+//            }
 //            [self.icon sd_setImageWithURL:[NSURL URLWithString:pic]];
             
-            [self.icon sd_setImageWithURL:[NSURL URLWithString:pic] placeholderImage:[UIImage imageNamed:@"img_22"]];
+            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

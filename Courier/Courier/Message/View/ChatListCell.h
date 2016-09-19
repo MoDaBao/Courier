@@ -35,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *badge;
 
 
-- (void)setDataModel:(RCConversationModel *)model BaseModel:(BaseModel *)baseModel;
+//- (void)setDataModel:(RCConversationModel *)model BaseModel:(BaseModel *)baseModel;
 
 - (void)setDataChatModel:(ChatListModel *)chat;
 
