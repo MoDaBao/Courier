@@ -71,6 +71,28 @@
 		E746B00B1D4604FA00A43298 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E746B00A1D4604FA00A43298 /* Images.xcassets */; };
 		E746B01D1D4858D200A43298 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B01C1D4858D200A43298 /* MyMD5.m */; };
 		E746B0201D488B5C00A43298 /* ChatListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B01F1D488B5C00A43298 /* ChatListModel.m */; };
+		E748E1971D8FCA96007B8045 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = E748E18D1D8FCA96007B8045 /* Emoji.plist */; };
+		E748E1981D8FCA96007B8045 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = E748E18E1D8FCA96007B8045 /* RongCloudKit.strings */; };
+		E748E1991D8FCA96007B8045 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1901D8FCA96007B8045 /* libopencore-amrnb.a */; };
+		E748E19A1D8FCA96007B8045 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E748E1911D8FCA96007B8045 /* RCConfig.plist */; };
+		E748E19B1D8FCA96007B8045 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = E748E1921D8FCA96007B8045 /* release_notes_ios.txt */; };
+		E748E19C1D8FCA96007B8045 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E748E1931D8FCA96007B8045 /* RongCloud.bundle */; };
+		E748E19D1D8FCA96007B8045 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1941D8FCA96007B8045 /* RongIMKit.framework */; };
+		E748E19E1D8FCA96007B8045 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1951D8FCA96007B8045 /* RongIMLib.framework */; };
+		E748E1A01D8FCAB2007B8045 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E19F1D8FCAB2007B8045 /* AssetsLibrary.framework */; };
+		E748E1A21D8FCABC007B8045 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1A11D8FCABC007B8045 /* AudioToolbox.framework */; };
+		E748E1A41D8FCAC5007B8045 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1A31D8FCAC5007B8045 /* AVFoundation.framework */; };
+		E748E1A61D8FCAD7007B8045 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1A51D8FCAD7007B8045 /* CFNetwork.framework */; };
+		E748E1A81D8FCAE1007B8045 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1A71D8FCAE1007B8045 /* CoreAudio.framework */; };
+		E748E1AA1D8FCAF6007B8045 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1A91D8FCAF6007B8045 /* CoreMedia.framework */; };
+		E748E1AC1D8FCB04007B8045 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1AB1D8FCB04007B8045 /* CoreVideo.framework */; };
+		E748E1AE1D8FCB09007B8045 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1AD1D8FCB09007B8045 /* ImageIO.framework */; };
+		E748E1B01D8FCB19007B8045 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1AF1D8FCB19007B8045 /* libc++abi.tbd */; };
+		E748E1B21D8FCB23007B8045 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B11D8FCB23007B8045 /* libsqlite3.tbd */; };
+		E748E1B41D8FCB37007B8045 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B31D8FCB37007B8045 /* libstdc++.tbd */; };
+		E748E1B61D8FCB41007B8045 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B51D8FCB41007B8045 /* libxml2.tbd */; };
+		E748E1B81D8FCB54007B8045 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B71D8FCB54007B8045 /* MapKit.framework */; };
+		E748E1BA1D8FCB72007B8045 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B91D8FCB72007B8045 /* Photos.framework */; };
 		E74EEF061D8E913300768442 /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEEFE1D8E913300768442 /* OrderDefaultView.m */; };
 		E74EEF071D8E913300768442 /* OrderDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */; };
 		E74EEF081D8E913300768442 /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF011D8E913300768442 /* OrderNoAddressView.m */; };
@@ -314,6 +336,29 @@
 		E746B01C1D4858D200A43298 /* MyMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMD5.m; sourceTree = "<group>"; };
 		E746B01E1D488B5C00A43298 /* ChatListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListModel.h; sourceTree = "<group>"; };
 		E746B01F1D488B5C00A43298 /* ChatListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListModel.m; sourceTree = "<group>"; };
+		E748E18D1D8FCA96007B8045 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		E748E18F1D8FCA96007B8045 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
+		E748E1901D8FCA96007B8045 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		E748E1911D8FCA96007B8045 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
+		E748E1921D8FCA96007B8045 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
+		E748E1931D8FCA96007B8045 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		E748E1941D8FCA96007B8045 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		E748E1951D8FCA96007B8045 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		E748E1961D8FCA96007B8045 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
+		E748E19F1D8FCAB2007B8045 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		E748E1A11D8FCABC007B8045 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E748E1A31D8FCAC5007B8045 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E748E1A51D8FCAD7007B8045 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E748E1A71D8FCAE1007B8045 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		E748E1A91D8FCAF6007B8045 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		E748E1AB1D8FCB04007B8045 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		E748E1AD1D8FCB09007B8045 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		E748E1AF1D8FCB19007B8045 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		E748E1B11D8FCB23007B8045 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E748E1B31D8FCB37007B8045 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		E748E1B51D8FCB41007B8045 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		E748E1B71D8FCB54007B8045 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E748E1B91D8FCB72007B8045 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E74EEEFD1D8E913300768442 /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
 		E74EEEFE1D8E913300768442 /* OrderDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDefaultView.m; sourceTree = "<group>"; };
 		E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDefaultView.xib; sourceTree = "<group>"; };
@@ -516,24 +561,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E748E1BA1D8FCB72007B8045 /* Photos.framework in Frameworks */,
+				E79C2DC01D2B43BF003B7719 /* UIKit.framework in Frameworks */,
+				E79C2DCE1D2B4439003B7719 /* SystemConfiguration.framework in Frameworks */,
+				E79C2DC61D2B4413003B7719 /* QuartzCore.framework in Frameworks */,
+				E79C2DC81D2B441E003B7719 /* OpenGLES.framework in Frameworks */,
+				E748E1B81D8FCB54007B8045 /* MapKit.framework in Frameworks */,
+				E79C2DD01D2B4442003B7719 /* libz.tbd in Frameworks */,
+				E748E1B61D8FCB41007B8045 /* libxml2.tbd in Frameworks */,
+				E748E1B41D8FCB37007B8045 /* libstdc++.tbd in Frameworks */,
+				E748E1B21D8FCB23007B8045 /* libsqlite3.tbd in Frameworks */,
+				E748E1B01D8FCB19007B8045 /* libc++abi.tbd in Frameworks */,
+				E748E1AE1D8FCB09007B8045 /* ImageIO.framework in Frameworks */,
+				E748E1AC1D8FCB04007B8045 /* CoreVideo.framework in Frameworks */,
+				E79C2DCC1D2B4430003B7719 /* CoreTelephony.framework in Frameworks */,
+				E748E1AA1D8FCAF6007B8045 /* CoreMedia.framework in Frameworks */,
+				E79C2DCA1D2B4427003B7719 /* CoreLocation.framework in Frameworks */,
+				E79C2DC41D2B4408003B7719 /* CoreGraphics.framework in Frameworks */,
+				E748E1A81D8FCAE1007B8045 /* CoreAudio.framework in Frameworks */,
+				E748E1A61D8FCAD7007B8045 /* CFNetwork.framework in Frameworks */,
+				E748E1A41D8FCAC5007B8045 /* AVFoundation.framework in Frameworks */,
+				E748E1A21D8FCABC007B8045 /* AudioToolbox.framework in Frameworks */,
+				E748E1A01D8FCAB2007B8045 /* AssetsLibrary.framework in Frameworks */,
 				E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */,
 				E770B3BA1D558D070028FF20 /* AMapFoundationKit.framework in Frameworks */,
 				E770B3BB1D558D070028FF20 /* MAMapKit.framework in Frameworks */,
 				E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */,
+				E748E1991D8FCA96007B8045 /* libopencore-amrnb.a in Frameworks */,
 				E79C2DD81D2B4706003B7719 /* AMapLocationKit.framework in Frameworks */,
 				E79C2DD61D2B4469003B7719 /* Security.framework in Frameworks */,
 				E79C2DD41D2B4460003B7719 /* libc++.tbd in Frameworks */,
 				E79C2DD21D2B4450003B7719 /* libstdc++.6.0.9.tbd in Frameworks */,
-				E79C2DD01D2B4442003B7719 /* libz.tbd in Frameworks */,
-				E79C2DCE1D2B4439003B7719 /* SystemConfiguration.framework in Frameworks */,
-				E79C2DCC1D2B4430003B7719 /* CoreTelephony.framework in Frameworks */,
-				E79C2DCA1D2B4427003B7719 /* CoreLocation.framework in Frameworks */,
-				E79C2DC81D2B441E003B7719 /* OpenGLES.framework in Frameworks */,
-				E79C2DC61D2B4413003B7719 /* QuartzCore.framework in Frameworks */,
+				E748E19D1D8FCA96007B8045 /* RongIMKit.framework in Frameworks */,
 				E74EEF0F1D8F78EA00768442 /* jpush-ios-2.1.9.a in Frameworks */,
-				E79C2DC41D2B4408003B7719 /* CoreGraphics.framework in Frameworks */,
+				E748E19E1D8FCA96007B8045 /* RongIMLib.framework in Frameworks */,
 				E79C2DC21D2B43FF003B7719 /* Foundation.framework in Frameworks */,
-				E79C2DC01D2B43BF003B7719 /* UIKit.framework in Frameworks */,
 				E79C2DBC1D2B434C003B7719 /* AMapSearchKit.framework in Frameworks */,
 				09580764F068499B690C1505 /* libPods.a in Frameworks */,
 			);
@@ -559,6 +621,20 @@
 		BF0EB25AEAC1BD3FC9961158 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E748E1B91D8FCB72007B8045 /* Photos.framework */,
+				E748E1B71D8FCB54007B8045 /* MapKit.framework */,
+				E748E1B51D8FCB41007B8045 /* libxml2.tbd */,
+				E748E1B31D8FCB37007B8045 /* libstdc++.tbd */,
+				E748E1B11D8FCB23007B8045 /* libsqlite3.tbd */,
+				E748E1AF1D8FCB19007B8045 /* libc++abi.tbd */,
+				E748E1AD1D8FCB09007B8045 /* ImageIO.framework */,
+				E748E1AB1D8FCB04007B8045 /* CoreVideo.framework */,
+				E748E1A91D8FCAF6007B8045 /* CoreMedia.framework */,
+				E748E1A71D8FCAE1007B8045 /* CoreAudio.framework */,
+				E748E1A51D8FCAD7007B8045 /* CFNetwork.framework */,
+				E748E1A31D8FCAC5007B8045 /* AVFoundation.framework */,
+				E748E1A11D8FCABC007B8045 /* AudioToolbox.framework */,
+				E748E19F1D8FCAB2007B8045 /* AssetsLibrary.framework */,
 				E74EEF101D8F79E400768442 /* UserNotifications.framework */,
 				E7299F591D502CDB008156BD /* MAMapKit.framework */,
 				E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */,
@@ -615,6 +691,21 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		E748E18C1D8FCA96007B8045 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable */ = {
+			isa = PBXGroup;
+			children = (
+				E748E18D1D8FCA96007B8045 /* Emoji.plist */,
+				E748E18E1D8FCA96007B8045 /* RongCloudKit.strings */,
+				E748E1901D8FCA96007B8045 /* libopencore-amrnb.a */,
+				E748E1911D8FCA96007B8045 /* RCConfig.plist */,
+				E748E1921D8FCA96007B8045 /* release_notes_ios.txt */,
+				E748E1931D8FCA96007B8045 /* RongCloud.bundle */,
+				E748E1941D8FCA96007B8045 /* RongIMKit.framework */,
+				E748E1951D8FCA96007B8045 /* RongIMLib.framework */,
+			);
+			path = Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable;
+			sourceTree = "<group>";
+		};
 		E74EEF0C1D8F78EA00768442 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -629,6 +720,7 @@
 			children = (
 				E770B3BC1D558D100028FF20 /* AMap.bundle */,
 				E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */,
+				E748E18C1D8FCA96007B8045 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable */,
 				E74EEF0C1D8F78EA00768442 /* Lib */,
 				E75D66821D23ACEE00D3AD1A /* Courier */,
 				E75D66961D23ACEE00D3AD1A /* CourierTests */,
@@ -1186,6 +1278,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E75D66771D23ACEE00D3AD1A;
 			productRefGroup = E75D66811D23ACEE00D3AD1A /* Products */;
@@ -1210,6 +1303,7 @@
 				E718595D1D7433BA00428321 /* MissionCell.xib in Resources */,
 				E71859611D7433BA00428321 /* MyDiscountVC.xib in Resources */,
 				E74EEF0B1D8E913300768442 /* OrderView.xib in Resources */,
+				E748E19B1D8FCA96007B8045 /* release_notes_ios.txt in Resources */,
 				E700C8F51D3F584000D57FE4 /* TestMessageCell.xib in Resources */,
 				E7908EFB1D2A3CB400A62908 /* MapBottomView.xib in Resources */,
 				E7D7AF021D51CFD9005F01FF /* WaitReceivingTableViewCell.xib in Resources */,
@@ -1217,8 +1311,10 @@
 				82D8392B1D643717007BA849 /* SettingDetailVC.xib in Resources */,
 				E71859671D7433BA00428321 /* WalletViewController.xib in Resources */,
 				E718595F1D7433BA00428321 /* MissionViewController.xib in Resources */,
+				E748E19C1D8FCA96007B8045 /* RongCloud.bundle in Resources */,
 				E75D676E1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.xib in Resources */,
 				E7D7AF4B1D52FDB3005F01FF /* WriteInfoView_2.xib in Resources */,
+				E748E19A1D8FCA96007B8045 /* RCConfig.plist in Resources */,
 				82D839211D642120007BA849 /* PhotoDemoVC.xib in Resources */,
 				E75D67721D23AF1900D3AD1A /* FillOutAndPresentTableViewCell.xib in Resources */,
 				E75D67641D23AF1900D3AD1A /* AlreadyDoneDefaultTableViewCell.xib in Resources */,
@@ -1231,6 +1327,7 @@
 				E71859551D7433BA00428321 /* BankCardListVC.xib in Resources */,
 				E71859571D7433BA00428321 /* BankViewController.xib in Resources */,
 				E78AFF021D37739D00172509 /* SearchView.xib in Resources */,
+				E748E1981D8FCA96007B8045 /* RongCloudKit.strings in Resources */,
 				E7C0CD491D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.xib in Resources */,
 				E75D67881D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.xib in Resources */,
 				E770B3BD1D558D100028FF20 /* AMap.bundle in Resources */,
@@ -1242,6 +1339,7 @@
 				E7DA16421D645400002CD03B /* default.mp3 in Resources */,
 				E7C0CD441D51A3DB00ED9004 /* OrderDetailBuyTableViewCell.xib in Resources */,
 				E75D676A1D23AF1900D3AD1A /* CheckingDefaultTableViewCell.xib in Resources */,
+				E748E1971D8FCA96007B8045 /* Emoji.plist in Resources */,
 				82D8391F1D642120007BA849 /* PhotoCell.xib in Resources */,
 				82D8391D1D642120007BA849 /* CommitPhotoVC.xib in Resources */,
 				E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */,
@@ -1470,6 +1568,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E748E18E1D8FCA96007B8045 /* RongCloudKit.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E748E18F1D8FCA96007B8045 /* en */,
+				E748E1961D8FCA96007B8045 /* zh-Hans */,
+			);
+			name = RongCloudKit.strings;
+			sourceTree = "<group>";
+		};
 		E75D668B1D23ACEE00D3AD1A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1575,6 +1682,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable",
 				);
 				GCC_PREFIX_HEADER = Courier/tool/PrefixHeader.pch;
 				INFOPLIST_FILE = Courier/Info.plist;
@@ -1585,6 +1693,7 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/MAMapKit.framework",
 					"$(PROJECT_DIR)/Lib",
+					"$(PROJECT_DIR)/Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenlingoy.Courier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1604,6 +1713,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable",
 				);
 				GCC_PREFIX_HEADER = Courier/tool/PrefixHeader.pch;
 				INFOPLIST_FILE = Courier/Info.plist;
@@ -1614,6 +1724,7 @@
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/MAMapKit.framework",
 					"$(PROJECT_DIR)/Lib",
+					"$(PROJECT_DIR)/Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenlingoy.Courier;
 				PRODUCT_NAME = "$(TARGET_NAME)";

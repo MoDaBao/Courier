@@ -1,5 +1,4 @@
 pod 'AFNetworking', '~> 3.0.4'
-pod 'RongCloudIMKit', '~> 2.6.8'
 
 pod 'SDWebImage', '~> 3.8.1'
 
