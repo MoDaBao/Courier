@@ -88,6 +88,20 @@ typedef NS_ENUM(NSInteger, AMapNaviWalkViewShowMode)
  */
 @property (nonatomic, assign) CGFloat cameraDegree;
 
+#pragma mark - Polyline Texture
+
+/**
+ *  路线polyline的宽度,设置0恢复默认宽度
+ */
+@property (nonatomic, assign) CGFloat lineWidth;
+
+/**
+ *  标准路线Polyline的纹理图片,设置nil恢复默认纹理
+ *
+ *  纹理图片需满足：长宽相等，且宽度值为2的次幂
+ */
+@property (nonatomic, copy, nullable) UIImage *normalTexture;
+
 #pragma mark - Image
 
 /**
@@ -100,7 +114,19 @@ typedef NS_ENUM(NSInteger, AMapNaviWalkViewShowMode)
  *  设置路径终点图标
  *  @param endPointImage 终点图标,设置nil为默认图标
  */
-- (void)setEndPointImage:(UIImage *)endPointImage;
+- (void)setEndPointImage:(nullable UIImage *)endPointImage;
+
+/**
+ *  设置自车图标
+ *  @param carImage 自车图标,设置nil为默认图标
+ */
+- (void)setCarImage:(nullable UIImage *)carImage;
+
+/**
+ *  设置自车罗盘图标
+ *  @param carCompassImage 自车罗盘图标,设置nil为默认图标
+ */
+- (void)setCarCompassImage:(nullable UIImage *)carCompassImage;
 
 @end
 

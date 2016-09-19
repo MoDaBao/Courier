@@ -12,11 +12,11 @@
 #ifndef AMapLoctionVersion_h
 #define AMapLoctionVersion_h
 
-#define AMapLocationVersionNumber           20000
-#define AMapFoundationVersionMinRequired    10000
+#define AMapLocationVersionNumber                   20101
+#define AMapLocationFoundationVersionMinRequired    10200
 
 // 依赖库版本检测
-#if AMapFoundationVersionNumber < AMapFoundationVersionMinRequired
+#if AMapFoundationVersionNumber < AMapLocationFoundationVersionMinRequired
 #error "The AMapFoundationKit version is less than minimum required, please update! Any questions please to visit http://lbs.amap.com"
 #endif
 

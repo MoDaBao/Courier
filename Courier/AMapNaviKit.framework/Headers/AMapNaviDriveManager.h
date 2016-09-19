@@ -113,8 +113,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  不带起点的驾车路径规划
  *
- *  @param endPoints    终点坐标.支持多个终点,终点列表的尾点为实际导航终点,其他坐标点为辅助信息,带有方向性,可有效避免算路到马路的另一侧.
- *  @param wayPoints    途经点坐标,最多支持4个途经点.
+ *  @param endPoints    终点坐标.终点列表的尾点为实际导航终点.
+ *  @param wayPoints    途经点坐标,最多支持16个途经点.
  *  @param strategy     路径的计算策略
  *  @return 规划路径是否成功
  */
@@ -125,9 +125,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  带起点的驾车路径规划
  *
- *  @param startPoints  起点坐标.支持多个起点,起点列表的尾点为实际导航起点,其他坐标点为辅助信息,带有方向性,可有效避免算路到马路的另一侧.
- *  @param endPoints    终点坐标.支持多个终点,终点列表的尾点为实际导航终点,其他坐标点为辅助信息,带有方向性,可有效避免算路到马路的另一侧.
- *  @param wayPoints    途经点坐标,最多支持4个途经点.
+ *  @param startPoints  起点坐标.起点列表的尾点为实际导航起点,其他坐标点为辅助信息,带有方向性,可有效避免算路到马路的另一侧.
+ *  @param endPoints    终点坐标.终点列表的尾点为实际导航终点,其他坐标点为辅助信息,带有方向性,可有效避免算路到马路的另一侧.
+ *  @param wayPoints    途经点坐标,最多支持16个途经点.
  *  @param strategy     路径的计算策略
  *  @return 规划路径是否成功
  */
@@ -145,6 +145,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)recalculateDriveRouteWithDrivingStrategy:(AMapNaviDrivingStrategy)strategy;
 
 #pragma mark - Manual
+
+/**
+ *  设置车牌信息
+ *
+ *  @param province 车牌省份缩写，例如：@"京"
+ *  @param number 除省份及标点之外，车牌的字母和数字，例如：@"NH1N11"
+ */
+- (void)setVehicleProvince:(NSString *)province number:(NSString *)number;
 
 /**
  *  设置播报模式,默认新手详细播报(AMapNaviBroadcastModeDetailed)

@@ -13,9 +13,9 @@
 #ifndef AMapNaviVersion_h
 #define AMapNaviVersion_h
 
-#define AMapNaviVersionNumber                   20000
-#define AMapNaviFoundationVersionMinRequired    10000
-#define AMapNavi3DMapVersionMinRequired         40000
+#define AMapNaviVersionNumber                   20201
+#define AMapNaviFoundationVersionMinRequired    10200
+#define AMapNavi3DMapVersionMinRequired         40200
 
 /// 依赖库版本检测
 #if AMapFoundationVersionNumber < AMapNaviFoundationVersionMinRequired

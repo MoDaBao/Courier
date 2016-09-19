@@ -181,4 +181,9 @@
  */
 @property (nonatomic, strong) NSIndexPath *wayPointsIndexes;
 
+/**
+ *  路径的途经点在routeCoordinates上对应的index
+ */
+@property (nonatomic, strong) NSArray<NSNumber *> *wayPointCoordIndexes;
+
 @end

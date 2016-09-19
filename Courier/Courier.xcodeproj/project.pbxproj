@@ -64,7 +64,6 @@
 		E718596F1D7526BF00428321 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E718596D1D7526BF00428321 /* ApplyViewController.m */; };
 		E71859701D7526BF00428321 /* ApplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E718596E1D7526BF00428321 /* ApplyViewController.xib */; };
 		E71859721D756C1E00428321 /* CommitCashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E71859711D756C1E00428321 /* CommitCashVC.m */; };
-		E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */; };
 		E746B0041D42023900A43298 /* WriteInfoBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B0031D42023900A43298 /* WriteInfoBuyView.m */; };
 		E746B0061D42024D00A43298 /* WriteInfoBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E746B0051D42024D00A43298 /* WriteInfoBuyView.xib */; };
 		E746B0091D4315B600A43298 /* NetWorkRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E746B0081D4315B600A43298 /* NetWorkRequestManager.m */; };
@@ -93,6 +92,13 @@
 		E748E1B61D8FCB41007B8045 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B51D8FCB41007B8045 /* libxml2.tbd */; };
 		E748E1B81D8FCB54007B8045 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B71D8FCB54007B8045 /* MapKit.framework */; };
 		E748E1BA1D8FCB72007B8045 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748E1B91D8FCB72007B8045 /* Photos.framework */; };
+		E748E1BB1D8FDBDB007B8045 /* AMapNaviKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */; };
+		E748E1BC1D8FDBE3007B8045 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB71D2B430A003B7719 /* AMapFoundationKit.framework */; };
+		E748E1BD1D8FDBEB007B8045 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD71D2B4706003B7719 /* AMapLocationKit.framework */; };
+		E748E1BE1D8FDBF3007B8045 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB81D2B430A003B7719 /* MAMapKit.framework */; };
+		E748E1BF1D8FDBFF007B8045 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DBB1D2B434C003B7719 /* AMapSearchKit.framework */; };
+		E748E1C11D8FDCAD007B8045 /* AMapNavi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E748E1C01D8FDCAD007B8045 /* AMapNavi.bundle */; };
+		E748E1C31D8FDCBB007B8045 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E748E1C21D8FDCBB007B8045 /* AMap.bundle */; };
 		E74EEF061D8E913300768442 /* OrderDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEEFE1D8E913300768442 /* OrderDefaultView.m */; };
 		E74EEF071D8E913300768442 /* OrderDefaultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */; };
 		E74EEF081D8E913300768442 /* OrderNoAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF011D8E913300768442 /* OrderNoAddressView.m */; };
@@ -169,9 +175,6 @@
 		E75D678B1D2626DA00D3AD1A /* PathPlaningMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D678A1D2626DA00D3AD1A /* PathPlaningMapViewController.m */; };
 		E75F1A991D2E333D00CC2B24 /* SelectableOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = E75F1A981D2E333D00CC2B24 /* SelectableOverlay.m */; };
 		E762B3DB1D5D993300BD968B /* TestChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E762B3DA1D5D993300BD968B /* TestChatListViewController.m */; };
-		E770B3BA1D558D070028FF20 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB71D2B430A003B7719 /* AMapFoundationKit.framework */; };
-		E770B3BB1D558D070028FF20 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DB81D2B430A003B7719 /* MAMapKit.framework */; };
-		E770B3BD1D558D100028FF20 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E770B3BC1D558D100028FF20 /* AMap.bundle */; };
 		E78AFEFD1D34EAE600172509 /* RouteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E78AFEFC1D34EAE600172509 /* RouteCollectionViewCell.m */; };
 		E78AFF001D37735700172509 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78AFEFF1D37735700172509 /* SearchView.m */; };
 		E78AFF021D37739D00172509 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E78AFF011D37739D00172509 /* SearchView.xib */; };
@@ -181,7 +184,6 @@
 		E7908EF61D2A124800A62908 /* CallOutCourierTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7908EF41D2A124800A62908 /* CallOutCourierTableViewCell.xib */; };
 		E7908EF91D2A3C5600A62908 /* MapBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7908EF81D2A3C5600A62908 /* MapBottomView.m */; };
 		E7908EFB1D2A3CB400A62908 /* MapBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7908EFA1D2A3CB400A62908 /* MapBottomView.xib */; };
-		E79C2DBC1D2B434C003B7719 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DBB1D2B434C003B7719 /* AMapSearchKit.framework */; };
 		E79C2DC01D2B43BF003B7719 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DBF1D2B43BF003B7719 /* UIKit.framework */; };
 		E79C2DC21D2B43FF003B7719 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DC11D2B43FF003B7719 /* Foundation.framework */; };
 		E79C2DC41D2B4408003B7719 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DC31D2B4408003B7719 /* CoreGraphics.framework */; };
@@ -194,8 +196,6 @@
 		E79C2DD21D2B4450003B7719 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD11D2B4450003B7719 /* libstdc++.6.0.9.tbd */; };
 		E79C2DD41D2B4460003B7719 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD31D2B4460003B7719 /* libc++.tbd */; };
 		E79C2DD61D2B4469003B7719 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD51D2B4469003B7719 /* Security.framework */; };
-		E79C2DD81D2B4706003B7719 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E79C2DD71D2B4706003B7719 /* AMapLocationKit.framework */; };
-		E79C2DDC1D2B48D1003B7719 /* AMapNavi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */; };
 		E79C2DDF1D2BACAB003B7719 /* MessageBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C2DDE1D2BACAB003B7719 /* MessageBarButton.m */; };
 		E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C2DE11D2CE1DB003B7719 /* SearchMapViewController.m */; };
 		E7A5B5BE1D87EC7D00335A4D /* MapNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5B5BD1D87EC7D00335A4D /* MapNavViewController.m */; };
@@ -359,6 +359,8 @@
 		E748E1B51D8FCB41007B8045 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		E748E1B71D8FCB54007B8045 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E748E1B91D8FCB72007B8045 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		E748E1C01D8FDCAD007B8045 /* AMapNavi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMapNavi.bundle; path = AMapNaviKit.framework/AMapNavi.bundle; sourceTree = "<group>"; };
+		E748E1C21D8FDCBB007B8045 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
 		E74EEEFD1D8E913300768442 /* OrderDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDefaultView.h; sourceTree = "<group>"; };
 		E74EEEFE1D8E913300768442 /* OrderDefaultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDefaultView.m; sourceTree = "<group>"; };
 		E74EEEFF1D8E913300768442 /* OrderDefaultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDefaultView.xib; sourceTree = "<group>"; };
@@ -498,7 +500,6 @@
 		E75F1A971D2E333D00CC2B24 /* SelectableOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableOverlay.h; sourceTree = "<group>"; };
 		E75F1A981D2E333D00CC2B24 /* SelectableOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableOverlay.m; sourceTree = "<group>"; };
 		E762B3DA1D5D993300BD968B /* TestChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChatListViewController.m; sourceTree = "<group>"; };
-		E770B3BC1D558D100028FF20 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
 		E78AFEFB1D34EAE600172509 /* RouteCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteCollectionViewCell.h; sourceTree = "<group>"; };
 		E78AFEFC1D34EAE600172509 /* RouteCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteCollectionViewCell.m; sourceTree = "<group>"; };
 		E78AFEFE1D37735700172509 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
@@ -530,7 +531,6 @@
 		E79C2DD51D2B4469003B7719 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E79C2DD71D2B4706003B7719 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
 		E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapNaviKit.framework; sourceTree = "<group>"; };
-		E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMapNavi.bundle; path = AMapNaviKit.framework/AMapNavi.bundle; sourceTree = "<group>"; };
 		E79C2DDD1D2BACAB003B7719 /* MessageBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBarButton.h; sourceTree = "<group>"; };
 		E79C2DDE1D2BACAB003B7719 /* MessageBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBarButton.m; sourceTree = "<group>"; };
 		E79C2DE01D2CE1DB003B7719 /* SearchMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMapViewController.h; sourceTree = "<group>"; };
@@ -561,6 +561,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E748E1BF1D8FDBFF007B8045 /* AMapSearchKit.framework in Frameworks */,
+				E748E1BE1D8FDBF3007B8045 /* MAMapKit.framework in Frameworks */,
+				E748E1BD1D8FDBEB007B8045 /* AMapLocationKit.framework in Frameworks */,
+				E748E1BC1D8FDBE3007B8045 /* AMapFoundationKit.framework in Frameworks */,
+				E748E1BB1D8FDBDB007B8045 /* AMapNaviKit.framework in Frameworks */,
 				E748E1BA1D8FCB72007B8045 /* Photos.framework in Frameworks */,
 				E79C2DC01D2B43BF003B7719 /* UIKit.framework in Frameworks */,
 				E79C2DCE1D2B4439003B7719 /* SystemConfiguration.framework in Frameworks */,
@@ -584,11 +589,7 @@
 				E748E1A21D8FCABC007B8045 /* AudioToolbox.framework in Frameworks */,
 				E748E1A01D8FCAB2007B8045 /* AssetsLibrary.framework in Frameworks */,
 				E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */,
-				E770B3BA1D558D070028FF20 /* AMapFoundationKit.framework in Frameworks */,
-				E770B3BB1D558D070028FF20 /* MAMapKit.framework in Frameworks */,
-				E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */,
 				E748E1991D8FCA96007B8045 /* libopencore-amrnb.a in Frameworks */,
-				E79C2DD81D2B4706003B7719 /* AMapLocationKit.framework in Frameworks */,
 				E79C2DD61D2B4469003B7719 /* Security.framework in Frameworks */,
 				E79C2DD41D2B4460003B7719 /* libc++.tbd in Frameworks */,
 				E79C2DD21D2B4450003B7719 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -596,7 +597,6 @@
 				E74EEF0F1D8F78EA00768442 /* jpush-ios-2.1.9.a in Frameworks */,
 				E748E19E1D8FCA96007B8045 /* RongIMLib.framework in Frameworks */,
 				E79C2DC21D2B43FF003B7719 /* Foundation.framework in Frameworks */,
-				E79C2DBC1D2B434C003B7719 /* AMapSearchKit.framework in Frameworks */,
 				09580764F068499B690C1505 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -718,8 +718,8 @@
 		E75D66771D23ACEE00D3AD1A = {
 			isa = PBXGroup;
 			children = (
-				E770B3BC1D558D100028FF20 /* AMap.bundle */,
-				E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */,
+				E748E1C21D8FDCBB007B8045 /* AMap.bundle */,
+				E748E1C01D8FDCAD007B8045 /* AMapNavi.bundle */,
 				E748E18C1D8FCA96007B8045 /* Rong_Cloud_iOS_IMKit_SDK_v2_7_2_stable */,
 				E74EEF0C1D8F78EA00768442 /* Lib */,
 				E75D66821D23ACEE00D3AD1A /* Courier */,
@@ -1297,7 +1297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E79C2DDC1D2B48D1003B7719 /* AMapNavi.bundle in Resources */,
 				82D8391B1D642120007BA849 /* CarTypeVC.xib in Resources */,
 				E71859651D7433BA00428321 /* OrderDetailInfoVC.xib in Resources */,
 				E718595D1D7433BA00428321 /* MissionCell.xib in Resources */,
@@ -1310,6 +1309,8 @@
 				E746B00B1D4604FA00A43298 /* Images.xcassets in Resources */,
 				82D8392B1D643717007BA849 /* SettingDetailVC.xib in Resources */,
 				E71859671D7433BA00428321 /* WalletViewController.xib in Resources */,
+				E748E1C31D8FDCBB007B8045 /* AMap.bundle in Resources */,
+				E748E1C11D8FDCAD007B8045 /* AMapNavi.bundle in Resources */,
 				E718595F1D7433BA00428321 /* MissionViewController.xib in Resources */,
 				E748E19C1D8FCA96007B8045 /* RongCloud.bundle in Resources */,
 				E75D676E1D23AF1900D3AD1A /* DeliveryDefaultTableViewCell.xib in Resources */,
@@ -1330,7 +1331,6 @@
 				E748E1981D8FCA96007B8045 /* RongCloudKit.strings in Resources */,
 				E7C0CD491D51A40500ED9004 /* OrderDetailDefaultBuyTableViewCell.xib in Resources */,
 				E75D67881D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.xib in Resources */,
-				E770B3BD1D558D100028FF20 /* AMap.bundle in Resources */,
 				E75D67781D23AF1900D3AD1A /* OrderDetailTableViewCell.xib in Resources */,
 				E75D67761D23AF1900D3AD1A /* OrderDetailDefaultTableViewCell.xib in Resources */,
 				82D839171D642120007BA849 /* BiaoShiViewController.xib in Resources */,

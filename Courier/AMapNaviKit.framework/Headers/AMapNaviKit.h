@@ -23,3 +23,4 @@
 #import <AMapNaviKit/AMapNaviDriveView.h>
 #import <AMapNaviKit/AMapNaviWalkView.h>
 #import <AMapNaviKit/AMapNaviHUDView.h>
+#import <AMapNaviKit/AMapNaviRoutePolylineOption.h>

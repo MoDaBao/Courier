@@ -36,15 +36,37 @@ typedef NS_ENUM(NSInteger, AMapNaviViewTrackingMode)
 /// 驾车路径规划策略
 typedef NS_ENUM(NSInteger, AMapNaviDrivingStrategy)
 {
-    AMapNaviDrivingStrategyDefault = 0,             //!< 0 速度优先（常规最快）
-    AMapNaviDrivingStrategySaveMoney = 1,           //!< 1 费用优先（尽量避开收费道路）
-    AMapNaviDrivingStrategyShortDistance = 2,       //!< 2 距离优先（距离最短）
-    AMapNaviDrivingStrategyNoExpressways = 3,       //!< 3 普通路优先（不走快速路、高速路）
-    AMapNaviDrivingStrategyFastestTime = 4,         //!< 4 时间优先，规避拥堵的路线（考虑实时路况，时间优先）
-    AMapNaviDrivingStrategyDefaultAndFastest = 5,   //!< 5 多路径（一条速度优先路线，一条考虑实时交通路况路线）
-    AMapNaviDrivingStrategyDefaultAndShort = 9,     //!< 9 多路径（一条常规最快路线，一条距离最短路线）
-    AMapNaviDrivingStrategyAvoidCongestion = 12,    //!< 12 躲避拥堵且不走收费道路.注意：当选择驾车策略12进行路径规划时，返回的策略值为4。
-    AMapNaviDrivingStrategyDefaultAndFastestAndShort = 13, //!< 13 多路径（一条常规，一条最短，一条规避拥堵）
+    AMapNaviDrivingStrategySingleDefault = 0,                               //!< 0 单路径: 默认
+    AMapNaviDrivingStrategySingleAvoidCost = 1,                             //!< 1 单路径: 避免收费
+    AMapNaviDrivingStrategySinglePrioritiseDistance = 2,                    //!< 2 单路径: 距离优先
+    AMapNaviDrivingStrategySingleAvoidExpressway = 3,                       //!< 3 单路径: 不走快速路
+    AMapNaviDrivingStrategySingleAvoidCongestion = 4,                       //!< 4 单路径: 躲避拥堵
+    AMapNaviDrivingStrategySingleAvoidHighway = 6,                          //!< 6 单路径: 不走高速
+    AMapNaviDrivingStrategySingleAvoidHighwayAndCost = 7,                   //!< 7 单路径: 不走高速 & 避免收费
+    AMapNaviDrivingStrategySingleAvoidCostAndCongestion = 8,                //!< 8 单路径: 避免收费 & 躲避拥堵
+    AMapNaviDrivingStrategySingleAvoidHighwayAndCostAndCongestion = 9,      //!< 9 单路径: 不走高速 & 避免收费 & 躲避拥堵
+    
+    AMapNaviDrivingStrategyMultipleDefault = 10,                            //!< 10 多路径: 默认
+    AMapNaviDrivingStrategyMultipleAvoidCongestion = 12,                    //!< 12 多路径: 躲避拥堵
+    AMapNaviDrivingStrategyMultipleAvoidHighway = 13,                       //!< 13 多路径: 不走高速
+    AMapNaviDrivingStrategyMultipleAvoidCost = 14,                          //!< 14 多路径: 避免收费
+    AMapNaviDrivingStrategyMultipleAvoidHighwayAndCongestion = 15,          //!< 15 多路径: 不走高速 & 躲避拥堵
+    AMapNaviDrivingStrategyMultipleAvoidHighwayAndCost = 16,                //!< 16 多路径: 不走高速 & 避免收费
+    AMapNaviDrivingStrategyMultipleAvoidCostAndCongestion = 17,             //!< 17 多路径: 避免收费 & 躲避拥堵
+    AMapNaviDrivingStrategyMultipleAvoidHighwayAndCostAndCongestion = 18,   //!< 18 多路径: 不走高速 & 避免收费 & 躲避拥堵
+    AMapNaviDrivingStrategyMultiplePrioritiseHighway = 19,                  //!< 19 多路径: 高速优先
+    AMapNaviDrivingStrategyMultiplePrioritiseHighwayAvoidCongestion = 20,   //!< 20 多路径: 高速优先 & 躲避拥堵
+    
+    /// Deprecated
+    AMapNaviDrivingStrategyDefault __attribute__ ((deprecated("use AMapNaviDrivingStrategySingleDefault instead"))) = AMapNaviDrivingStrategySingleDefault ,
+    AMapNaviDrivingStrategySaveMoney __attribute__ ((deprecated("use AMapNaviDrivingStrategySingleAvoidCost instead"))) = AMapNaviDrivingStrategySingleAvoidCost,
+    AMapNaviDrivingStrategyShortDistance __attribute__ ((deprecated("use AMapNaviDrivingStrategySinglePrioritiseDistance instead"))) = AMapNaviDrivingStrategySinglePrioritiseDistance,
+    AMapNaviDrivingStrategyNoExpressways __attribute__ ((deprecated("use AMapNaviDrivingStrategySingleAvoidExpressway instead"))) = AMapNaviDrivingStrategySingleAvoidExpressway,
+    AMapNaviDrivingStrategyFastestTime __attribute__ ((deprecated("use AMapNaviDrivingStrategySingleAvoidCongestion instead"))) = AMapNaviDrivingStrategySingleAvoidCongestion,
+    AMapNaviDrivingStrategyDefaultAndFastest __attribute__ ((deprecated("use AMapNaviDrivingStrategyMultipleAvoidCongestion instead"))) = AMapNaviDrivingStrategyMultipleAvoidCongestion,
+    AMapNaviDrivingStrategyDefaultAndShort __attribute__ ((deprecated("use AMapNaviDrivingStrategyMultipleDefault instead"))) = AMapNaviDrivingStrategyMultipleDefault,
+    AMapNaviDrivingStrategyAvoidCongestion __attribute__ ((deprecated("use AMapNaviDrivingStrategySingleAvoidCostAndCongestion instead"))) = AMapNaviDrivingStrategySingleAvoidCostAndCongestion,
+    AMapNaviDrivingStrategyDefaultAndFastestAndShort __attribute__ ((deprecated("use AMapNaviDrivingStrategyMultipleAvoidCongestion instead"))) = AMapNaviDrivingStrategyMultipleAvoidCongestion,
 };
 
 /// 路径计算状态
@@ -169,6 +191,16 @@ typedef NS_ENUM(NSInteger, AMapNaviBroadcastMode)
     AMapNaviBroadcastModeDetailed,                  //!< 2 新手详细播报
 };
 
+/// 道路状态
+typedef NS_ENUM(NSInteger, AMapNaviRouteStatus)
+{
+    AMapNaviRouteStatusUnknow = 0,                  //!< 0 未知状态
+    AMapNaviRouteStatusSmooth,                      //!< 1 通畅
+    AMapNaviRouteStatusSlow,                        //!< 2 缓行
+    AMapNaviRouteStatusJam,                         //!< 3 阻塞
+    AMapNaviRouteStatusSeriousJam,                  //!< 4 严重阻塞
+};
+
 #pragma mark - LaneInfo Image
 
 /**
@@ -179,6 +211,24 @@ typedef NS_ENUM(NSInteger, AMapNaviBroadcastMode)
  *  @return 车道信息图片
  */
 FOUNDATION_EXTERN UIImage *CreateLaneInfoImageWithLaneInfo(NSString *laneBackInfo, NSString *laneSelectInfo);
+
+/**
+ *  将驾车路线规划的偏好设置转换为驾车路径规划策略
+ *
+ *  注意：当prioritiseHighway为YES时，将忽略avoidHighway和avoidCost的设置
+ *
+ *  @param multipleRoute 是否多路径规划
+ *  @param avoidCongestion 是否躲避拥堵
+ *  @param avoidHighway 是否不走高速
+ *  @param avoidCost 是否避免收费
+ *  @param prioritiseHighway 是否高速优先
+ *  @return AMapNaviDrivingStrategy路径规划策略
+ */
+FOUNDATION_EXTERN AMapNaviDrivingStrategy ConvertDrivingPreferenceToDrivingStrategy(BOOL multipleRoute,
+                                                                                    BOOL avoidCongestion,
+                                                                                    BOOL avoidHighway,
+                                                                                    BOOL avoidCost,
+                                                                                    BOOL prioritiseHighway);
 
 #pragma mark - AMapNaviPoint
 
@@ -262,13 +312,13 @@ FOUNDATION_EXTERN UIImage *CreateLaneInfoImageWithLaneInfo(NSString *laneBackInf
 
 #pragma mark - AMapNaviTrafficStatus
 
-/// 前方交通路况信息类，即路况光柱信息类
+/// 前方交通路况信息类
 @interface AMapNaviTrafficStatus : NSObject
 
 /**
- *  交通状态(0-未知状态，1-通畅，2-缓行，3-阻塞，4-严重阻塞)
+ *  道路状态
  */
-@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, assign) AMapNaviRouteStatus status;
 
 /**
  *  该交通状态的路段长度
@@ -357,7 +407,12 @@ FOUNDATION_EXTERN UIImage *CreateLaneInfoImageWithLaneInfo(NSString *laneBackInf
  * 53：注意危险
  * 58：隧道
  * 59：渡口
+ * 92:闯红灯
+ * 93:应急车道
+ * 94:非机动车道
  * 100：不绑定电子眼高发地
+ * 101:车道违章
+ * 102:超速违章
  */
 
 ///  道路交通设施类
