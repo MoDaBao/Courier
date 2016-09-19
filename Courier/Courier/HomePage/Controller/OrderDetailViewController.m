@@ -143,7 +143,7 @@
         if (self.baseModel.type.integerValue == 3) {
             return 468;
         } else {
-             return 488;
+            return 488;
         }
     }
     

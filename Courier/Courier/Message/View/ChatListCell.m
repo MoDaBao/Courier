@@ -26,7 +26,7 @@
 
 - (void)awakeFromNib {
     
-    self.icon.layer.cornerRadius = self.icon.height * .5;
+    self.icon.layer.cornerRadius = 35 * .5;
     self.icon.clipsToBounds = YES;
     self.icon.layer.borderColor = [UIColor colorWithRed:193 / 255.0f green:26 / 255.0f blue:32 / 255.0f alpha:1.0].CGColor;
     self.icon.layer.borderWidth = 1;
@@ -60,11 +60,11 @@
     
     
     
-//    float sortaPixel = 1.0/ [UIScreen mainScreen].scale;
-//    self.line = [[UIView alloc] init];
-//    self.line.frame = CGRectMake(0,125,self.width, sortaPixel);
-//    self.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
-//    [self addSubview:self.line];
+    float sortaPixel = 1.0/ [UIScreen mainScreen].scale;
+    self.line = [[UIView alloc] init];
+    self.line.frame = CGRectMake(0,125,kScreenWidth, sortaPixel);
+    self.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
+    [self addSubview:self.line];
     
 //    self.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.96 alpha:1.00];
 //    self.backgroundColor = [UIColor whiteColor];

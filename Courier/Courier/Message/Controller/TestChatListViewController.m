@@ -338,11 +338,11 @@
 //        cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
         cell = [[[NSBundle mainBundle] loadNibNamed:@"ChatListCell" owner:nil options:nil] lastObject];
         
-        float sortaPixel = 1.0 / [UIScreen mainScreen].scale;
-        cell.line = [[UIView alloc] init];
-        cell.line.frame = CGRectMake(0, ChatListCellHeight - 2, kScreenWidth, 1);
-        cell.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
-        [cell.contentView addSubview:cell.line];
+//        float sortaPixel = 1.0 / [UIScreen mainScreen].scale;
+//        cell.line = [[UIView alloc] init];
+//        cell.line.frame = CGRectMake(0, ChatListCellHeight - 2, kScreenWidth, 1);
+//        cell.line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
+//        [cell.contentView addSubview:cell.line];
     }
 //    [cell setDataModel:self.conversationListDataSource[indexPath.row]];
 //    if (self.chatListArray.count == self.conversationListDataSource.count) {
