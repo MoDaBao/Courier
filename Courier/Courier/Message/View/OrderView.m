@@ -19,10 +19,10 @@
 */
 
 - (void)awakeFromNib {
-    self.frame = CGRectMake(0, kNavigationBarHeight, kScreenWidth, self.note.height + self.note.y + 10);
+    self.frame = CGRectMake(0, kNavigationBarHeight, kScreenWidth, 119);
     
     float sortaPixel =1.0/[UIScreen mainScreen].scale;
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0,self.note.y + self.note.height + 10 - sortaPixel,kScreenWidth, sortaPixel)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0,119 - sortaPixel,kScreenWidth, sortaPixel)];
     line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
     [self addSubview:line];//线是否加
 }

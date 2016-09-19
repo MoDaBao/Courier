@@ -116,6 +116,7 @@
             NSString *pic = dataDic[@"user"][@"pic"];
             NSLog(@"dataDic = %@",dataDic);
 //            [self.icon sd_setImageWithURL:[NSURL URLWithString:pic]];
+            
             [self.icon sd_setImageWithURL:[NSURL URLWithString:pic] placeholderImage:[UIImage imageNamed:@"img_22"]];
         }
         

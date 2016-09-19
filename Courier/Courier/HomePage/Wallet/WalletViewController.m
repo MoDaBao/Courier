@@ -46,7 +46,7 @@
     
     // 返回按钮
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    rightBtn.frame = CGRectMake(0, 0, 60, 30);
+    rightBtn.frame = CGRectMake(0, 0, 65, 30);
     [rightBtn setTitle:@"账单详情" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(rightItem) forControlEvents:UIControlEventTouchUpInside];

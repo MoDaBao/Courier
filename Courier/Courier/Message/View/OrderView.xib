@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,51 +13,44 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="end" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-TR-9E8">
-                    <rect key="frame" x="10" y="44" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="XJH-k7-jdF"/>
                         <constraint firstAttribute="height" constant="16" id="tjZ-dY-pLA"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天和大厦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-h5-9er">
-                    <rect key="frame" x="36" y="9" width="335" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="意得百货" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGJ-He-LwQ">
-                    <rect key="frame" x="36" y="43" width="335" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start" translatesAutoresizingMaskIntoConstraints="NO" id="ytx-8u-nta">
-                    <rect key="frame" x="10" y="10" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="Bay-2z-Kbl"/>
                         <constraint firstAttribute="height" constant="16" id="usV-DJ-UFL"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prM-Xq-oFo">
-                    <rect key="frame" x="10" y="92" width="28" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-Jh-bzd">
-                    <rect key="frame" x="156" y="70" width="28" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间:xxxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bZ-rm-eYx">
-                    <rect key="frame" x="10" y="70" width="126" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iGZ-TR-9E8" firstAttribute="leading" secondItem="ytx-8u-nta" secondAttribute="leading" id="0u8-7Y-xxd"/>
                 <constraint firstItem="prM-Xq-oFo" firstAttribute="top" secondItem="6bZ-rm-eYx" secondAttribute="bottom" constant="5" id="2vU-F1-Exf"/>
@@ -71,6 +65,7 @@
                 <constraint firstItem="6bZ-rm-eYx" firstAttribute="top" secondItem="fGJ-He-LwQ" secondAttribute="bottom" constant="10" id="IQU-wc-7dE"/>
                 <constraint firstItem="6bZ-rm-eYx" firstAttribute="leading" secondItem="iGZ-TR-9E8" secondAttribute="leading" id="RYQ-lA-jne"/>
                 <constraint firstItem="prM-Xq-oFo" firstAttribute="leading" secondItem="6bZ-rm-eYx" secondAttribute="leading" id="Y6p-ab-YP6"/>
+                <constraint firstAttribute="trailing" secondItem="prM-Xq-oFo" secondAttribute="trailing" constant="10" id="gAL-Oi-5wX"/>
                 <constraint firstItem="nQq-h5-9er" firstAttribute="leading" secondItem="ytx-8u-nta" secondAttribute="trailing" constant="10" id="htU-za-Grf"/>
                 <constraint firstItem="7hz-Jh-bzd" firstAttribute="centerY" secondItem="6bZ-rm-eYx" secondAttribute="centerY" id="kmY-AT-qp5"/>
                 <constraint firstAttribute="trailing" secondItem="nQq-h5-9er" secondAttribute="trailing" constant="10" id="veW-Le-3qb"/>
@@ -87,7 +82,7 @@
         </view>
     </objects>
     <resources>
-        <image name="end" width="30" height="30"/>
-        <image name="start" width="30" height="30"/>
+        <image name="end" width="17" height="17"/>
+        <image name="start" width="17" height="17"/>
     </resources>
 </document>

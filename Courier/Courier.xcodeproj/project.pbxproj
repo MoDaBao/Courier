@@ -77,6 +77,8 @@
 		E74EEF091D8E913300768442 /* OrderNoAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEF021D8E913300768442 /* OrderNoAddressView.xib */; };
 		E74EEF0A1D8E913300768442 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF041D8E913300768442 /* OrderView.m */; };
 		E74EEF0B1D8E913300768442 /* OrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEF051D8E913300768442 /* OrderView.xib */; };
+		E74EEF0F1D8F78EA00768442 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EEF0D1D8F78EA00768442 /* jpush-ios-2.1.9.a */; };
+		E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EEF101D8F79E400768442 /* UserNotifications.framework */; };
 		E75D66851D23ACEE00D3AD1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66841D23ACEE00D3AD1A /* main.m */; };
 		E75D66881D23ACEE00D3AD1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66871D23ACEE00D3AD1A /* AppDelegate.m */; };
 		E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75D66891D23ACEE00D3AD1A /* Assets.xcassets */; };
@@ -100,7 +102,6 @@
 		E75D67031D23AE1100D3AD1A /* NSString+EncodeAndDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66EC1D23AE1100D3AD1A /* NSString+EncodeAndDecode.m */; };
 		E75D67051D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66F11D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m */; };
 		E75D67061D23AE1100D3AD1A /* UIView+ChangeFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66F31D23AE1100D3AD1A /* UIView+ChangeFrame.m */; };
-		E75D670A1D23AEE900D3AD1A /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75D67081D23AEE900D3AD1A /* jpush-ios-2.1.8.a */; };
 		E75D67551D23AF1900D3AD1A /* AlreadyDoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D670E1D23AF1900D3AD1A /* AlreadyDoneViewController.m */; };
 		E75D67561D23AF1900D3AD1A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D67101D23AF1900D3AD1A /* ChatViewController.m */; };
 		E75D67571D23AF1900D3AD1A /* CheckingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D67121D23AF1900D3AD1A /* CheckingViewController.m */; };
@@ -322,6 +323,10 @@
 		E74EEF031D8E913300768442 /* OrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		E74EEF041D8E913300768442 /* OrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
 		E74EEF051D8E913300768442 /* OrderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderView.xib; sourceTree = "<group>"; };
+		E74EEF0D1D8F78EA00768442 /* jpush-ios-2.1.9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.9.a"; sourceTree = "<group>"; };
+		E74EEF0E1D8F78EA00768442 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		E74EEF101D8F79E400768442 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		E74EEF121D8F7A6600768442 /* Courier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Courier.entitlements; sourceTree = "<group>"; };
 		E75D66801D23ACEE00D3AD1A /* Courier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Courier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75D66841D23ACEE00D3AD1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E75D66861D23ACEE00D3AD1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -371,8 +376,6 @@
 		E75D66F11D23AE1100D3AD1A /* UILabel+LabelHeightAndWidth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LabelHeightAndWidth.m"; sourceTree = "<group>"; };
 		E75D66F21D23AE1100D3AD1A /* UIView+ChangeFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ChangeFrame.h"; sourceTree = "<group>"; };
 		E75D66F31D23AE1100D3AD1A /* UIView+ChangeFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ChangeFrame.m"; sourceTree = "<group>"; };
-		E75D67081D23AEE900D3AD1A /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
-		E75D67091D23AEE900D3AD1A /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		E75D670D1D23AF1900D3AD1A /* AlreadyDoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlreadyDoneViewController.h; sourceTree = "<group>"; };
 		E75D670E1D23AF1900D3AD1A /* AlreadyDoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlreadyDoneViewController.m; sourceTree = "<group>"; };
 		E75D670F1D23AF1900D3AD1A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -513,6 +516,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */,
 				E770B3BA1D558D070028FF20 /* AMapFoundationKit.framework in Frameworks */,
 				E770B3BB1D558D070028FF20 /* MAMapKit.framework in Frameworks */,
 				E7299F5E1D502EF1008156BD /* AMapNaviKit.framework in Frameworks */,
@@ -526,11 +530,11 @@
 				E79C2DCA1D2B4427003B7719 /* CoreLocation.framework in Frameworks */,
 				E79C2DC81D2B441E003B7719 /* OpenGLES.framework in Frameworks */,
 				E79C2DC61D2B4413003B7719 /* QuartzCore.framework in Frameworks */,
+				E74EEF0F1D8F78EA00768442 /* jpush-ios-2.1.9.a in Frameworks */,
 				E79C2DC41D2B4408003B7719 /* CoreGraphics.framework in Frameworks */,
 				E79C2DC21D2B43FF003B7719 /* Foundation.framework in Frameworks */,
 				E79C2DC01D2B43BF003B7719 /* UIKit.framework in Frameworks */,
 				E79C2DBC1D2B434C003B7719 /* AMapSearchKit.framework in Frameworks */,
-				E75D670A1D23AEE900D3AD1A /* jpush-ios-2.1.8.a in Frameworks */,
 				09580764F068499B690C1505 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +559,7 @@
 		BF0EB25AEAC1BD3FC9961158 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E74EEF101D8F79E400768442 /* UserNotifications.framework */,
 				E7299F591D502CDB008156BD /* MAMapKit.framework */,
 				E79C2DD91D2B489C003B7719 /* AMapNaviKit.framework */,
 				E79C2DD71D2B4706003B7719 /* AMapLocationKit.framework */,
@@ -610,12 +615,21 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		E74EEF0C1D8F78EA00768442 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				E74EEF0D1D8F78EA00768442 /* jpush-ios-2.1.9.a */,
+				E74EEF0E1D8F78EA00768442 /* JPUSHService.h */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
 		E75D66771D23ACEE00D3AD1A = {
 			isa = PBXGroup;
 			children = (
 				E770B3BC1D558D100028FF20 /* AMap.bundle */,
 				E79C2DDB1D2B48D1003B7719 /* AMapNavi.bundle */,
-				E75D67071D23AEE900D3AD1A /* lib */,
+				E74EEF0C1D8F78EA00768442 /* Lib */,
 				E75D66821D23ACEE00D3AD1A /* Courier */,
 				E75D66961D23ACEE00D3AD1A /* CourierTests */,
 				E75D66A11D23ACEE00D3AD1A /* CourierUITests */,
@@ -638,6 +652,7 @@
 		E75D66821D23ACEE00D3AD1A /* Courier */ = {
 			isa = PBXGroup;
 			children = (
+				E74EEF121D8F7A6600768442 /* Courier.entitlements */,
 				E75D66861D23ACEE00D3AD1A /* AppDelegate.h */,
 				E75D66871D23ACEE00D3AD1A /* AppDelegate.m */,
 				E75D66B41D23ADE900D3AD1A /* MainTabBarController.h */,
@@ -868,15 +883,6 @@
 				E704C9A51D5C56D0007ECEF0 /* UIColor+flat.h */,
 			);
 			path = tool;
-			sourceTree = "<group>";
-		};
-		E75D67071D23AEE900D3AD1A /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				E75D67081D23AEE900D3AD1A /* jpush-ios-2.1.8.a */,
-				E75D67091D23AEE900D3AD1A /* JPUSHService.h */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		E75D670B1D23AF1900D3AD1A /* HomePage */ = {
@@ -1154,6 +1160,9 @@
 						DevelopmentTeam = H33K3H36N8;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1560,6 +1569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Courier/Courier.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1574,6 +1584,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/MAMapKit.framework",
+					"$(PROJECT_DIR)/Lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenlingoy.Courier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1587,6 +1598,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Courier/Courier.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1601,6 +1613,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 					"$(PROJECT_DIR)/MAMapKit.framework",
+					"$(PROJECT_DIR)/Lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wenlingoy.Courier;
 				PRODUCT_NAME = "$(TARGET_NAME)";
