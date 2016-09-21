@@ -101,26 +101,26 @@
 }
 
 - (void)messageBarButtonNav {
-//    NSLog(@"导航");
-//    NSString *sla = [NSString stringWithFormat:@"%lf",_latitude];
-//    NSString *slo = [NSString stringWithFormat:@"%lf",_longitude];
-//
-//    NSString *urlOfSource = [@"applicationName" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSString *urlString = [NSString stringWithFormat:@"iosamap://path?sourceApplication=%@&backScheme=Courier&slat=%@&slon=%@&sname=%@&sid=B001&dlat=%@&dlon=%@&dname=%@&did=B002&dev=0&m=3&t=0", urlOfSource, sla, slo, _startName, _end_latitude, _end_longitude, _endName];
-//    if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]]) {
-//        
-//    } else {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装高德地图" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//        [alert show];
-//    }
+    NSLog(@"导航");
+    NSString *sla = [NSString stringWithFormat:@"%lf",_latitude];
+    NSString *slo = [NSString stringWithFormat:@"%lf",_longitude];
+
+    NSString *urlOfSource = [@"applicationName" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString = [NSString stringWithFormat:@"iosamap://path?sourceApplication=%@&backScheme=Courier&slat=%@&slon=%@&sname=%@&sid=B001&dlat=%@&dlon=%@&dname=%@&did=B002&dev=0&m=3&t=0", urlOfSource, sla, slo, _startName, _end_latitude, _end_longitude, _endName];
+    if ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]]) {
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先安装高德地图" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
-    MapNavViewController *mapNavVC = [[MapNavViewController alloc] init];
-    
-    AMapNaviPoint *startPoint = [AMapNaviPoint locationWithLatitude:self.latitude longitude:self.longitude];
-    AMapNaviPoint *endPoint = [AMapNaviPoint locationWithLatitude:_end_latitude.floatValue longitude:_end_longitude.floatValue];
-    mapNavVC.startPoint = startPoint;
-    mapNavVC.endPoint = endPoint;
-    [self.navigationController pushViewController:mapNavVC animated:YES];
+//    MapNavViewController *mapNavVC = [[MapNavViewController alloc] init];
+//    
+//    AMapNaviPoint *startPoint = [AMapNaviPoint locationWithLatitude:self.latitude longitude:self.longitude];
+//    AMapNaviPoint *endPoint = [AMapNaviPoint locationWithLatitude:_end_latitude.floatValue longitude:_end_longitude.floatValue];
+//    mapNavVC.startPoint = startPoint;
+//    mapNavVC.endPoint = endPoint;
+//    [self.navigationController pushViewController:mapNavVC animated:YES];
     
     
 }

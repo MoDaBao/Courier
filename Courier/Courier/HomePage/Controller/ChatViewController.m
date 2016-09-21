@@ -142,6 +142,30 @@
 }
 
 
+- (void)locationPicker:(RCLocationPickerViewController *)locationPicker
+
+     didSelectLocation:(CLLocationCoordinate2D)location
+
+          locationName:(NSString *)locationName
+
+         mapScreenShot:(UIImage *)mapScreenShot {
+    
+    [self becomeFirstResponder];
+    
+    RCLocationMessage *locationMessage =
+    
+    [RCLocationMessage messageWithLocationImage:mapScreenShot
+     
+                                       location:location
+     
+                                   locationName:locationName];
+    
+    [self sendMessage:locationMessage pushContent:nil];
+    
+}
+
+
+
 // 键盘回收手势方法
 - (void)tapReturnKeyBoard:(UITapGestureRecognizer *)tap {
     [self.view endEditing:YES];

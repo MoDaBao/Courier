@@ -15,6 +15,8 @@
 - (void)initRong;// 初始化融云
 - (void)initCheckOrderTimer;// 初始化订单监测提醒的计时器
 
+//@property (nonatomic, copy) NSString *testStr;
+
 @end
 
 

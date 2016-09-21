@@ -43,19 +43,19 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backItem];
 }
-- (void)backAction
-{
+
+- (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)testSendr
-{
-    [super rightBarButtonItemPressed:_right];
+- (void)testSendr {
+    [super rightBarButtonItemPressed:nil];
 //    if (self.delegate) {
 //        [self.delegate locationPicker:self
 //                    didSelectLocation:[self currentLocationCoordinate2D]
 //                         locationName:[self currentLocationName]
 //                        mapScreenShot:[self currentMapScreenShot]];
 //    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
