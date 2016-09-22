@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>6</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<string>iosamap</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -55,15 +55,15 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>聊天拍照需要访问您的相机</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>我们需要开启该设备的后台定位功能上传您当前的位置到服务器，根据您当前的位置计算您与目的地的距离和订单的跑腿费</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>我们需要开启该设备的后台定位功能上传您当前的位置到服务器，根据您当前的位置计算您与目的地的距离和订单的跑腿费</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>聊天发送语音消息需要访问您的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>聊天发送图片需要访问您的相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

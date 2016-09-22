@@ -73,6 +73,8 @@
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
     
+    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake([[[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"] floatValue], [[[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"] floatValue])];
+    
     
     MessageBarButton *message = [[MessageBarButton alloc] initWithFrame:CGRectMake(0, 0, 30, 20) title:@"消息" font:[UIFont systemFontOfSize:13]];
     message.delegate = self;

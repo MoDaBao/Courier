@@ -33,12 +33,12 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backItem];
     
-    _mapView=[[MAMapView alloc]initWithFrame:CGRectMake(0,0,self.view.width,self.view.height)];
+    _mapView = [[MAMapView alloc]initWithFrame:CGRectMake(0,0,self.view.width,self.view.height)];
     _mapView.showsUserLocation = YES;
     _mapView.zoomLevel = 15;
-    _mapView.userTrackingMode=MAUserTrackingModeFollow;
+    _mapView.userTrackingMode = MAUserTrackingModeFollow;
     _mapView.visibleMapRect = MAMapRectMake(286493216, 121418270, 2500, 2500);
-    _mapView.delegate=self;
+    _mapView.delegate = self;
     [self.view addSubview:_mapView];
     
     
@@ -64,11 +64,11 @@
         {
             poiAnnotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:poiIdentifier];
         }
-        
+    
         poiAnnotationView.canShowCallout = YES;
-        poiAnnotationView.rightCalloutAccessoryView=[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        poiAnnotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         
-        _mapView.showsUserLocation=NO;
+        _mapView.showsUserLocation = NO;
         
         return poiAnnotationView;
 }

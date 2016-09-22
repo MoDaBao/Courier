@@ -13,7 +13,7 @@
 #import "MainTabBarController.h"
 #import "WaitOrderReceivingViewController.h"
 
-#define CurrentSystemVersion ([[[UIDevice currentDevice] systemVersion] floatValue])
+#define CurrentSystemVersion ([[[UIDevice currentDevice] systemVersion] floatValue])// 当前系统版本
 
 
 

@@ -106,7 +106,7 @@
 		E74EEF0A1D8E913300768442 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74EEF041D8E913300768442 /* OrderView.m */; };
 		E74EEF0B1D8E913300768442 /* OrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74EEF051D8E913300768442 /* OrderView.xib */; };
 		E74EEF0F1D8F78EA00768442 /* jpush-ios-2.1.9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EEF0D1D8F78EA00768442 /* jpush-ios-2.1.9.a */; };
-		E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EEF101D8F79E400768442 /* UserNotifications.framework */; };
+		E74EEF111D8F79E400768442 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74EEF101D8F79E400768442 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E75D66851D23ACEE00D3AD1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66841D23ACEE00D3AD1A /* main.m */; };
 		E75D66881D23ACEE00D3AD1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66871D23ACEE00D3AD1A /* AppDelegate.m */; };
 		E75D668A1D23ACEE00D3AD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75D66891D23ACEE00D3AD1A /* Assets.xcassets */; };
