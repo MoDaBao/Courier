@@ -118,32 +118,39 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSString *note = _baseModel.note;
+    if ([note isEqualToString:@""]) {
+        note = @" ";
+    }
+    CGFloat noteH = [UILabel getHeightByWidth:kScreenWidth - 104 title:note font:[UIFont systemFontOfSize:14]];
+    
+    
     if (_isDelivery) {// 在配送中查看单子 需要留出配送按钮的高度
         if ([self.baseModel.start isEqualToString:@""] || [self.baseModel.end isEqualToString:@""]) {
             if (self.baseModel.type.integerValue == 3) {// 帮我买
-                return 505;
+                return 460 + noteH;
             } else {
-                return 525;
+                return 480 + noteH;
             }
             
         }
         if (self.baseModel.type.integerValue == 3) {
-            return 525;
+            return 480 + noteH;
         } else {
-            return 545;
+            return 500 + noteH;
         }
     } else {// 在不是配送中的页面查看单子
         if ([self.baseModel.start isEqualToString:@""] || [self.baseModel.end isEqualToString:@""]) {
             if (self.baseModel.type.integerValue == 3) {
-                return 448;
+                return 403 + noteH;
             } else {
-                return 468;
+                return 423 + noteH;
             }
         }
         if (self.baseModel.type.integerValue == 3) {
-            return 468;
+            return 423 + noteH;
         } else {
-            return 488;
+            return 443 + noteH;
         }
     }
     

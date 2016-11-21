@@ -146,6 +146,16 @@
     [scrollView addSubview:logoutBtn];
     
     scrollView.contentSize = CGSizeMake(kScreenWidth, logoutBtn.y + logoutBtn.height + 20);
+    
+    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(logoutBtn.x, logoutBtn.y + logoutBtn.height + 10, logoutBtn.width, logoutBtn.height)];
+    versionLabel.textAlignment = NSTextAlignmentCenter;
+    versionLabel.font = [UIFont systemFontOfSize:14];
+    versionLabel.text = @"v1.0.4";
+    versionLabel.textColor = [UIColor lightGrayColor];
+    [scrollView addSubview:versionLabel];
+    
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -187,7 +197,7 @@
                     NSLog(@"成功");
                     //                    [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"0"]];
                     [[CourierInfoManager shareInstance] removeAllCourierInfo];
-                    [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+                    [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
                     [[RCIMClient sharedRCIMClient]logout];// 退出融云
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // 模态弹出登录页面

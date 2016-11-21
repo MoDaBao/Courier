@@ -124,7 +124,6 @@
 		E75D66FB1D23AE1100D3AD1A /* CourierInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DA1D23AE1100D3AD1A /* CourierInfoModel.m */; };
 		E75D66FC1D23AE1100D3AD1A /* AppraiseRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DD1D23AE1100D3AD1A /* AppraiseRateView.m */; };
 		E75D66FD1D23AE1100D3AD1A /* ClearView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66DF1D23AE1100D3AD1A /* ClearView.m */; };
-		E75D66FE1D23AE1100D3AD1A /* HeartAppraiseRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66E11D23AE1100D3AD1A /* HeartAppraiseRateView.m */; };
 		E75D67001D23AE1100D3AD1A /* EncryptionAndDecryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66E61D23AE1100D3AD1A /* EncryptionAndDecryption.m */; };
 		E75D67021D23AE1100D3AD1A /* NSDictionary+DicChangeJson.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66EA1D23AE1100D3AD1A /* NSDictionary+DicChangeJson.m */; };
 		E75D67031D23AE1100D3AD1A /* NSString+EncodeAndDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = E75D66EC1D23AE1100D3AD1A /* NSString+EncodeAndDecode.m */; };
@@ -210,6 +209,7 @@
 		E7D7AF4B1D52FDB3005F01FF /* WriteInfoView_2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7D7AF491D52FDB3005F01FF /* WriteInfoView_2.xib */; };
 		E7DA16421D645400002CD03B /* default.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E7DA16411D645400002CD03B /* default.mp3 */; };
 		E7DA16451D6460A7002CD03B /* MapImagePreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DA16441D6460A7002CD03B /* MapImagePreviewVC.m */; };
+		E7FB2BDF1DB70BE00045E871 /* HeartAppraiseRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB2BDE1DB70BE00045E871 /* HeartAppraiseRateView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,8 +409,6 @@
 		E75D66DD1D23AE1100D3AD1A /* AppraiseRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppraiseRateView.m; sourceTree = "<group>"; };
 		E75D66DE1D23AE1100D3AD1A /* ClearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearView.h; sourceTree = "<group>"; };
 		E75D66DF1D23AE1100D3AD1A /* ClearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearView.m; sourceTree = "<group>"; };
-		E75D66E01D23AE1100D3AD1A /* HeartAppraiseRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartAppraiseRateView.h; sourceTree = "<group>"; };
-		E75D66E11D23AE1100D3AD1A /* HeartAppraiseRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartAppraiseRateView.m; sourceTree = "<group>"; };
 		E75D66E41D23AE1100D3AD1A /* ConstantHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantHeader.h; sourceTree = "<group>"; };
 		E75D66E51D23AE1100D3AD1A /* EncryptionAndDecryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionAndDecryption.h; sourceTree = "<group>"; };
 		E75D66E61D23AE1100D3AD1A /* EncryptionAndDecryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptionAndDecryption.m; sourceTree = "<group>"; };
@@ -554,6 +552,8 @@
 		E7DA16411D645400002CD03B /* default.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = default.mp3; sourceTree = "<group>"; };
 		E7DA16431D6460A7002CD03B /* MapImagePreviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapImagePreviewVC.h; sourceTree = "<group>"; };
 		E7DA16441D6460A7002CD03B /* MapImagePreviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapImagePreviewVC.m; sourceTree = "<group>"; };
+		E7FB2BDD1DB70BE00045E871 /* HeartAppraiseRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartAppraiseRateView.h; sourceTree = "<group>"; };
+		E7FB2BDE1DB70BE00045E871 /* HeartAppraiseRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartAppraiseRateView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -942,8 +942,8 @@
 				E75D66DD1D23AE1100D3AD1A /* AppraiseRateView.m */,
 				E75D66DE1D23AE1100D3AD1A /* ClearView.h */,
 				E75D66DF1D23AE1100D3AD1A /* ClearView.m */,
-				E75D66E01D23AE1100D3AD1A /* HeartAppraiseRateView.h */,
-				E75D66E11D23AE1100D3AD1A /* HeartAppraiseRateView.m */,
+				E7FB2BDD1DB70BE00045E871 /* HeartAppraiseRateView.h */,
+				E7FB2BDE1DB70BE00045E871 /* HeartAppraiseRateView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1453,7 +1453,6 @@
 				E75D67591D23AF1900D3AD1A /* HomePageViewController.m in Sources */,
 				E700C8F31D3F562200D57FE4 /* TestMessageCell.m in Sources */,
 				E746B0041D42023900A43298 /* WriteInfoBuyView.m in Sources */,
-				E75D66FE1D23AE1100D3AD1A /* HeartAppraiseRateView.m in Sources */,
 				82D839201D642120007BA849 /* PhotoDemoVC.m in Sources */,
 				E75D66BF1D23ADE900D3AD1A /* MainNavigationController.m in Sources */,
 				82D838FF1D641E69007BA849 /* TestMapViewController.m in Sources */,
@@ -1484,6 +1483,7 @@
 				E704C9A61D5C56D0007ECEF0 /* UIColor+flat.m in Sources */,
 				E75D67061D23AE1100D3AD1A /* UIView+ChangeFrame.m in Sources */,
 				E75D67871D24FB3A00D3AD1A /* NeedWriteOrderTableViewCell.m in Sources */,
+				E7FB2BDF1DB70BE00045E871 /* HeartAppraiseRateView.m in Sources */,
 				E79C2DE21D2CE1DB003B7719 /* SearchMapViewController.m in Sources */,
 				E71859601D7433BA00428321 /* MyDiscountVC.m in Sources */,
 				E74EEF0A1D8E913300768442 /* OrderView.m in Sources */,

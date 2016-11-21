@@ -192,9 +192,12 @@
             [[CourierInfoManager shareInstance] removeAllCourierInfo];
             // 存储跑腿基本信息
             [[CourierInfoManager shareInstance]  setCourierInfoWithDic:dataDic];
-            // 使用别名标识设备
-            [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
-//            [self.delegate initRong];// 初始化融云
+            // 如果是在线状态使用别名标识设备
+            if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+                [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
+
+            }
+            //            [self.delegate initRong];// 初始化融云
             
             
                 NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType", @"iOS", @"BaseAppVersion", @"1.0.1", @"SystemVersion", [NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]], @"_userid_", [NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"avatar", [[CourierInfoManager shareInstance] getCourierPic], @"userid", [NSString stringWithFormat:@"00%@",[[CourierInfoManager shareInstance] getCourierPid]], @"username", [[CourierInfoManager shareInstance] getCourierAlias], @"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];

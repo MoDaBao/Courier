@@ -100,6 +100,7 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     session.requestSerializer = [AFJSONRequestSerializer serializer];
     session.responseSerializer = [AFJSONResponseSerializer serializer];
+    [session.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html",@"text/plain",@"text/javascript",@"application/json",@"text/json",nil]];
     [session POST:@"http://mapi.tzouyi.com/account/checkWallet" parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -136,6 +137,8 @@
     self.navigationController.navigationBar.hidden = YES;
     self.tabBarController.tabBar.hidden = NO;
     
+    
+
     self.isWork = [[CourierInfoManager shareInstance] getCourierOnlineStatus].integerValue;// 0在线 1离线
     if (self.isWork) {// 在线
         [self.workBtn setBackgroundImage:[UIImage imageNamed:@"work"] forState:UIControlStateNormal];
@@ -153,6 +156,13 @@
         MainNavigationController *naVC = [[MainNavigationController alloc] initWithRootViewController:loginVC];
         [self presentViewController:naVC animated:YES completion:nil];
 //        loginVC.delegate = self;
+    } else {// 已登录
+        // 如果是在线状态使用别名标识设备
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
+        } else {// 不在线
+            [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
+        }
     }
     
     if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"] && ![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 上班状态
@@ -189,13 +199,64 @@
     
 }
 
+// 创建钱包的视图
+
+- (void)createWallet {
+    _wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 70)];
+    _wallet.backgroundColor = self.homePageView.backgroundColor;
+    [self.view addSubview:_wallet];
+    
+    
+    CGFloat imgW = 20;
+    CGFloat imgH = imgW;
+    UIImageView *walletImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgW, imgH)];
+    walletImg.image = [UIImage imageNamed:@"money"];
+    
+    UIFont *font = [UIFont systemFontOfSize:16];
+    CGFloat walletW = [UILabel getWidthWithTitle:@"   我的钱包" font:font];
+    CGFloat walletH = 30;
+    CGFloat walletX = imgW;
+    UIButton *walletBtn = [[UIButton alloc] initWithFrame:CGRectMake(walletX, 0, walletW, walletH)];
+    walletBtn.imageView.contentMode = UIViewContentModeLeft;
+    [walletBtn setTitle:@"我的钱包" forState:UIControlStateNormal];
+    [walletBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //    [walletBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    walletBtn.titleLabel.font = font;
+    
+    CGFloat walletBtnViewW = imgW + walletW;
+    CGFloat walletBtnViewX = (_wallet.width - walletBtnViewW) * .5;
+    CGFloat walletBtnViewY = (_wallet.height - walletH) * .5;
+    UIView *walletBtnView = [[UIView alloc] initWithFrame:CGRectMake(walletBtnViewX, walletBtnViewY, imgW + walletW, walletH)];
+    walletImg.y = (walletBtnView.height - imgH) * .5;
+    [walletBtnView addSubview:walletImg];
+    [walletBtnView addSubview:walletBtn];
+    
+    [_wallet addSubview:walletBtnView];
+    
+    [self.view addSubview:_wallet];
+    
+    
+    UIView *line = [[UIView alloc]initWithFrame:
+                    
+                    CGRectMake(0, _wallet.height - 1,kScreenWidth, 1)];
+    
+    line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
+    
+    [_wallet addSubview:line];//线是否加
+    
+    
+    UIButton *walletClick = [UIButton buttonWithType:UIButtonTypeSystem];
+    walletClick.frame = CGRectMake(0, 0, _wallet.width, _wallet.height);
+    [walletClick addTarget:self action:@selector(walletClick) forControlEvents:UIControlEventTouchUpInside];
+    [_wallet addSubview:walletClick];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.97 blue:0.96 alpha:1.00];
-    
-    
     
     
     // 上下班按钮
@@ -253,53 +314,8 @@
 //    [testBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:testBtn];
     
-    _wallet = [[UIView alloc] initWithFrame:CGRectMake(0, self.homePageView.y + self.homePageView.height, kScreenWidth, 70)];
-    _wallet.backgroundColor = self.homePageView.backgroundColor;
-    [self.view addSubview:_wallet];
-    
-    
-    CGFloat imgW = 20;
-    CGFloat imgH = imgW;
-    UIImageView *walletImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgW, imgH)];
-    walletImg.image = [UIImage imageNamed:@"money"];
-    
-    UIFont *font = [UIFont systemFontOfSize:16];
-    CGFloat walletW = [UILabel getWidthWithTitle:@"   我的钱包" font:font];
-    CGFloat walletH = 30;
-    CGFloat walletX = imgW;
-    UIButton *walletBtn = [[UIButton alloc] initWithFrame:CGRectMake(walletX, 0, walletW, walletH)];
-    walletBtn.imageView.contentMode = UIViewContentModeLeft;
-    [walletBtn setTitle:@"我的钱包" forState:UIControlStateNormal];
-    [walletBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [walletBtn addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
-    walletBtn.titleLabel.font = font;
-    
-    CGFloat walletBtnViewW = imgW + walletW;
-    CGFloat walletBtnViewX = (_wallet.width - walletBtnViewW) * .5;
-    CGFloat walletBtnViewY = (_wallet.height - walletH) * .5;
-    UIView *walletBtnView = [[UIView alloc] initWithFrame:CGRectMake(walletBtnViewX, walletBtnViewY, imgW + walletW, walletH)];
-    walletImg.y = (walletBtnView.height - imgH) * .5;
-    [walletBtnView addSubview:walletImg];
-    [walletBtnView addSubview:walletBtn];
-    
-    [_wallet addSubview:walletBtnView];
-    
-    [self.view addSubview:_wallet];
-
-    
-    UIView *line = [[UIView alloc]initWithFrame:
-                    
-                    CGRectMake(0, _wallet.height - 1,kScreenWidth, 1)];
-    
-    line.backgroundColor = [UIColor colorWithRed:193  / 255.0 green:26 / 255.0 blue:32 / 255.0 alpha:1.0];
-    
-    [_wallet addSubview:line];//线是否加
-    
-    
-    UIButton *walletClick = [UIButton buttonWithType:UIButtonTypeSystem];
-    walletClick.frame = CGRectMake(0, 0, _wallet.width, _wallet.height);
-    [walletClick addTarget:self action:@selector(walletClick) forControlEvents:UIControlEventTouchUpInside];
-    [_wallet addSubview:walletClick];
+    // 添加钱包视图
+    [self createWallet];
     
     
     // 还是测试De
@@ -338,8 +354,8 @@
 // 测试方法
 - (void)test {
     
-    MapNavViewController *mapNavVC = [[MapNavViewController alloc] init];
-    [self.navigationController pushViewController:mapNavVC animated:YES];
+//    MapNavViewController *mapNavVC = [[MapNavViewController alloc] init];
+//    [self.navigationController pushViewController:mapNavVC animated:YES];
     
     
     
@@ -486,56 +502,6 @@
 
 
 
-// 此方法测试使用
-//- (void)NewsListWithUserId:(NSString *)userid
-//               WithPage_NO:(NSInteger)pageNo
-//              WithPageSize:(NSInteger)pagesize
-//                   Success:(void (^)(NSDictionary *json))success
-//                      Fail:(void (^)(NSError *error))fail {
-//    NSString *str = [NSString stringWithFormat:@"%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@&%@=%@%@",@"BaseAppType",@"ios",@"BaseAppVersion",@"1.2.1",@"SystemVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"_token_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_userid_",@"43",@"type",@"2",@"userid",@"43",@"MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx"];
-//    NSMutableDictionary *dataDic=[NSMutableDictionary dictionaryWithObjectsAndKeys:@"ios",@"BaseAppType",@"1.2.1",@"BaseAppVersion",[NSString stringWithFormat:@"iPhone_%.2f",[[[UIDevice currentDevice] systemVersion] floatValue]],@"SystemVersion",@"1.2.1",@"BaseAppVersion",[MyMD5 md5:str],@"_sign_",[MyMD5 md5:[NSString stringWithFormat:@"%@MHDnIUIlkkhNdYtIk5SAIwnYH8beRL2HlrHj5FyB0kQSxp9eurSMv9EDyXue3WYx",@"43"]],@"_token_",@"43",@"_userid_",@"2",@"type",@"43",@"userid",nil];
-//    
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    //    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"text/html",@"text/plain",@"text/javascript",@"application/json",@"text/json",nil]];
-//    
-//    
-////    NSLog(@"%@",[self JsonModel:Parameters_Dict]);
-//    
-//    
-//    
-//    [manager POST:[NSString stringWithFormat:@"http://api.dev.yoguopin.com/order/userOrderList"] parameters:dataDic progress:^(NSProgress * _Nonnull uploadProgress) {
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        
-//        NSLog(@"%@",responseObject);
-//        NSDictionary *dict = (NSDictionary *)responseObject;
-//        
-//        
-//        //        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-//        
-//        if ([[dict objectForKey:@"status"] integerValue] == 1)
-//        {
-////            [self showAlertWithMsg:[dict objectForKey:@"msg"]];
-//        }
-//        else
-//        {
-//            //            NSDictionary *dic = [self ChangeTheStringToDictory:[dict objectForKey:@"data"]];
-//            //            NSLog(@"%@",dic);
-//            success(dict);
-//        }
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"failed:%@", error);
-//        fail(error);
-//    }];
-//    
-//    
-//}
 
 
 // 上下班
@@ -571,6 +537,13 @@
 //                tabVC.tabdelegate = nil;
             }
             [[CourierInfoManager shareInstance] saveCourierOnlineStatus:[NSString stringWithFormat:@"%d",self.isWork]];
+            
+            // 如果是在线状态使用别名标识设备
+            if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+                [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
+            } else {// 不在线
+                [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
+            }
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);

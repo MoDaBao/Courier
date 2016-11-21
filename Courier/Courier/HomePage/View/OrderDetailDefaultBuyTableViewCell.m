@@ -124,7 +124,7 @@
     self.allPriceLabel.text = model.all_price;// 实付
     
     self.hopeTimeLabel.text = model.psend_time;// 期望送达时间
-    self.remarkLabel.text = model.note;// 备注
+    self.remarkLabel.text = [model.note isEqualToString:@""] ? @" " : model.note;// 备注
     
 //    self.orderReceivingBtn.hidden = YES;
     

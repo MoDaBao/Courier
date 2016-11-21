@@ -74,6 +74,11 @@
     if (![[[CourierInfoManager shareInstance] getCourierToken] isEqualToString:@" "]) {// 当用户已经登录的时候
         [self initRongAndSendAddress];// 初始化融云
         [self initTimer];//
+        // 如果是在线状态使用别名标识设备
+        if ([[[CourierInfoManager shareInstance] getCourierOnlineStatus] isEqualToString:@"1"]) {
+            [JPUSHService setAlias:[NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]] callbackSelector:nil object:nil];
+            
+        }
     }
     
     
@@ -217,7 +222,7 @@
         
         // 当被迫下线的时候就先移除当前用户的登录信息
         [[CourierInfoManager shareInstance] removeAllCourierInfo];
-        [JPUSHService setAlias:nil callbackSelector:nil object:nil];
+        [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
         [[RCIMClient sharedRCIMClient]logout];// 退出融云
         
         

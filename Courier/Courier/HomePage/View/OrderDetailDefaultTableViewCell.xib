@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="586"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="375" height="585"/>
+                <frame key="frameInset" width="375" height="585.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2I-nz-7Lv">
@@ -194,7 +194,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hev-jg-rtV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注：" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hev-jg-rtV">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14.5" id="5Qo-Rg-i0d"/>
                                     <constraint firstAttribute="width" constant="43" id="OLk-mW-UPl"/>
@@ -241,7 +241,8 @@
                                 <state key="normal" title="接单"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXa-eb-SYU">
-                                <string key="text">阿萨德干啥都干蓝精灵卡电视柜大嘎达发个答复嘎多发个水电费和水电费和水电费和水电</string>
+                                <string key="text">阿萨德干啥都干蓝精灵卡电视柜大嘎达发个答复嘎多发个水电费和水电费和水电费和水电
+</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -328,12 +329,12 @@
                             <constraint firstItem="7Fh-Tl-0YJ" firstAttribute="top" secondItem="6u7-nf-ePf" secondAttribute="bottom" constant="10" id="ufJ-o2-bcU"/>
                             <constraint firstItem="sep-dt-FfA" firstAttribute="top" secondItem="446-C0-2TX" secondAttribute="bottom" constant="10" id="v6W-vj-7tG"/>
                             <constraint firstItem="446-C0-2TX" firstAttribute="leading" secondItem="n2I-nz-7Lv" secondAttribute="leading" constant="5" id="vBc-v3-B42"/>
-                            <constraint firstItem="mQX-hA-xlM" firstAttribute="top" secondItem="hev-jg-rtV" secondAttribute="bottom" constant="45" id="wQb-mw-ocI"/>
                             <constraint firstItem="Pyd-qe-vDS" firstAttribute="top" secondItem="PBd-9c-RdH" secondAttribute="bottom" constant="10" id="wRu-rZ-wxt"/>
                             <constraint firstItem="ALF-CR-S9k" firstAttribute="centerY" secondItem="fP5-tB-BUF" secondAttribute="centerY" id="wug-yD-L8x"/>
                             <constraint firstAttribute="trailing" secondItem="uxn-2T-DP7" secondAttribute="trailing" constant="30" id="xwS-nF-30p"/>
                             <constraint firstItem="ILG-iP-8pt" firstAttribute="leading" secondItem="n2I-nz-7Lv" secondAttribute="leading" id="y2j-hq-szi"/>
                             <constraint firstItem="PBd-9c-RdH" firstAttribute="top" secondItem="sep-dt-FfA" secondAttribute="bottom" constant="10" id="ypO-24-zOs"/>
+                            <constraint firstItem="mQX-hA-xlM" firstAttribute="top" secondItem="CXa-eb-SYU" secondAttribute="bottom" constant="10" id="zse-SA-oyJ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -367,7 +368,7 @@
                 <outlet property="timeLabel" destination="ZOU-aC-9Bp" id="oou-AQ-2se"/>
                 <outlet property="userPhoneLabel" destination="KnK-OJ-Shn" id="4fl-k0-AJ0"/>
             </connections>
-            <point key="canvasLocation" x="282" y="315"/>
+            <point key="canvasLocation" x="281.5" y="315"/>
         </tableViewCell>
     </objects>
     <resources>

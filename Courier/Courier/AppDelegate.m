@@ -223,8 +223,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //    [JPUSHService setTags:[NSSet setWithObjects:@"test", nil] alias:@"ZhangQian" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     
     // 使用别名标识设备
-    NSString *alias = [NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]];
-    [JPUSHService setAlias:alias callbackSelector:nil object:nil];
+//    NSString *alias = [NSString stringWithFormat:@"puser_%@",[[CourierInfoManager shareInstance] getCourierPid]];
+//    [JPUSHService setAlias:alias callbackSelector:nil object:nil]÷、;
     
     
     NSString *token =

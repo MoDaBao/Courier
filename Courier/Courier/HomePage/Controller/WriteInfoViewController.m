@@ -244,7 +244,7 @@
         _end_latitude = _start_latitude;
         _end_longitude = _start_longitude;
     }
-    if (self.writeBuyView.isChoose) {
+    if (self.writeBuyView.isChoose) {// 判断有无选择默认起送价
         _start_latitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"latitude"];
         _start_longitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"longitude"];
         _end_latitude = _start_latitude;

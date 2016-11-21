@@ -12,12 +12,15 @@
 
 //  根据宽度获取高度
 + (CGFloat)getHeightByWidth:(CGFloat)width title:(NSString *)title font:(UIFont *)font {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
-    label.text = title;
-    label.font = font;
-    label.numberOfLines = 0;
-    [label sizeToFit];
-    return label.frame.size.height;
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 0)];
+//    label.text = title;
+//    label.font = font;
+//    label.numberOfLines = 0;
+//    [label sizeToFit];
+//    return label.frame.size.height;
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil];
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(width, 1000) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil];
+    return rect.size.height;
 }
 
 //  根据文字获取宽度
